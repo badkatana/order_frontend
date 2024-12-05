@@ -5,6 +5,7 @@ export interface Event {
 	contextId?: number
 	priority?: number
 	calendarDate: string
+	type?: string
 	isPrivate: boolean
 	userId: string
 }

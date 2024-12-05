@@ -1,5 +1,12 @@
+import { MainPage } from './pages/mainPage/MainPage'
+
+// here be context
 function App() {
-	return <>app start point</>
+	return (
+		<>
+			<MainPage />
+		</>
+	)
 }
 
 export default App
