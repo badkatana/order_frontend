@@ -4,8 +4,10 @@ export interface Event {
 	status: boolean
 	contextId?: number
 	priority?: number
-	calendarDate: string
+	periodStart: string
+	periodEnd: string
 	type?: string
 	isPrivate: boolean
+	taskIds: number[]
 	userId: string
 }

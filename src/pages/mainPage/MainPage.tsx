@@ -28,9 +28,19 @@ const tasks: Task[] = [
 	},
 ]
 
+const events = [
+	{
+		id: 1,
+		name: 'here 1',
+		type: 'lecture',
+		calendarDate: '12.03.2024 11:50',
+		isPrivate: false,
+	},
+]
+
 const calendarItem = {
 	tasks: tasks,
-	events: [],
+	events: events,
 	context: [],
 	userId: '',
 }

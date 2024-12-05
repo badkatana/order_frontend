@@ -1,16 +1,19 @@
+import dayjs from 'dayjs'
 import { Calendar } from '../../entities/Calendar'
 
 export const groupArraysByDate = (input: Calendar) => {
 	const output = input.tasks.concat(input.events).reduce((acc, item) => {
 		const date = item.calendarDate ?? item.softDeadline ?? item.hardDeadline ?? ''
-		if (!acc[date]) {
-			acc[date] = { tasks: [], events: [] }
+		const formattedDate = dayjs(date).format('MM.DD.YYYY')
+
+		if (!acc[formattedDate]) {
+			acc[formattedDate] = { tasks: [], events: [] }
 		}
 
-		if (item.hardDeadline || item.softDeadline || item.calendarDate) {
-			acc[date].tasks.push(item)
+		if ('isPrivate' in item) {
+			acc[formattedDate].events.push(item)
 		} else {
-			acc[date].events.push(item)
+			acc[formattedDate].tasks.push(item)
 		}
 		return acc
 	}, {})
