@@ -1,8 +1,10 @@
 import styled from '@emotion/styled'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
 import { Box, IconButton } from '@mui/material'
+import { useState } from 'react'
 import { Event } from '../../entities/Event'
 import { Task } from '../../entities/Task'
+import { TaskModalWindow } from '../../widgets/TaskModalWindow'
 import { getTaskWithDeadlines } from '../../widgets/lib/getTasksWithDeadlines'
 import { DateHeader } from './DateHeader'
 import { ListWrapper } from './ListWrapper'
@@ -17,6 +19,7 @@ type BaseDayCalendarProps = {
 
 export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 	const { tasks, events, date } = props
+	const [open, setOpen] = useState(false)
 	// todo: optimaze; when we sort task get it also
 	const { hardDeadlinesTasks, softDeadlinesTasks } = getTaskWithDeadlines(tasks, date)
 
@@ -33,9 +36,12 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 					))}
 				</ListWrapper>
 				<Box display={'flex'} justifyContent={'center'}>
-					<IconButton color={'inherit'}>
+					<IconButton color={'inherit'} onClick={() => setOpen(true)}>
 						<AddCircleOutlineOutlinedIcon fontSize={'large'} />
 					</IconButton>
+				</Box>
+				<Box>
+					<TaskModalWindow open={open} handleClose={() => setOpen(false)} />
 				</Box>
 			</Box>
 		</Wrapper>
@@ -43,12 +49,11 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 }
 
 const DeadlinesArea = ({ tasks, color }) => {
-	console.log(tasks)
 	if (tasks.lenght < 1) return
 	return (
 		<Box>
 			{tasks &&
-				tasks.map((hard: Task) => (
+				tasks.map((hard: Task, index) => (
 					<Box
 						key={hard.id}
 						backgroundColor={color}

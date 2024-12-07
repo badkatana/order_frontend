@@ -11,8 +11,12 @@ export const DateHeader = (props: DateProps) => {
 	const correctDate = dayjs(props.date)
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline' }}>
-			<Box sx={{ fontSize: '4em', fontWeight: 600, margin: '0.1em' }}>{correctDate.date().toString()}</Box>
-			<Box sx={{ fontDize: '3em', fontWeight: 400 }}>{correctDate.format('dddd').toString()}</Box>
+			<Box key={`date`} sx={{ fontSize: '4em', fontWeight: 600, margin: '0.1em' }}>
+				{correctDate.date().toString()}
+			</Box>
+			<Box key={`date-time`} sx={{ fontDize: '3em', fontWeight: 400 }}>
+				{correctDate.format('dddd').toString()}
+			</Box>
 		</Box>
 	)
 }

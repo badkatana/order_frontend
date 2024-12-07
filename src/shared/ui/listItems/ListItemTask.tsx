@@ -13,6 +13,7 @@ export const ListItemTask = (props: ListItemTask) => {
 		<ListItemTaskWrapper>
 			{/* todo: instead of click call api */}
 			<Checkbox
+				key={task.id + '_check'}
 				defaultChecked={task.status ?? false}
 				onClick={taskClick}
 				sx={{
@@ -23,7 +24,7 @@ export const ListItemTask = (props: ListItemTask) => {
 				}}
 			/>
 			<ListItemButton>
-				<ListItemText primary={task.name} />
+				<ListItemText key={task.id} primary={task.name} />
 			</ListItemButton>
 		</ListItemTaskWrapper>
 	)

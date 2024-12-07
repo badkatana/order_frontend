@@ -1,29 +1,46 @@
-export const TaskForm = {
-	name: {
-		component: 'string',
+import { InputDate } from '../ui/formGenerator/formItems/DatePicker'
+import { InputString } from '../ui/formGenerator/formItems/InputString'
+import { InputToggle } from '../ui/formGenerator/formItems/InputToggle'
+
+export const TaskForm = [
+	{
+		name: 'Name',
+		label: 'Name',
+		component: InputString,
 		multiline: true,
 		required: true,
 	},
-	description: {
-		component: 'string',
+	{
+		name: 'description',
+		component: InputString,
 		multiline: true,
 	},
-	hardDeadline: {
-		component: 'date',
+	{
+		name: 'priority',
+		title: 'Priority',
+		component: InputToggle,
+		groupItems: [
+			{ value: 1, label: 'High' },
+			{ value: 2, label: 'Middle' },
+			{ value: 3, label: 'Low' },
+		],
 	},
-	softDeadline: {
-		component: 'date',
+	{
+		name: 'calendarDate',
+		label: 'Calendar Date',
+		component: InputDate,
 	},
-	context: {
-		component: 'autocomplete',
+	{
+		name: 'hardDeadline',
+		label: 'Hard Deadline',
+		component: InputDate,
 	},
-	priority: {
-		component: 'autocomplete-row',
+	{
+		name: 'softDeadline',
+		label: 'Soft Deadline',
+		component: InputDate,
 	},
-	calendarDate: {
-		component: 'date',
-	},
-	isPrivate: {
-		component: 'checkbox',
-	},
-}
+	// context: {
+	// 	component: 'autocomplete',
+	// },
+]

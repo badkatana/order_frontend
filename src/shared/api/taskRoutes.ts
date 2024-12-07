@@ -22,7 +22,8 @@ export const deleteTask = async ({ taskId }) => {
 	return data
 }
 
-export const createTask = async ({ task }) => {
-	const { data } = await authBackend.post(`Task`, { task })
+export const createTask = async task => {
+	console.log(task)
+	const { data } = await authBackend.post(`Task`, task)
 	return data
 }
