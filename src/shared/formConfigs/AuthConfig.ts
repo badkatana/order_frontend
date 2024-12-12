@@ -1,15 +1,30 @@
-export const AuthConfig = {
-	name: {
-		component: 'string',
+import { InputString } from '../ui/formGenerator/formItems/InputString'
+import { InputToggle } from '../ui/formGenerator/formItems/InputToggle'
+
+export const AuthConfig = [
+	{
+		name: 'name',
+		component: InputString,
 		placeholder: 'Enter your name',
 		required: true,
 	},
-	password: {
-		component: 'password',
+	{
+		name: 'password',
+		component: InputString,
+		type: 'password',
 		required: true,
 	},
-	email: {
-		component: 'string',
+	{
+		name: 'email',
+		component: InputString,
 		required: true,
 	},
-}
+	{
+		name: 'type',
+		component: InputToggle,
+		groupItems: [
+			{ value: 1, label: 'Register' },
+			{ value: 2, label: 'Login' },
+		],
+	},
+]

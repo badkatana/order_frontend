@@ -1,36 +1,34 @@
+import { jwtDecode } from 'jwt-decode'
 import { backend } from './hostConfig'
 
-// 2) POST http://localhost:5141/api/User/login
-export const loginUser = async ({ userName, userPassword, userEmail }) => {
-	const { data } = await backend.post('login', { userName, userPassword, userEmail })
-	return data
+export const loginUser = async values => {
+	const { data } = await backend.post('User/login', values)
+	return { token: data.token, userId: data.user }
 }
 
-// 2) POST http://localhost:5141/api/User/register
-export const registerUser = async ({ userName, userPassword, userEmail }) => {
-	const { data } = await backend.post('register', { userName, userPassword, userEmail })
-	return data
+export const registerUser = async values => {
+	const { data: unused } = await backend.post('User/register', values)
+	const { data } = await backend.post('User/login', values)
+	return { token: data.token, userId: unused.id }
 }
-
-// auth.ts
-import { jwtDecode } from 'jwt-decode'
 
 interface TokenPayload {
 	exp: number
 }
 
 export const isAuthenticated = (): boolean => {
-	const token = localStorage.getItem('token')
+	const token = sessionStorage.getItem('access_token')
 
 	if (!token) {
-		console.log('here')
 		return false
 	}
 
 	try {
 		const decoded: TokenPayload = jwtDecode(token)
+		console.log(decoded)
 		const isExpired = decoded.exp * 1000 < Date.now()
 
+		console.log('ex', isExpired)
 		return !isExpired
 	} catch (error) {
 		console.error('Ошибка при декодировании токена', error)
