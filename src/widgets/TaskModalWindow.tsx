@@ -1,9 +1,10 @@
 import CloseIcon from '@mui/icons-material/Close'
-import { Box, Button, Grid, IconButton, Modal, styled, Tab, Tabs, Typography } from '@mui/material'
+import { Box, Button, IconButton, Modal, styled, Tab, Tabs, Typography } from '@mui/material'
 import { useState } from 'react'
-import { Form, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { EventForm } from '../shared/formConfigs/EventForm'
 import { TaskForm } from '../shared/formConfigs/TaskForm'
+import { GeneralForm } from '../shared/ui/formGenerator/GeneralForm'
 import { submitTask } from './lib/submitForm'
 import { submitEvent } from './lib/submitForm/submitFunctions'
 
@@ -40,48 +41,10 @@ export const TaskModalWindow = ({ open, handleClose }) => {
 							</Tabs>
 						</Box>
 						<CustomTabPanel value={value} index={0}>
-							<Form control={control} onSubmit={handleSubmit(values => submitTask(values))}>
-								<Grid container spacing={2}>
-									{TaskForm.map((item, index) => {
-										const Component = item.component
-										return (
-											<Grid item xs={4} key={index}>
-												<Component key={`task_form_${index}`} control={control} {...item} />
-											</Grid>
-										)
-									})}
-								</Grid>
-								<Box
-									marginLeft={'auto'}
-									display={'flex'}
-									alignItems={'flex-start'}
-									flexDirection={'row'}
-								>
-									<ButtonStyled type='submit'>Here</ButtonStyled>
-								</Box>
-							</Form>
+							<GeneralForm config={TaskForm} submitFunction={submitTask} />
 						</CustomTabPanel>
 						<CustomTabPanel value={value} index={1}>
-							<Form control={control} onSubmit={handleSubmit(values => submitEvent(values))}>
-								<Grid container spacing={2}>
-									{EventForm.map((item, index) => {
-										const Component = item.component
-										return (
-											<Grid item xs={4} key={index}>
-												<Component key={`task_form_${index}`} control={control} {...item} />
-											</Grid>
-										)
-									})}
-								</Grid>
-								<Box
-									marginLeft={'auto'}
-									display={'flex'}
-									alignItems={'flex-start'}
-									flexDirection={'row'}
-								>
-									<ButtonStyled type='submit'>Here</ButtonStyled>
-								</Box>
-							</Form>
+							<GeneralForm config={EventForm} submitFunction={submitEvent} />
 						</CustomTabPanel>
 					</Box>
 				</Box>

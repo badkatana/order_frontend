@@ -12,7 +12,7 @@ export const ListItemEvent = (props: ListItemEventProps) => {
 	const afterDate = dayjs(event.periodEnd)
 
 	return (
-		<ListItemWrapper sx={{ background: EventColors[event.type], borderRadius: '1em' }}>
+		<ListItemWrapper sx={{ background: EventColors[event.type] ?? EventColors['personal'], borderRadius: '1em' }}>
 			<Box>{`${currentDate.hour()} : ${currentDate.minute()}`}</Box>
 			<Box>{event.name}</Box>
 			<Box marginLeft={'auto'}>

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
-import { InputDate } from '../ui/formGenerator/formItems/DatePicker'
 import { InputCheckbox } from '../ui/formGenerator/formItems/InputCheckbox'
+import { InputDateTime } from '../ui/formGenerator/formItems/InputDateTime'
 import { InputString } from '../ui/formGenerator/formItems/InputString'
 import { InputToggle } from '../ui/formGenerator/formItems/InputToggle'
 
@@ -9,14 +9,10 @@ export const EventForm = [
 		name: 'name',
 		component: InputString,
 	},
-	{
-		name: 'callendarDate',
-		component: InputDate,
-		required: true,
-	},
 	// {
-	// 	name: 'status',
-	// 	component: InputString, // a нахуя нам это ????
+	// 	name: 'callendarDate',
+	// 	component: InputDate,
+	// 	required: true,
 	// },
 	{
 		name: 'priority',
@@ -29,22 +25,22 @@ export const EventForm = [
 	},
 	{
 		name: 'periodStart',
-		component: InputDate, // make input datetime
+		component: InputDateTime,
+		defaultValue: dayjs(),
+		maxDate: dayjs(),
 		minDate: dayjs(),
 		required: true,
 	},
 	{
 		name: 'periodEnd',
-		component: InputDate, // make input datetime
+		component: InputDateTime,
 		maxDate: dayjs(),
+		minDate: dayjs(),
+		defaultValue: dayjs(),
 		required: true,
 	},
-	// {
-	// 	name: 'type',
-	// 	component: InputString, // мб это сделать вообще служебным полем
-	// },
 	{
 		name: 'isPrivate',
-		component: InputCheckbox, // input checkbox
+		component: InputCheckbox,
 	},
 ]
