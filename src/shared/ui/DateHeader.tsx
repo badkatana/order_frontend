@@ -9,7 +9,7 @@ type DateProps = {
 
 export const DateHeader = (props: DateProps) => {
 	const correctDate = dayjs(props.date, 'YYYY-MM-DD')
-	console.log(correctDate)
+
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline' }}>
 			<Box key={`date`} sx={{ fontSize: '4em', fontWeight: 600, margin: '0.1em' }}>
