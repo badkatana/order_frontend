@@ -26,7 +26,7 @@ export const TaskForm = [
 		],
 	},
 	{
-		name: 'calendarDate',
+		name: 'callendarDate',
 		label: 'Calendar Date',
 		component: InputDate,
 	},

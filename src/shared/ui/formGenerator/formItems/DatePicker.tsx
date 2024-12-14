@@ -12,7 +12,7 @@ export const InputDate = ({ control, name = '', label = '' }) => {
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DatePicker
 						label={label}
-						format={'DD.MM.YYYY'}
+						format={'YYYY-MM-DD'}
 						minDate={dayjs()}
 						onChange={onChange}
 						// slotProps={{

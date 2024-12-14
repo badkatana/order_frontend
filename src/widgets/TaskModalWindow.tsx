@@ -2,10 +2,10 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Box, Button, Grid, IconButton, Modal, styled, Tab, Tabs, Typography } from '@mui/material'
 import { useState } from 'react'
 import { Form, useForm } from 'react-hook-form'
-import { submitEvent } from '../shared/api/eventsRoutes'
 import { EventForm } from '../shared/formConfigs/EventForm'
 import { TaskForm } from '../shared/formConfigs/TaskForm'
-import { submitTask } from './lib/submitForm/submitFunctions'
+import { submitTask } from './lib/submitForm'
+import { submitEvent } from './lib/submitForm/submitFunctions'
 
 export const TaskModalWindow = ({ open, handleClose }) => {
 	const { control, handleSubmit } = useForm({ mode: 'onChange' })

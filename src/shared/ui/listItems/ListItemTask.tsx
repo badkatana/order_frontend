@@ -1,21 +1,26 @@
 import styled from '@emotion/styled'
 import { Checkbox, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import { useState } from 'react'
 import { Task } from '../../../entities/Task'
+import { changeTask } from '../../api/taskRoutes'
 
 type ListItemTask = {
 	task: Task
-	taskClick: (value) => void
 }
 
 export const ListItemTask = (props: ListItemTask) => {
-	const { task, taskClick } = props
+	const { task } = props
+	const [value, setValue] = useState(task.status)
 	return (
 		<ListItemTaskWrapper>
 			{/* todo: instead of click call api */}
 			<Checkbox
 				key={task.id + '_check'}
-				defaultChecked={task.status ?? false}
-				onClick={taskClick}
+				defaultChecked={value ?? false}
+				onClick={e => {
+					setValue(!value)
+					changeTask({ ...task, status: !value })
+				}}
 				sx={{
 					color: 'white',
 					'&.Mui-checked': {
@@ -32,6 +37,7 @@ export const ListItemTask = (props: ListItemTask) => {
 
 const ListItemTaskWrapper = styled(ListItem)({
 	display: 'flex',
+	fontSize: '0.4em',
 	flexDirection: 'row',
 	margin: 0,
 	padding: 0,

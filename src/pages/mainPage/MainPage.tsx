@@ -48,7 +48,7 @@ const calendarItem = {
 export const MainPage = () => {
 	return (
 		<WorkingArea>
-			<CalendarWeek calendarItem={calendarItem} dateStart='here' />
+			<CalendarWeek />
 		</WorkingArea>
 	)
 }

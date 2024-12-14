@@ -6,6 +6,7 @@ import { Event } from '../../entities/Event'
 import { Task } from '../../entities/Task'
 import { TaskModalWindow } from '../../widgets/TaskModalWindow'
 import { getTaskWithDeadlines } from '../../widgets/lib/getTasksWithDeadlines'
+import { changeTask } from '../api/taskRoutes'
 import { DateHeader } from './DateHeader'
 import { ListWrapper } from './ListWrapper'
 import { ListItemEvent } from './listItems/ListItemEvent'
@@ -32,7 +33,7 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 				<ListWrapper>{events && events.map(event => <ListItemEvent event={event} />)}</ListWrapper>
 				<ListWrapper>
 					{tasks.map(task => (
-						<ListItemTask task={task} taskClick={() => console.log(task.id)} />
+						<ListItemTask task={task} taskClick={() => changeTask(task)} />
 					))}
 				</ListWrapper>
 				<Box display={'flex'} justifyContent={'center'}>
@@ -68,8 +69,8 @@ const DeadlinesArea = ({ tasks, color }) => {
 	)
 }
 const Wrapper = styled(Box)({
-	width: '18em',
-	height: '80vh',
+	width: '30vh',
+	height: '70vh',
 	margin: '0.3em',
 	border: '0.1em solid #606162',
 	borderRadius: '3em',

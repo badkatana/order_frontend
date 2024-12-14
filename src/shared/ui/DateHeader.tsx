@@ -8,14 +8,15 @@ type DateProps = {
 }
 
 export const DateHeader = (props: DateProps) => {
-	const correctDate = dayjs(props.date)
+	const correctDate = dayjs(props.date, 'YYYY-MM-DD')
+	console.log(correctDate)
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline' }}>
 			<Box key={`date`} sx={{ fontSize: '4em', fontWeight: 600, margin: '0.1em' }}>
-				{correctDate.date().toString()}
+				{dayjs(correctDate).date().toString()}
 			</Box>
 			<Box key={`date-time`} sx={{ fontDize: '3em', fontWeight: 400 }}>
-				{correctDate.format('dddd').toString()}
+				{correctDate.format('ddd').toString()}
 			</Box>
 		</Box>
 	)

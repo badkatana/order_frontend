@@ -3,7 +3,7 @@ import { backend } from './hostConfig'
 
 export const loginUser = async values => {
 	const { data } = await backend.post('User/login', values)
-	return { token: data.token, userId: data.user }
+	return { token: data.token, userId: data.user.id }
 }
 
 export const registerUser = async values => {
@@ -25,10 +25,8 @@ export const isAuthenticated = (): boolean => {
 
 	try {
 		const decoded: TokenPayload = jwtDecode(token)
-		console.log(decoded)
 		const isExpired = decoded.exp * 1000 < Date.now()
 
-		console.log('ex', isExpired)
 		return !isExpired
 	} catch (error) {
 		console.error('Ошибка при декодировании токена', error)
