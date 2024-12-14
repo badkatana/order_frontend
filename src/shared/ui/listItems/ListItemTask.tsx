@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
-import { Checkbox, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import { Checkbox, IconButton, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import { useState } from 'react'
 import { Task } from '../../../entities/Task'
-import { changeTask } from '../../api/taskRoutes'
+import { changeTask, deleteTask } from '../../api/taskRoutes'
 
 type ListItemTask = {
 	task: Task
@@ -13,11 +14,10 @@ export const ListItemTask = (props: ListItemTask) => {
 	const [value, setValue] = useState(task.status)
 	return (
 		<ListItemTaskWrapper>
-			{/* todo: instead of click call api */}
 			<Checkbox
 				key={task.id + '_check'}
 				defaultChecked={value ?? false}
-				onClick={e => {
+				onClick={() => {
 					setValue(!value)
 					changeTask({ ...task, status: !value })
 				}}
@@ -31,14 +31,14 @@ export const ListItemTask = (props: ListItemTask) => {
 			<ListItemButton>
 				<ListItemText key={task.id} primary={task.name} />
 			</ListItemButton>
-			{/* <IconButton
+			<IconButton
 				sx={{
 					color: 'white',
 				}}
-				onClick={deleteTask(task.id)}
+				onClick={() => deleteTask(task.id)}
 			>
 				<DeleteOutlineOutlinedIcon />
-			</IconButton> */}
+			</IconButton>
 		</ListItemTaskWrapper>
 	)
 }
