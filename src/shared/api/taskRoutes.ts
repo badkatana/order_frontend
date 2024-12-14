@@ -17,7 +17,7 @@ export const changeTask = async task => {
 	return data
 }
 
-export const deleteTask = async ({ taskId }) => {
+export const deleteTask = async taskId => {
 	const { data } = await authBackend.delete(`Task/${taskId}`)
 	return data
 }

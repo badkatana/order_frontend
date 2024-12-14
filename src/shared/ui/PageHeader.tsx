@@ -1,11 +1,16 @@
 import { Box, styled, Typography } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 
-export const PageHeader = ({ path }) => {
+export const PageHeader = () => {
+	const path = useLocation()
 	return (
 		<StyledWrapper>
-			<Typography fontSize={'1.5em'}>Order / </Typography>
-			<Typography fontSize={'1.5em'} color={'red'} fontWeight={'200'} px={'0.5em'}>
-				{path ? path : 'somewhere'}
+			<Typography fontSize={'1.5em'}>Order </Typography>
+			<Typography fontSize={'1.5em'} px={'0.5em'}>
+				/
+			</Typography>
+			<Typography fontSize={'1.5em'} color={'red'} fontWeight={'200'}>
+				{path ? path.pathname.split('/')[1].trim() : 'somewhere'}
 			</Typography>
 		</StyledWrapper>
 	)

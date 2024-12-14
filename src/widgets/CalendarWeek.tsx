@@ -26,7 +26,7 @@ export const CalendarWeek = () => {
 			}),
 	})
 
-	const daysTasks = !isFetching && groupArraysByDate(calendarItem)
+	const daysTasks = !isFetching && groupArraysByDate(calendarItem, dateRange)
 
 	const handleStartDateChange = date => {
 		setStartDate(date)

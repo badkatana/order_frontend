@@ -31,6 +31,14 @@ export const ListItemTask = (props: ListItemTask) => {
 			<ListItemButton>
 				<ListItemText key={task.id} primary={task.name} />
 			</ListItemButton>
+			{/* <IconButton
+				sx={{
+					color: 'white',
+				}}
+				onClick={deleteTask(task.id)}
+			>
+				<DeleteOutlineOutlinedIcon />
+			</IconButton> */}
 		</ListItemTaskWrapper>
 	)
 }

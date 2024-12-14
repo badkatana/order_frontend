@@ -1,25 +1,23 @@
-import dayjs from 'dayjs'
 import { Calendar } from '../../entities/Calendar'
+import { Event } from '../../entities/Event'
+import { Task } from '../../entities/Task'
 
-export const groupArraysByDate = (input: Calendar) => {
+export const groupArraysByDate = (input: Calendar, datesRange: string[]) => {
 	const tasks = input.tasks.$values
 	const events = input.events.$values
+	const outputArray: { [key: string]: { tasks: Task[] | []; events: Event[] | [] } } = {}
 
-	const output = tasks.concat(events).reduce((acc, item) => {
-		const date = item.callendarDate ?? item.softDeadline ?? item.hardDeadline ?? ''
-		const formattedDate = dayjs(date).format('YYYY-MM-DD')
+	datesRange.map(date => {
+		const tasksToDate = tasks.filter(
+			(task: { callendarDate: string; softDeadline: string; hardDeadline: string }) =>
+				task.callendarDate.includes(date) ||
+				task.softDeadline.includes(date) ||
+				task.hardDeadline.includes(date)
+		)
+		const eventsToDate = events.filter((event: { periodStart: string }) => event.periodStart.includes(date))
 
-		if (!acc[formattedDate]) {
-			acc[formattedDate] = { tasks: [], events: [] }
-		}
+		outputArray[date] = { tasks: tasksToDate, events: eventsToDate }
+	})
 
-		if ('hardDeadline' in item) {
-			acc[formattedDate].tasks.push(item)
-		} else {
-			acc[formattedDate].events.push(item)
-		}
-		return acc
-	}, {})
-
-	return output
+	return outputArray
 }
