@@ -1,6 +1,7 @@
 import { Assignment, CalendarToday, ExitToApp, Inbox, Menu as MenuIcon } from '@mui/icons-material'
 import { AppBar, IconButton, List, ListItem, ListItemText, Toolbar } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { logOutUser } from '../lib'
 
 interface VerticalAppBarProps {
 	open: boolean

@@ -1,1 +1,4 @@
-export const logOutUser = () => {}
+export const logOutUser = () => {
+	localStorage.clear()
+	sessionStorage.clear()
+}
