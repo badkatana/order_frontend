@@ -6,8 +6,8 @@ import { isAuthenticated } from './shared/api/authRoutes'
 function App() {
 	const queryClient = new QueryClient()
 	return (
-		<QueryClientProvider client={queryClient}>
-			<Router>
+		<Router>
+			<QueryClientProvider client={queryClient}>
 				<Routes>
 					{routes.map(route => {
 						if (route.protected) {
@@ -22,8 +22,8 @@ function App() {
 						return <Route key={route.path} path={route.path} element={<route.element />} />
 					})}
 				</Routes>
-			</Router>
-		</QueryClientProvider>
+			</QueryClientProvider>
+		</Router>
 	)
 }
 

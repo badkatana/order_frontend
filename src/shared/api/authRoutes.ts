@@ -9,6 +9,9 @@ export const loginUser = async values => {
 export const registerUser = async values => {
 	const { data: unused } = await backend.post('User/register', values)
 	const { data } = await backend.post('User/login', values)
+	sessionStorage.setItem('access_token', data.token)
+	localStorage.setItem('user_id', unused.id)
+	localStorage.setItem('user', data.user.name)
 	return { token: data.token, userId: unused.id }
 }
 
