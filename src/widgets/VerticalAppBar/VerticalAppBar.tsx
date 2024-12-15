@@ -72,7 +72,7 @@ const AppBarItems = [
 		icon: CalendarToday,
 	},
 	{
-		name: localStorage.getItem('user').name ?? 'default',
+		name: 'default',
 		path: '',
 		icon: MenuIcon,
 	},

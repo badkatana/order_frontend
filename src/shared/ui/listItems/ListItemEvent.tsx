@@ -14,6 +14,7 @@ export const ListItemEvent = (props: ListItemEventProps) => {
 	return (
 		<ListItemWrapper sx={{ background: EventColors[event.type] ?? EventColors['personal'], borderRadius: '1em' }}>
 			<Box>{`${currentDate.hour()} : ${currentDate.minute()}`}</Box>
+			<Box marginLeft={'0.5em'}>{`${afterDate.hour()} : ${afterDate.minute()}`}</Box>
 			<Box>{event.name}</Box>
 			<Box marginLeft={'auto'}>
 				<ButtonEvent size='small'>...</ButtonEvent>

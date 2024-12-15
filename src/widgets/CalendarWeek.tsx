@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { Box, createTheme, TextField, ThemeProvider } from '@mui/material'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -38,28 +38,68 @@ export const CalendarWeek = () => {
 	}
 
 	return (
-		<PageCalendar>
-			<LocalizationProvider dateAdapter={AdapterDayjs}>
-				<DatePicker
-					label='Выберите начало недели'
-					value={startDate}
-					onChange={handleStartDateChange}
-					renderInput={params => <TextField {...params} />}
-				/>
-			</LocalizationProvider>
-			<CalendarWrapper>
-				{!isFetching &&
-					dateRange.map(date => {
-						return (
-							<BaseDayCalendar
-								tasks={daysTasks[date] ? daysTasks[date].tasks : []}
-								events={daysTasks[date] ? daysTasks[date].events : []}
-								key={date}
-								date={date}
-							/>
-						)
-					})}
-			</CalendarWrapper>
-		</PageCalendar>
+		<ThemeProvider theme={theme}>
+			<PageCalendar>
+				<Box sx={{ width: '15em', marginTop: '2%', marginLeft: '2%' }}>
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DatePicker
+							label='Выберите начало недели'
+							value={startDate}
+							onChange={handleStartDateChange}
+							renderInput={params => (
+								<TextField
+									{...params}
+									variant='outlined'
+									sx={{
+										width: '10em',
+										input: {
+											color: 'white',
+										},
+										'& .MuiOutlinedInput-root': {
+											'& fieldset': {
+												borderColor: 'white',
+											},
+											'&:hover fieldset': {
+												borderColor: 'white',
+											},
+											'&.Mui-focused fieldset': {
+												borderColor: 'white', // Цвет границы при фокусе
+											},
+										},
+									}}
+								/>
+							)}
+						/>
+					</LocalizationProvider>
+				</Box>
+
+				<CalendarWrapper>
+					{!isFetching &&
+						dateRange.map(date => {
+							return (
+								<BaseDayCalendar
+									tasks={daysTasks[date] ? daysTasks[date].tasks : []}
+									events={daysTasks[date] ? daysTasks[date].events : []}
+									key={date}
+									date={date}
+								/>
+							)
+						})}
+				</CalendarWrapper>
+			</PageCalendar>
+		</ThemeProvider>
 	)
 }
+
+const theme = createTheme({
+	palette: {
+		mode: 'dark',
+		background: {
+			default: '#000',
+			paper: '#000',
+		},
+		text: {
+			primary: '#fff',
+		},
+	},
+})
