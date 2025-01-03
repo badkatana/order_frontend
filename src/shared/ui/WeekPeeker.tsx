@@ -1,65 +1,49 @@
-import { Button, Grid, Typography } from '@mui/material'
-import { addDays, endOfWeek, format, startOfWeek } from 'date-fns'
-import { useState } from 'react'
+import { TextField, TextFieldProps } from '@mui/material'
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs, { Dayjs } from 'dayjs'
+import isoWeek from 'dayjs/plugin/isoWeek'
+import React, { useState } from 'react'
 
-const WeekPicker = () => {
-	const [selectedWeek, setSelectedWeek] = useState({ start: null, end: null })
+dayjs.extend(isoWeek)
 
-	const handleDateClick = date => {
-		const start = startOfWeek(date, { weekStartsOn: 1 }) // Понедельник
-		const end = endOfWeek(date, { weekStartsOn: 1 }) // Воскресенье
-		setSelectedWeek({ start, end })
-	}
+interface WeekPickerProps {
+	onChange?: (startOfWeek: Dayjs, endOfWeek: Dayjs) => void
+}
 
-	const renderDays = () => {
-		const days = []
-		for (let i = 0; i < 7; i++) {
-			const date = addDays(new Date(), i) // Текущая дата + i дней
-			days.push(
-				<Grid item xs={1} key={i}>
-					<Button
-						variant='outlined'
-						onClick={() => handleDateClick(date)}
-						style={{
-							backgroundColor:
-								selectedWeek.start &&
-								selectedWeek.end &&
-								date >= selectedWeek.start &&
-								date <= selectedWeek.end
-									? '#3f51b5'
-									: 'transparent',
-							color:
-								selectedWeek.start &&
-								selectedWeek.end &&
-								date >= selectedWeek.start &&
-								date <= selectedWeek.end
-									? '#fff'
-									: '#000',
-							width: '100%',
-						}}
-					>
-						{format(date, 'EEEE')}
-					</Button>
-				</Grid>
-			)
+const WeekPicker: React.FC<WeekPickerProps> = ({ onChange }) => {
+	const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null)
+
+	const handleDateChange = (date: Dayjs | null) => {
+		if (date) {
+			const startOfWeek = date.startOf('isoWeek')
+			const endOfWeek = date.endOf('isoWeek')
+			setSelectedDate(date)
+			onChange?.(startOfWeek, endOfWeek)
 		}
-		return days
 	}
 
 	return (
-		<div>
-			<Typography variant='h6'>Выберите неделю:</Typography>
-			<Grid container spacing={2}>
-				{renderDays()}
-			</Grid>
-			{selectedWeek.start && selectedWeek.end && (
-				<Typography variant='body1'>
-					Выбрана неделя: {format(selectedWeek.start, 'YYYY-MM-DD')} -{' '}
-					{format(selectedWeek.end, 'YYYY-MM-DD')}
-				</Typography>
-			)}
-		</div>
+		<LocalizationProvider dateAdapter={AdapterDayjs}>
+			<DatePicker
+				label='Select Week'
+				value={selectedDate}
+				onChange={handleDateChange}
+				slots={{ textField: CustomTextField }}
+			/>
+		</LocalizationProvider>
 	)
 }
 
 export default WeekPicker
+
+const formatWeekLabel = (date: Dayjs | null): string => {
+	if (!date) return ''
+	const startOfWeek = date.startOf('isoWeek')
+	const endOfWeek = date.endOf('isoWeek')
+	return `${startOfWeek.format('DD.MM')} - ${endOfWeek.format('DD.MM')}`
+}
+
+function CustomTextField(params: TextFieldProps) {
+	return <TextField value={formatWeekLabel(dayjs())} size='small' {...params} />
+}

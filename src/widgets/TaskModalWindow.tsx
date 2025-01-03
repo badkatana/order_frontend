@@ -1,7 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { Box, Button, IconButton, Modal, styled, Tab, Tabs, Typography } from '@mui/material'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { EventForm } from '../shared/formConfigs/EventForm'
 import { TaskForm } from '../shared/formConfigs/TaskForm'
 import { GeneralForm } from '../shared/ui/formGenerator/GeneralForm'
@@ -9,8 +8,6 @@ import { submitTask } from './lib/submitForm'
 import { submitEvent } from './lib/submitForm/submitFunctions'
 
 export const TaskModalWindow = ({ open, handleClose }) => {
-	const { control, handleSubmit } = useForm({ mode: 'onChange' })
-
 	const [value, setValue] = useState(0)
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue)

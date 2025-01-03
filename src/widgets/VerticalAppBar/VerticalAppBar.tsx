@@ -58,7 +58,7 @@ const AppBarItems = [
 	},
 	{
 		name: 'projects',
-		path: '/',
+		path: '/projects',
 		icon: Assignment,
 	},
 	{

@@ -35,8 +35,9 @@ const InnerWrapper = styled(Box)({
 	background: '#1E1E22',
 	maxWidth: '98%',
 	borderRadius: '1em 1em 3em 3em',
-	// minWidth: '6em',
-	// height: '90%',
+	minWidth: '98%',
+	minHeight: '80vh',
+	height: '90%',
 	borderStyle: 'ridge',
 	borderColor: '#606162',
 })
