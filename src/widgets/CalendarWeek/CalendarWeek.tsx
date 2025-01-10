@@ -6,14 +6,13 @@ import dayjs from 'dayjs'
 import { useState } from 'react'
 import { generateDateRange, groupArraysByDate } from '../lib'
 import { uploadScheduleFromModeus } from '../lib/submitForm'
-import { CalendarWrapper, PageCalendar } from './CalendarStyles'
+import { ActionsArea, CalendarWrapper, PageCalendar, UploadButton } from './CalendarStyles'
 
 export const CalendarWeek = () => {
 	const [calendarDates, setCalendarDates] = useState({ monday: dayjs(), sunday: dayjs().add(6, 'day') })
-
 	const dateRange = generateDateRange(calendarDates.monday, calendarDates.sunday)
 
-	const { data: calendarItem, isFetching } = useQuery({
+	const { data, isFetching } = useQuery({
 		queryKey: ['calendar', calendarDates],
 		queryFn: () =>
 			getCalendar({
@@ -22,21 +21,29 @@ export const CalendarWeek = () => {
 			}),
 	})
 
-	const daysTasks = !isFetching && groupArraysByDate(calendarItem, dateRange)
+	const calendarItem = !isFetching && groupArraysByDate(data, dateRange)
 
 	return (
 		<PageCalendar>
-			<WeekPicker onChange={(startDate, endDate) => setCalendarDates({ monday: startDate, sunday: endDate })} />
-
-			<FileUploadButton onUpload={uploadScheduleFromModeus} buttonText='Upload Schedule' accept='.ics' />
+			<ActionsArea>
+				<FileUploadButton
+					onUpload={uploadScheduleFromModeus}
+					buttonText='Upload Schedule'
+					accept='.ics'
+					buttonStyle={UploadButton}
+				/>
+				<WeekPicker
+					onChange={(startDate, endDate) => setCalendarDates({ monday: startDate, sunday: endDate })}
+				/>
+			</ActionsArea>
 
 			<CalendarWrapper>
 				{!isFetching &&
 					dateRange.map(date => {
 						return (
 							<BaseDayCalendar
-								tasks={daysTasks[date] ? daysTasks[date].tasks : []}
-								events={daysTasks[date] ? daysTasks[date].events : []}
+								tasks={calendarItem[date] ? calendarItem[date].tasks : []}
+								events={calendarItem[date] ? calendarItem[date].events : []}
 								key={date}
 								date={date}
 							/>

@@ -1,11 +1,12 @@
 import { Button } from '@mui/material'
-import React, { useRef } from 'react'
+import { ChangeEvent, CSSProperties, useRef } from 'react'
 
 interface FileUploadButtonProps {
 	onUpload: (files: FileList | File | null | undefined) => void
 	accept?: string
 	multiple?: boolean
 	buttonText?: string
+	buttonStyle?: CSSProperties
 }
 
 export const FileUploadButton = ({
@@ -13,6 +14,7 @@ export const FileUploadButton = ({
 	accept = '*',
 	multiple = false,
 	buttonText = 'Upload File',
+	buttonStyle = {},
 }: FileUploadButtonProps) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -22,7 +24,7 @@ export const FileUploadButton = ({
 		}
 	}
 
-	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const files = event.target.files
 		console.log(files)
 		onUpload(multiple ? files : files?.[0])
@@ -33,7 +35,7 @@ export const FileUploadButton = ({
 
 	return (
 		<>
-			<Button variant='contained' color='primary' onClick={handleButtonClick}>
+			<Button variant='contained' color='primary' style={buttonStyle} onClick={handleButtonClick}>
 				{buttonText}
 			</Button>
 			<input

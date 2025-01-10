@@ -23,7 +23,7 @@ export const submitEvent = (values: { [key: string]: string | number | null | un
 		isPrivate: false,
 	}
 
-	createEvent(newEvent, userId)
+	createEvent(newEvent)
 }
 
 export const uploadScheduleFromModeus = file => {
