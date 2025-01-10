@@ -2,7 +2,6 @@ import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
 import { WithPageWrapper } from '@/shared/ui/WithPageWrapper'
 import { ProjectItem } from '@/widgets/ProjectItem'
-import { WorkingArea } from '@/widgets/WorkingArea'
 import { Box, styled } from '@mui/material'
 import { ProjectPageWrapper } from './styles'
 
@@ -20,15 +19,13 @@ export const ProjectsPage = () => {
 
 	return (
 		<WithPageWrapper>
-			<WorkingArea>
-				<ProjectPageWrapper>
-					<GridStyle columns={2}>
-						{userProjects.map((project, index) => (
-							<ProjectItem project={project} key={index} />
-						))}
-					</GridStyle>
-				</ProjectPageWrapper>
-			</WorkingArea>
+			<ProjectPageWrapper>
+				<GridStyle columns={2}>
+					{userProjects.map((project, index) => (
+						<ProjectItem project={project} key={index} />
+					))}
+				</GridStyle>
+			</ProjectPageWrapper>
 		</WithPageWrapper>
 	)
 }

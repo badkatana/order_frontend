@@ -1,4 +1,4 @@
-import { VerticalAppBar } from '@/widgets'
+import { VerticalAppBar, WorkingArea } from '@/widgets'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 
@@ -12,7 +12,9 @@ export const WithPageWrapper = ({ children }) => {
 	return (
 		<>
 			<VerticalAppBar open={open} toggleDrawer={toggleDrawer} />
-			<Box sx={{ width: '95%' }}>{children}</Box>
+			<Box sx={{ width: '95%' }}>
+				<WorkingArea>{children}</WorkingArea>
+			</Box>
 		</>
 	)
 }
