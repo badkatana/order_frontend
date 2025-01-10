@@ -6,8 +6,6 @@ export const WorkingArea = ({ children }) => {
 	return (
 		<Wrapper>
 			<PageHeader path={undefined} />
-			{/* here must be a component with a working path */}
-			{/* here must be a divider or smthng similar to divider */}
 			<InnerWrapper>{children}</InnerWrapper>
 		</Wrapper>
 	)

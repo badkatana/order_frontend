@@ -1,8 +1,9 @@
+import { loginUser } from '@/shared/api'
+import { registerUser } from '@/shared/api/authRoutes'
+import { AuthConfig } from '@/shared/formConfigs'
 import { Box, Button, Typography } from '@mui/material'
 import { Form, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { loginUser, registerUser } from '../../shared/api/authRoutes'
-import { AuthConfig } from '../../shared/formConfigs/AuthConfig'
 
 export const SessionForm = () => {
 	const { control, handleSubmit } = useForm()

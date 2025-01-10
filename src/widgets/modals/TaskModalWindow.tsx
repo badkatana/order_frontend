@@ -1,18 +1,15 @@
+import { TaskForm } from '@/shared/formConfigs'
+import { EventForm } from '@/shared/formConfigs/EventForm'
+import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
 import CloseIcon from '@mui/icons-material/Close'
 import { Box, Button, IconButton, Modal, styled, Tab, Tabs, Typography } from '@mui/material'
 import { useState } from 'react'
-import { EventForm } from '../shared/formConfigs/EventForm'
-import { TaskForm } from '../shared/formConfigs/TaskForm'
-import { GeneralForm } from '../shared/ui/formGenerator/GeneralForm'
-import { submitTask } from './lib/submitForm'
-import { submitEvent } from './lib/submitForm/submitFunctions'
+import { submitTask } from '../lib/submitForm'
+import { submitEvent } from '../lib/submitForm/submitFunctions'
 
 export const TaskModalWindow = ({ open, handleClose }) => {
 	const [value, setValue] = useState(0)
-	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue)
-	}
-	// todo: разделить просто на форму
+
 	return (
 		<Modal
 			open={open}
@@ -32,9 +29,9 @@ export const TaskModalWindow = ({ open, handleClose }) => {
 					</Box>
 					<Box>
 						<Box>
-							<Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-								<Tab label='Task' />
-								<Tab label='Event' />
+							<Tabs value={value}>
+								<Tab label='Task' onClick={() => setValue(0)} />
+								<Tab label='Event' onClick={() => setValue(1)} />
 							</Tabs>
 						</Box>
 						<CustomTabPanel value={value} index={0}>

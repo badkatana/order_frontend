@@ -1,7 +1,7 @@
 import { Event } from '@/entities/Event'
 import { Task } from '@/entities/Task'
-import { TaskModalWindow } from '@/widgets/TaskModalWindow'
 import { getTaskWithDeadlines } from '@/widgets/lib/getTasksWithDeadlines'
+import { TaskModalWindow } from '@/widgets/modals/TaskModalWindow'
 import styled from '@emotion/styled'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
 import { Box, IconButton } from '@mui/material'
