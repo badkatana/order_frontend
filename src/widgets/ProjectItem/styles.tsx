@@ -6,7 +6,7 @@ export const Card = styled(Box)({
 	padding: '16px',
 	boxShadow: ' 0 2px 8px rgba(0, 0, 0, 0.1)',
 	fontFamily: 'Arial, sans-serif',
-	maxWidth: '300px',
+	maxWidth: '100%',
 })
 
 export const Header = styled(Box)({

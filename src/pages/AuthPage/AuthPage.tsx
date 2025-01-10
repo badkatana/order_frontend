@@ -1,6 +1,6 @@
+import { texts } from '@/shared/constants/constants'
+import { AnimatedText } from '@/shared/ui/AnimatedText/AnimatedText'
 import { Box } from '@mui/material'
-import { texts } from '../../shared/constants/constants'
-import { AnimatedText } from '../../shared/ui/AnimatedText/AnimatedText'
 import { SessionForm } from './SessionForm'
 
 export const AuthPage = () => {

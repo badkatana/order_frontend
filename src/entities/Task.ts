@@ -8,7 +8,5 @@ export interface Task {
 	contextId?: number
 	priority?: number
 	userId: string
-	eventId?: number
-	calendarDate?: string
-	isPrivate?: string
+	links?: string[]
 }

@@ -15,9 +15,7 @@ export const WorkingArea = ({ children }) => {
 
 const Wrapper = styled(Box)({
 	background: 'linear-gradient(#1E1E22, #8D8D8F);',
-	// width: '90%',
 	flexDirection: 'column',
-	// heigth: '100%',
 	minHeight: '40em',
 	minWidth: '6em',
 	height: '100%',

@@ -5,6 +5,8 @@ export interface Project {
 	contextId?: number
 	hardDeadline?: string
 	softDeadline?: string
-	userId: number
+	userId: string
+	taskIds?: any[]
 	status: boolean
+	links?: string[]
 }

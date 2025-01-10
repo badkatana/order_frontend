@@ -1,12 +1,12 @@
+import { getCalendar } from '@/shared/api/calendarRoutes'
+import { BaseDayCalendar } from '@/shared/ui'
+import WeekPicker from '@/shared/ui/WeekPeeker'
 import { createTheme, ThemeProvider } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useState } from 'react'
-import { getCalendar } from '../shared/api/calendarRoutes'
-import { BaseDayCalendar } from '../shared/ui'
-import WeekPicker from '../shared/ui/WeekPeeker'
-import { generateDateRange, groupArraysByDate } from './lib'
-import { CalendarWrapper, PageCalendar } from './styles/CalendarStyles'
+import { generateDateRange, groupArraysByDate } from './../lib'
+import { CalendarWrapper, PageCalendar } from './CalendarStyles'
 
 export const CalendarWeek = () => {
 	const [calendarDates, setCalendarDates] = useState({ monday: dayjs(), sunday: dayjs().add(6, 'day') })
