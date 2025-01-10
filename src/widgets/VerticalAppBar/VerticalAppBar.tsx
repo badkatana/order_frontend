@@ -1,7 +1,8 @@
-import { Assignment, CalendarToday, ExitToApp, Inbox, Menu as MenuIcon } from '@mui/icons-material'
+import { Menu as MenuIcon } from '@mui/icons-material'
 import { AppBar, IconButton, List, ListItem, ListItemText, Toolbar } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { logOutUser } from '../lib'
+import { BlurredBackground, VerticalBar } from './VerticalAppBarStyles'
+import { AppBarItems } from './config'
 
 interface VerticalAppBarProps {
 	open: boolean
@@ -20,60 +21,30 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 
 	const items = AppBarItems.map(item => {
 		return (
-			<ListItem onClick={() => handleClick(item)}>
-				<IconButton>
-					<item.icon sx={{ color: 'white' }} />
-					{open && <ListItemText primary={item.name} sx={{ color: 'white' }} />}
-				</IconButton>
+			<ListItem onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
+				<item.icon sx={{ color: 'white' }} />
+				{open && <ListItemText primary={item.name} sx={{ color: 'white', px: '1em' }} />}
 			</ListItem>
 		)
 	})
 
 	return (
-		<AppBar
-			position='fixed'
-			sx={{
-				width: open ? '15%' : '5%',
-				transition: 'width 0.3s',
-				backgroundColor: 'black',
-				height: '100%',
-			}}
-		>
-			<Toolbar>
-				<IconButton onClick={toggleDrawer} color='inherit'>
-					<MenuIcon />
-				</IconButton>
-			</Toolbar>
-			<List>{items}</List>
-		</AppBar>
+		<>
+			<BlurredBackground open={open} />
+			<AppBar
+				position='fixed'
+				sx={{
+					width: open ? '15%' : '5%',
+					...VerticalBar,
+				}}
+			>
+				<Toolbar>
+					<IconButton onClick={toggleDrawer} color='inherit'>
+						<MenuIcon />
+					</IconButton>
+				</Toolbar>
+				<List>{items}</List>
+			</AppBar>
+		</>
 	)
 }
-
-const AppBarItems = [
-	{
-		name: 'log out',
-		clickFunction: () => logOutUser(),
-		path: '/',
-		icon: ExitToApp,
-	},
-	{
-		name: 'projects',
-		path: '/projects',
-		icon: Assignment,
-	},
-	{
-		name: 'inbox',
-		path: '',
-		icon: Inbox,
-	},
-	{
-		name: 'calendar',
-		path: '/calenders',
-		icon: CalendarToday,
-	},
-	{
-		name: 'default',
-		path: '',
-		icon: MenuIcon,
-	},
-]
