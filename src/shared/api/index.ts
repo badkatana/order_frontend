@@ -1,1 +1,6 @@
-export { backend } from './hostConfig'
+export { isAuthenticated, loginUser } from './authRoutes'
+export { getCalendar, uploadFileTypeModeus } from './calendarRoutes'
+export { createEvent } from './eventsRoutes'
+export { createProject, deleteProject, editProject, getAllProjects } from './projectRoutes'
+export { changeTask, createTask, deleteTask, getTask } from './taskRoutes'
+export {} from './userRoutes'

@@ -1,11 +1,11 @@
-import { getCalendar } from '@/shared/api/calendarRoutes'
-import { BaseDayCalendar } from '@/shared/ui'
+import { getCalendar } from '@/shared/api'
+import { BaseDayCalendar, FileUploadButton } from '@/shared/ui'
 import WeekPicker from '@/shared/ui/WeekPeeker'
-import { createTheme, ThemeProvider } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useState } from 'react'
-import { generateDateRange, groupArraysByDate } from './../lib'
+import { generateDateRange, groupArraysByDate } from '../lib'
+import { uploadScheduleFromModeus } from '../lib/submitForm'
 import { CalendarWrapper, PageCalendar } from './CalendarStyles'
 
 export const CalendarWeek = () => {
@@ -25,39 +25,24 @@ export const CalendarWeek = () => {
 	const daysTasks = !isFetching && groupArraysByDate(calendarItem, dateRange)
 
 	return (
-		<ThemeProvider theme={theme}>
-			<PageCalendar>
-				<WeekPicker
-					onChange={(startDate, endDate) => setCalendarDates({ monday: startDate, sunday: endDate })}
-				/>
+		<PageCalendar>
+			<WeekPicker onChange={(startDate, endDate) => setCalendarDates({ monday: startDate, sunday: endDate })} />
 
-				<CalendarWrapper>
-					{!isFetching &&
-						dateRange.map(date => {
-							return (
-								<BaseDayCalendar
-									tasks={daysTasks[date] ? daysTasks[date].tasks : []}
-									events={daysTasks[date] ? daysTasks[date].events : []}
-									key={date}
-									date={date}
-								/>
-							)
-						})}
-				</CalendarWrapper>
-			</PageCalendar>
-		</ThemeProvider>
+			<FileUploadButton onUpload={uploadScheduleFromModeus} buttonText='Upload Schedule' accept='.ics' />
+
+			<CalendarWrapper>
+				{!isFetching &&
+					dateRange.map(date => {
+						return (
+							<BaseDayCalendar
+								tasks={daysTasks[date] ? daysTasks[date].tasks : []}
+								events={daysTasks[date] ? daysTasks[date].events : []}
+								key={date}
+								date={date}
+							/>
+						)
+					})}
+			</CalendarWrapper>
+		</PageCalendar>
 	)
 }
-
-const theme = createTheme({
-	palette: {
-		mode: 'dark',
-		background: {
-			default: '#000',
-			paper: '#000',
-		},
-		text: {
-			primary: '#fff',
-		},
-	},
-})

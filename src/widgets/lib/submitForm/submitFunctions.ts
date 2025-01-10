@@ -1,5 +1,4 @@
-import { createEvent } from '../../../shared/api/eventsRoutes'
-import { createTask } from '../../../shared/api/taskRoutes'
+import { createEvent, createTask, uploadFileTypeModeus } from '@/shared/api'
 
 export const submitTask = (values: { [key: string]: string | number | null | undefined }) => {
 	const userId = localStorage.getItem('user_id')
@@ -25,4 +24,10 @@ export const submitEvent = (values: { [key: string]: string | number | null | un
 	}
 
 	createEvent(newEvent, userId)
+}
+
+export const uploadScheduleFromModeus = file => {
+	const formData = new FormData()
+	formData.append('file', file)
+	uploadFileTypeModeus(formData)
 }

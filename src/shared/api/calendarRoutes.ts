@@ -7,3 +7,16 @@ export const getCalendar = async ({ dateStart, dateEnd }) => {
 	})
 	return data
 }
+
+export const uploadFileTypeModeus = async formData => {
+	const { data } = await authBackend.post(`/Schedule/upload-ics`, formData, {
+		params: {
+			userId: localStorage.getItem('user_id'),
+			type: 'modeus',
+		},
+		headers: {
+			'Content-Type': 'multipart/form-data',
+		},
+	})
+	return data
+}

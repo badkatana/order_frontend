@@ -1,1 +1,1 @@
-export { submitTask } from './submitFunctions'
+export { submitEvent, submitTask, uploadScheduleFromModeus } from './submitFunctions'
