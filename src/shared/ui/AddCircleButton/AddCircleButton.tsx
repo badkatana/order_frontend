@@ -6,7 +6,7 @@ export const AddCircleButton = ({
 	iconSize = 'large',
 }: {
 	onClick: (value?: any) => void
-	iconSize?: 'large' | 'medium'
+	iconSize?: 'large' | 'medium' | 'small'
 }) => {
 	return (
 		<>

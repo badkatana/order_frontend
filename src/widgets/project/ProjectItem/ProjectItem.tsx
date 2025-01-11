@@ -1,30 +1,79 @@
 import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
-import ExpandLessIcon from '@mui/icons-material/ExpandLess'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconButton } from '@mui/material'
-import { useState } from 'react'
-import { ProjectCard, ProjectContent, ProjectDeadline, ProjectHeader, ProjectName, ProjectStatistic } from './styles'
+import { EventForm, TaskForm } from '@/shared/formConfigs'
+import { ContainerPlaceholder } from '@/shared/ui'
+import { ListItemEvent } from '@/shared/ui/listItems/ListItemEvent'
+import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
+import { submitTask } from '@/widgets/lib/submitForm'
+import { Box, styled, Typography } from '@mui/material'
+import LinearProgress from '@mui/material/LinearProgress'
+import { useQueryClient } from '@tanstack/react-query'
+import { EntityArea } from './EntityArea'
 
 export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) => {
-	const [isExpanded, setIsExpanded] = useState(false)
+	const { description, hardDeadline, priority, taskIds, id, tasks, events } = project || {}
 
-	const toggleExpand = () => {
-		setIsExpanded(prev => !prev)
+	if (project === null) return <ContainerPlaceholder placeholder={'Select or create a project'} />
+	const queryClient = useQueryClient()
+
+	const submitProjectTask = async task => {
+		submitTask({ ...task, projectId: id })
+		queryClient.invalidateQueries(['projects'])
 	}
-
-	const { description, hardDeadline, priority, taskIds } = project || {}
 
 	return (
 		<ProjectCard>
-			<ProjectHeader priority={Number(priority)}>
-				<ProjectName>{description || 'Без названия'}</ProjectName>
-				<ProjectDeadline>{hardDeadline || 'Дедлайн не указан'}</ProjectDeadline>
-				<IconButton onClick={toggleExpand}>{isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}</IconButton>
-			</ProjectHeader>
-			<ProjectContent isExpanded={isExpanded}>
-				<ProjectStatistic>Всего задач: {taskIds?.length || 0}</ProjectStatistic>
-			</ProjectContent>
+			<Box>
+				<Typography variant='h4'>{description}</Typography>
+				<Box>Tasks: {taskIds?.length}</Box>
+				<LinearProgress value={23} variant='determinate' />
+				<Box
+					sx={{
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+						gap: '1em',
+						width: '100%',
+						paddingTop: '1em',
+					}}
+				>
+					<EntityArea
+						key={'area_tasks'}
+						title={'Tasks'}
+						modalConfig={{
+							config: TaskForm,
+							submitFunction: submitProjectTask,
+						}}
+					>
+						{tasks?.$values?.length > 0 ? (
+							tasks.$values.map(task => <ListItemTask task={task} />)
+						) : (
+							<ContainerPlaceholder placeholder={'No tasks'} />
+						)}
+					</EntityArea>
+					<EntityArea
+						key={'area_events'}
+						title={'Events'}
+						modalConfig={{
+							config: EventForm,
+							submitFunction: submitTask,
+						}}
+					>
+						{events?.$values?.length > 0 ? (
+							events.$values.map(event => <ListItemEvent event={event} />)
+						) : (
+							<ContainerPlaceholder placeholder={'No events'} />
+						)}
+					</EntityArea>
+				</Box>
+			</Box>
 		</ProjectCard>
 	)
 }
+
+const ProjectCard = styled(Box)({
+	display: 'flex',
+	height: '100%',
+	width: '80%',
+	flexDirection: 'column',
+})

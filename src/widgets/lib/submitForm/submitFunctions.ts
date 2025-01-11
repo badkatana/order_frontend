@@ -1,4 +1,4 @@
-import { createEvent, createTask, uploadFileTypeModeus } from '@/shared/api'
+import { createEvent, createProject, createTask, uploadFileTypeModeus } from '@/shared/api'
 
 export const submitTask = (values: { [key: string]: string | number | null | undefined }) => {
 	const userId = localStorage.getItem('user_id')
@@ -13,7 +13,6 @@ export const submitTask = (values: { [key: string]: string | number | null | und
 
 export const submitEvent = (values: { [key: string]: string | number | null | undefined }) => {
 	const userId = localStorage.getItem('user_id')
-	console.log(values)
 	const newEvent = {
 		...values,
 		periodStart: values.periodStart?.format('YYYY-MM-DDTHH:MM'),
@@ -30,4 +29,9 @@ export const uploadScheduleFromModeus = file => {
 	const formData = new FormData()
 	formData.append('file', file)
 	uploadFileTypeModeus(formData)
+}
+
+export const submitProject = async (project, queryClient) => {
+	await createProject(project)
+	queryClient.refetchQueries(['projects'])
 }
