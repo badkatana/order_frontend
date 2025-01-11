@@ -7,4 +7,9 @@ export const ProjectPageWrapper = styled(Box)({
 	overflowX: 'auto',
 	overflowY: 'hidden',
 	maxWidth: '100%',
+	alignSelf: 'stretch',
+	flex: 1,
+	width: '100%',
+	height: '87vh',
+	maxHeight: '100vh',
 })

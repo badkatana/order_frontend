@@ -3,10 +3,10 @@ import { Task } from '@/entities/Task'
 import { getTaskWithDeadlines } from '@/widgets/lib/getTasksWithDeadlines'
 import { TaskModalWindow } from '@/widgets/modals/TaskModalWindow'
 import styled from '@emotion/styled'
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
-import { Box, IconButton } from '@mui/material'
+import { Box } from '@mui/material'
 import { useState } from 'react'
 import { changeTask } from '../api/taskRoutes'
+import { AddCircleButton } from './AddCircleButton/AddCircleButton'
 import { DateHeader } from './DateHeader'
 import { ListWrapper } from './ListWrapper'
 import { ListItemEvent } from './listItems/ListItemEvent'
@@ -36,11 +36,7 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 						<ListItemTask task={task} taskClick={() => changeTask(task)} />
 					))}
 				</ListWrapper>
-				<Box display={'flex'} justifyContent={'center'}>
-					<IconButton color={'inherit'} onClick={() => setOpen(true)}>
-						<AddCircleOutlineOutlinedIcon fontSize={'large'} />
-					</IconButton>
-				</Box>
+				<AddCircleButton onClick={() => setOpen(true)} />
 				<Box>
 					<TaskModalWindow open={open} handleClose={() => setOpen(false)} />
 				</Box>

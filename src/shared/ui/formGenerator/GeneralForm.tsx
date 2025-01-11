@@ -4,15 +4,14 @@ import { Form, FormProvider, useForm } from 'react-hook-form'
 
 type GeneralFormProps = {
 	config: {
-		[key: string]: {
-			name: string
-			component: ReactNode
-			maxDate?: any
-			minDate?: any
-			required?: any
-			defaultValue?: unknown
-			multiLine?: boolean
-		}
+		name: string
+		component: ReactNode
+		label: string
+		maxDate?: any
+		minDate?: any
+		required?: any
+		defaultValue?: unknown
+		multiLine?: boolean
 	}[]
 	submitFunction: (values: { [key: string]: undefined | null | string | number | unknown }) => void
 }

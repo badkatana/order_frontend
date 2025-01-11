@@ -1,8 +1,5 @@
 import dayjs from 'dayjs'
-import { InputCheckbox } from '../ui/formGenerator/formItems/InputCheckbox'
-import { InputDateTime } from '../ui/formGenerator/formItems/InputDateTime'
-import { InputString } from '../ui/formGenerator/formItems/InputString'
-import { InputToggle } from '../ui/formGenerator/formItems/InputToggle'
+import { InputCheckbox, InputDateTime, InputString, InputToggle } from '../ui/formGenerator/formItems'
 
 export const EventForm = [
 	{

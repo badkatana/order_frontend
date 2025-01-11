@@ -1,4 +1,6 @@
+export { AddCircleButton } from './AddCircleButton/AddCircleButton'
 export { BaseDayCalendar } from './BaseDayCalendar'
 export { FileUploadButton } from './fileUpload'
+export { ModalBody } from './ModalBody/ModalBody'
 export { PageHeader } from './PageHeader'
 export { WithPageWrapper } from './WithPageWrapper'

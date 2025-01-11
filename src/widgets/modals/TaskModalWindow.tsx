@@ -1,8 +1,8 @@
 import { TaskForm } from '@/shared/formConfigs'
 import { EventForm } from '@/shared/formConfigs/EventForm'
+import { ModalBody } from '@/shared/ui'
 import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
-import CloseIcon from '@mui/icons-material/Close'
-import { Box, Button, IconButton, Modal, styled, Tab, Tabs, Typography } from '@mui/material'
+import { Box, Button, styled, Tab, Tabs } from '@mui/material'
 import { useState } from 'react'
 import { submitTask } from '../lib/submitForm'
 import { submitEvent } from '../lib/submitForm/submitFunctions'
@@ -11,39 +11,22 @@ export const TaskModalWindow = ({ open, handleClose }) => {
 	const [value, setValue] = useState(0)
 
 	return (
-		<Modal
-			open={open}
-			onClose={handleClose}
-			aria-labelledby='modal-modal-title'
-			aria-describedby='modal-modal-description'
-		>
-			<BlurredOverlay>
-				<Box sx={style} display={'flex'} flexDirection={'column'}>
-					<Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
-						<Typography id='modal-modal-title' variant='h6' component='h2'>
-							Create
-						</Typography>
-						<IconButton onClick={handleClose}>
-							<CloseIcon />
-						</IconButton>
-					</Box>
-					<Box>
-						<Box>
-							<Tabs value={value}>
-								<Tab label='Task' onClick={() => setValue(0)} />
-								<Tab label='Event' onClick={() => setValue(1)} />
-							</Tabs>
-						</Box>
-						<CustomTabPanel value={value} index={0}>
-							<GeneralForm config={TaskForm} submitFunction={submitTask} />
-						</CustomTabPanel>
-						<CustomTabPanel value={value} index={1}>
-							<GeneralForm config={EventForm} submitFunction={submitEvent} />
-						</CustomTabPanel>
-					</Box>
+		<ModalBody open={open} handleClose={handleClose} title={'Create'}>
+			<Box>
+				<Box>
+					<Tabs value={value}>
+						<Tab label='Task' onClick={() => setValue(0)} />
+						<Tab label='Event' onClick={() => setValue(1)} />
+					</Tabs>
 				</Box>
-			</BlurredOverlay>
-		</Modal>
+				<CustomTabPanel value={value} index={0}>
+					<GeneralForm config={TaskForm} submitFunction={submitTask} />
+				</CustomTabPanel>
+				<CustomTabPanel value={value} index={1}>
+					<GeneralForm config={EventForm} submitFunction={submitEvent} />
+				</CustomTabPanel>
+			</Box>
+		</ModalBody>
 	)
 }
 

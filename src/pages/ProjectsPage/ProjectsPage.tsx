@@ -1,30 +1,22 @@
 import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
 import { WithPageWrapper } from '@/shared/ui/WithPageWrapper'
-import { ProjectItem } from '@/widgets/ProjectItem'
-import { Box, styled } from '@mui/material'
+import { ProjectItem, ProjectsList } from '@/widgets/project'
+import { Divider } from '@mui/material'
+import { useState } from 'react'
 import { ProjectPageWrapper } from './styles'
 
 export const ProjectsPage = () => {
 	const userProjects = synthProjects
 	const userTasks = synthTasks
-
-	// Стиль для сетки
-	const GridStyle = styled(Box)<{ columns: number }>(({ columns }) => ({
-		display: 'grid',
-		gridTemplateColumns: `repeat(${columns}, 1fr)`,
-		gap: '16px',
-		gridAutoRows: '1fr',
-	}))
+	const [selectedProject, setSelectedProject] = useState(userProjects[0])
 
 	return (
 		<WithPageWrapper>
 			<ProjectPageWrapper>
-				<GridStyle columns={2}>
-					{userProjects.map((project, index) => (
-						<ProjectItem project={project} key={index} />
-					))}
-				</GridStyle>
+				<ProjectsList projects={userProjects} set={setSelectedProject} selectedProject={selectedProject} />
+				<Divider orientation='vertical' variant='middle' flexItem sx={{ margin: '1em' }} />
+				<ProjectItem project={selectedProject} />
 			</ProjectPageWrapper>
 		</WithPageWrapper>
 	)

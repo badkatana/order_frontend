@@ -1,5 +1,4 @@
-import { InputString } from '../ui/formGenerator/formItems/InputString'
-import { InputToggle } from '../ui/formGenerator/formItems/InputToggle'
+import { InputString, InputToggle } from '../ui/formGenerator/formItems'
 
 export const AuthConfig = [
 	{

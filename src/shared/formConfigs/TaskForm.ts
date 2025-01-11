@@ -1,6 +1,4 @@
-import { InputDate } from '../ui/formGenerator/formItems/DatePicker'
-import { InputString } from '../ui/formGenerator/formItems/InputString'
-import { InputToggle } from '../ui/formGenerator/formItems/InputToggle'
+import { InputDate, InputString, InputToggle } from '../ui/formGenerator/formItems'
 
 export const TaskForm = [
 	{

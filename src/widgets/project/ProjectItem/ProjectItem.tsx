@@ -2,20 +2,11 @@ import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconButton, Typography } from '@mui/material'
+import { IconButton } from '@mui/material'
 import { useState } from 'react'
-import {
-	ProjectCard,
-	ProjectContent,
-	ProjectDeadline,
-	ProjectHeader,
-	ProjectName,
-	ProjectStatistic,
-	TaskItem,
-	TaskList,
-} from './styles'
+import { ProjectCard, ProjectContent, ProjectDeadline, ProjectHeader, ProjectName, ProjectStatistic } from './styles'
 
-export const ProjectItem = ({ project, tasks }: { project?: Project; tasks?: Task[] }) => {
+export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) => {
 	const [isExpanded, setIsExpanded] = useState(false)
 
 	const toggleExpand = () => {
@@ -33,13 +24,6 @@ export const ProjectItem = ({ project, tasks }: { project?: Project; tasks?: Tas
 			</ProjectHeader>
 			<ProjectContent isExpanded={isExpanded}>
 				<ProjectStatistic>Всего задач: {taskIds?.length || 0}</ProjectStatistic>
-				{isExpanded && (
-					<TaskList>
-						{tasks?.map(task => <TaskItem key={task.id}>{task.name}</TaskItem>) || (
-							<Typography>Задач нет</Typography>
-						)}
-					</TaskList>
-				)}
 			</ProjectContent>
 		</ProjectCard>
 	)
