@@ -21,7 +21,7 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 
 	const items = AppBarItems.map(item => {
 		return (
-			<ListItem onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
+			<ListItem key={item.key} onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
 				<item.icon sx={{ color: 'white' }} />
 				{open && <ListItemText primary={item.name} sx={{ color: 'white', px: '1em' }} />}
 			</ListItem>

@@ -3,6 +3,8 @@ import { authBackend } from './hostConfig'
 export const getAllProjects = async () => {
 	const userId = localStorage.getItem('user_id')
 	const response = await authBackend.get(`/Project/${userId}`)
+	console.log('response_status', response.status)
+	if (response.status === 404) return []
 	return response.data ?? []
 }
 

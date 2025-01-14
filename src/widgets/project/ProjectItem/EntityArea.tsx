@@ -3,7 +3,7 @@ import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 
-export const EntityArea = ({ title = 'Entity', children, modalConfig }) => {
+export const EntityArea = ({ title = 'Entity', children, modalConfig = undefined }) => {
 	const [open, setOpen] = useState(false)
 
 	return (

@@ -95,6 +95,9 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 							<ContainerPlaceholder placeholder={'No events'} />
 						)}
 					</EntityArea>
+					<EntityArea key={'area-events'} title={'Links'}>
+						<div>Links</div>
+					</EntityArea>
 				</Box>
 			</Box>
 		</ProjectCard>

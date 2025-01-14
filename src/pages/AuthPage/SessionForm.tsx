@@ -15,8 +15,8 @@ export const SessionForm = () => {
 		const { token, userId } = type.includes('1') ? await registerUser(values) : await loginUser(values)
 
 		if (token && userId) {
-			sessionStorage.setItem('access_token', token)
 			localStorage.setItem('user_id', userId)
+			sessionStorage.setItem('access_token', token)
 			navigate('/calenders')
 		}
 	}

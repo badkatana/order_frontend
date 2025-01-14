@@ -3,6 +3,8 @@ import { backend } from './hostConfig'
 
 export const loginUser = async values => {
 	const { data } = await backend.post('User/login', values)
+	sessionStorage.setItem('access_token', data.token)
+	localStorage.setItem('user_id', data.id)
 	return { token: data.token, userId: data.user.id }
 }
 
