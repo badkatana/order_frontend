@@ -2,11 +2,13 @@ import { Box, Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/ma
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 
-export const InputToggle = ({ control, name = '', groupItems = [], title = '' }) => {
+/*  @ts-ignore */
+
+export const InputToggle = ({ control, name = '', groupItems = [], label = '' }) => {
 	const [formats, setFormats] = useState()
 	return (
 		<Box>
-			<Typography>{title}</Typography>
+			<Typography>{label}</Typography>
 			<Controller
 				control={control}
 				name={name}
@@ -20,13 +22,23 @@ export const InputToggle = ({ control, name = '', groupItems = [], title = '' })
 							color='success'
 							ref={field.ref}
 							onChange={newValue => {
+								/*  @ts-ignore */
+
 								let val = Number(newValue.target.value)
+
+								/*  @ts-ignore */
+
 								setFormats([val])
+
+								/*  @ts-ignore */
+
 								field.onChange(newValue.target.value)
 							}}
 						>
 							{groupItems.map(item => (
+								/*  @ts-ignore */
 								<ToggleButton value={item.value} key={item.value}>
+									{/*  @ts-ignore */}
 									{item.label}
 								</ToggleButton>
 							))}

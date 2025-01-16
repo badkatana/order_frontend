@@ -21,7 +21,7 @@ export const ProjectForm: DefaultConfig = [
 	},
 	{
 		name: 'priority',
-		title: 'Priority',
+		label: 'Priority',
 		component: InputToggle,
 		groupItems: [
 			{ value: 1, label: 'High' },
