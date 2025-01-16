@@ -1,6 +1,7 @@
+import { DefaultObject } from '@/shared/constants/constants'
 import { loginUser, registerUser } from '../../shared/api/authRoutes'
 
-export const registerOrLoginUser = async (values, navigate) => {
+export const registerOrLoginUser = async (values: DefaultObject, navigate: (data: string) => void) => {
 	const type = values.type
 	delete values.type
 	const { token, userId } = type.includes('1') ? await registerUser(values) : await loginUser(values)

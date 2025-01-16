@@ -1,19 +1,16 @@
 import { jwtDecode } from 'jwt-decode'
 import { backend } from './hostConfig'
 
+/*  @ts-ignore */
 export const loginUser = async values => {
-	const { data } = await backend.post('User/login', values)
-	sessionStorage.setItem('access_token', data.token)
-	localStorage.setItem('user_id', data.id)
+	const { data } = await backend.post('/api/User/login', values)
 	return { token: data.token, userId: data.user.id }
 }
 
+/*  @ts-ignore */
 export const registerUser = async values => {
-	const { data: unused } = await backend.post('User/register', values)
-	const { data } = await backend.post('User/login', values)
-	sessionStorage.setItem('access_token', data.token)
-	localStorage.setItem('user_id', unused.id)
-	localStorage.setItem('user', data.user.name)
+	const { data: unused } = await backend.post('/api/User/register', values)
+	const { data } = await backend.post('/api/User/login', values)
 	return { token: data.token, userId: unused.id }
 }
 
