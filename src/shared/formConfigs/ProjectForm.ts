@@ -1,6 +1,7 @@
+import { DefaultConfig } from '../constants/constants'
 import { InputDate, InputString, InputToggle } from '../ui/formGenerator/formItems'
 
-export const ProjectForm = [
+export const ProjectForm: DefaultConfig = [
 	{
 		name: 'description',
 		label: 'Name',

@@ -1,7 +1,8 @@
 import dayjs from 'dayjs'
+import { DefaultConfig } from '../constants/constants'
 import { InputCheckbox, InputDateTime, InputString, InputToggle } from '../ui/formGenerator/formItems'
 
-export const EventForm = [
+export const EventForm: DefaultConfig = [
 	{
 		name: 'name',
 		component: InputString,

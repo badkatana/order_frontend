@@ -24,3 +24,10 @@ dist-ssr
 *.sln
 *.sw?
 /.yarn
+
+.env.production
+
+package-lock.json
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
+deploy.sh

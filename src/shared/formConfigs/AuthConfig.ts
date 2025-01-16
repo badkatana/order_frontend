@@ -1,6 +1,7 @@
+import { DefaultConfig } from '../constants/constants'
 import { InputString, InputToggle } from '../ui/formGenerator/formItems'
 
-export const AuthConfig = [
+export const AuthConfig: DefaultConfig = [
 	{
 		name: 'name',
 		component: InputString,
