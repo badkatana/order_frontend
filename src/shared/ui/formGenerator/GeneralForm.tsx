@@ -1,19 +1,10 @@
+import { DefaultConfig } from '@/shared/constants/constants'
 import { Box, Button, Grid, styled } from '@mui/material'
-import { ReactNode } from 'react'
 import { Form, FormProvider, useForm } from 'react-hook-form'
 
 type GeneralFormProps = {
-	config: {
-		name: string
-		component: ReactNode
-		label: string
-		maxDate?: any
-		minDate?: any
-		required?: any
-		defaultValue?: unknown
-		multiLine?: boolean
-	}[]
-	submitFunction: (values: { [key: string]: undefined | null | string | number | unknown }) => void
+	config: DefaultConfig
+	submitFunction: (values: any) => void
 }
 
 export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {

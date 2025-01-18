@@ -1,10 +1,11 @@
+import { FormItem } from '@/entities/interfaces'
 import { Box, Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 /*  @ts-ignore */
 
-export const InputToggle = ({ control, name = '', groupItems = [], label = '', ...props }) => {
+export const InputToggle = ({ control, name = '', groupItems = [], label = '', ...props }: FormItem) => {
 	const [formats, setFormats] = useState()
 	return (
 		<Box display={'flex'} alignItems={'flex-start'} flexDirection={'column'}>
@@ -35,10 +36,9 @@ export const InputToggle = ({ control, name = '', groupItems = [], label = '', .
 								field.onChange(newValue.target.value)
 							}}
 						>
+							{/* @ts-ignore */}
 							{groupItems.map(item => (
-								/*  @ts-ignore */
 								<ToggleButton value={item.value} key={item.value}>
-									{/*  @ts-ignore */}
 									{item.label}
 								</ToggleButton>
 							))}

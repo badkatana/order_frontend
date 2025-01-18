@@ -1,3 +1,4 @@
+import { Project } from '@/entities/Project'
 import { getAllProjects } from '@/shared/api'
 import { WithPageWrapper } from '@/shared/ui/WithPageWrapper'
 import { ProjectItem, ProjectsList } from '@/widgets/project'
@@ -7,7 +8,7 @@ import { useState } from 'react'
 import { ProjectPageWrapper } from './styles'
 
 export const ProjectsPage = () => {
-	const [selectedProject, setSelectedProject] = useState(null)
+	const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
 	const { data: projects, isFetching } = useQuery({
 		queryKey: ['projects'],
@@ -19,10 +20,8 @@ export const ProjectsPage = () => {
 	return (
 		<WithPageWrapper>
 			<ProjectPageWrapper>
-				{/*  @ts-ignore */}
 				<ProjectsList projects={projects?.$values} set={setSelectedProject} selectedProject={selectedProject} />
 				<Divider orientation='vertical' variant='middle' flexItem sx={{ margin: '1em' }} />
-				{/*  @ts-ignore */}
 				<ProjectItem project={selectedProject} />
 			</ProjectPageWrapper>
 		</WithPageWrapper>

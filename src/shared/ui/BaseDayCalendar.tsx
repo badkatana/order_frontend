@@ -1,11 +1,11 @@
 import { Event } from '@/entities/Event'
 import { Task } from '@/entities/Task'
 import { getTaskWithDeadlines } from '@/widgets/lib/getTasksWithDeadlines'
-import { TaskModalWindow } from '@/widgets/modals/TaskModalWindow'
+import { CreateTaskEventModalWindow } from '@/widgets/modals'
 import styled from '@emotion/styled'
 import { Box } from '@mui/material'
 import { useState } from 'react'
-import { changeTask } from '../api/taskRoutes'
+import { editTask } from '../api/taskRoutes'
 import { AddCircleButton } from './AddCircleButton/AddCircleButton'
 import { DateHeader } from './DateHeader'
 import { ListWrapper } from './ListWrapper'
@@ -27,6 +27,7 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 
 	const { hardDeadlinesTasks, softDeadlinesTasks } = getTaskWithDeadlines(tasks, date)
 
+	console.log('tasks', tasks)
 	return (
 		<Wrapper>
 			<Box px={'1em'}>
@@ -37,12 +38,12 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 				<ListWrapper>
 					{tasks.map(task => (
 						/*  @ts-ignore */
-						<ListItemTask task={task} taskClick={() => changeTask(task)} />
+						<ListItemTask task={task} taskClick={() => editTask(task)} />
 					))}
 				</ListWrapper>
 				<AddCircleButton onClick={() => setOpen(true)} />
 				<Box>
-					<TaskModalWindow open={open} handleClose={() => setOpen(false)} />
+					<CreateTaskEventModalWindow open={open} handleClose={() => setOpen(false)} />
 				</Box>
 			</Box>
 		</Wrapper>

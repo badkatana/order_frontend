@@ -6,10 +6,11 @@ export interface Task {
 	description?: string
 	hardDeadline?: string | Dayjs | undefined | null
 	softDeadline?: string | Dayjs | undefined | null
-	callendarDate: string | Dayjs | undefined | null
+	calendarDate: string | Dayjs | undefined | null
 	status: boolean
 	contextId?: number
 	priority?: number
-	userId: string
+	userId: string | null
 	links?: string[]
+	projectId?: number | string | null
 }

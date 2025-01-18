@@ -1,3 +1,7 @@
+import { Task } from '@/entities/Task'
+import { DATE_FORMAT } from '@/shared/constants/constants'
+import { Dayjs } from 'dayjs'
+
 /*  @ts-ignore */
 export const generateDateRange = (start, end) => {
 	/*  @ts-ignore */
@@ -13,4 +17,16 @@ export const generateDateRange = (start, end) => {
 	}
 
 	return dates
+}
+
+export const formatDateForDB = (date: any, dateFormat: string) => {
+	return (date as Dayjs)?.format(dateFormat)
+}
+
+export const formatDatesTask = (task: Task) => {
+	console.log(task)
+	const hardDeadline = formatDateForDB(task.hardDeadline, DATE_FORMAT)
+	const softDeadline = formatDateForDB(task.softDeadline, DATE_FORMAT)
+	const calendarDate = formatDateForDB(task.calendarDate, DATE_FORMAT)
+	return { ...task, hardDeadline, softDeadline, calendarDate }
 }

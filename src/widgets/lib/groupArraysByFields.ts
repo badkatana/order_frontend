@@ -1,3 +1,4 @@
+import { Project } from '@/entities/Project'
 import { Calendar } from '../../entities/Calendar'
 import { Event } from '../../entities/Event'
 import { Task } from '../../entities/Task'
@@ -12,11 +13,11 @@ export const groupArraysByDate = (input: Calendar, datesRange: string[]) => {
 	datesRange.map(date => {
 		const tasksToDate = tasks.filter(
 			(task: {
-				callendarDate: string | undefined | null
+				calendarDate: string | undefined | null
 				softDeadline: string | undefined | null
 				hardDeadline: string | undefined | null
 			}) =>
-				task.callendarDate?.includes(date) ||
+				task.calendarDate?.includes(date) ||
 				task.softDeadline?.includes(date) ||
 				task.hardDeadline?.includes(date)
 		)
@@ -26,4 +27,15 @@ export const groupArraysByDate = (input: Calendar, datesRange: string[]) => {
 	})
 
 	return outputArray
+}
+
+export const groupProjectsByPriority = (projects: Project[] | null | undefined) => {
+	const high: Project[] = []
+	const low: Project[] = []
+	const middle: Project[] = []
+	projects?.map(item => {
+		item.priority === 3 ? high.push(item) : item.priority === 2 ? middle.push(item) : low.push(item)
+	})
+
+	return { high, middle, low }
 }

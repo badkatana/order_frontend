@@ -27,9 +27,12 @@ export type DefaultConfig = {
 	required?: boolean
 	placeholder?: string
 	type?: string
-	defaultValue?: string | number | Dayjs
+	defaultValue?: string | number | Dayjs | any
 	maxDate?: Dayjs
 	minDate?: Dayjs
 	label?: string
 	multiline?: boolean
 }[]
+
+export const DATE_FORMAT = 'YYYY-MM-DD'
+export const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm'

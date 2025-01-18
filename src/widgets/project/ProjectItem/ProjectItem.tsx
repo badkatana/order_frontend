@@ -1,6 +1,6 @@
+import { Event } from '@/entities/Event'
 import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
-import { EventForm, TaskForm } from '@/shared/formConfigs'
 import { ContainerPlaceholder } from '@/shared/ui'
 import { ListItemEvent } from '@/shared/ui/listItems/ListItemEvent'
 import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
@@ -11,22 +11,19 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { EntityArea } from './EntityArea'
 
-export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) => {
+export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Task[] }) => {
 	/// @ts-ignore
-	const { description, hardDeadline, priority, taskIds, id, tasks, events, tasksIds } = project || {}
+	if (!project) return <ContainerPlaceholder placeholder={'Select or create a project'} />
+	const { description, id, tasks, events } = project
 	const queryClient = useQueryClient()
 
-	if (project === null) return <ContainerPlaceholder placeholder={'Select or create a project'} />
-
-	/// @ts-ignore
-	const submitProjectTask = async task => {
+	const submitProjectTask = async (task: Task) => {
 		submitTask({ ...task, projectId: id })
 		/// @ts-ignore
 		queryClient.invalidateQueries(['projects'])
 	}
 
-	/// @ts-ignore
-	const submitProjectEvent = async event => {
+	const submitProjectEvent = async (event: Event) => {
 		submitEvent({ ...event, projectId: id })
 		/// @ts-ignore
 		queryClient.invalidateQueries(['projects'])
@@ -35,14 +32,9 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 	const [progress, setProgress] = useState(0)
 
 	useEffect(() => {
-		if (tasks && tasks.$values.length > 0) {
-			/// @ts-ignore
-			const completedTasks = tasks.$values.filter(task => task.status).length
-			const totalTasks = tasks.$values.length
-			setProgress((completedTasks / totalTasks) * 100)
-		} else {
-			setProgress(0)
-		}
+		const completedTasks = tasks?.$values?.filter(task => task.status).length ?? 0
+		const totalTasks = tasks?.$values?.length ?? 0
+		setProgress((completedTasks / totalTasks) * 100 || 0)
 	}, [tasks])
 
 	return (
@@ -50,7 +42,7 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 			<Box>
 				<Typography variant='h4'>{description}</Typography>
 				<Box sx={{ paddingTop: '1em' }}>
-					Tasks: {taskIds?.length}
+					Tasks: {progress} %
 					<LinearProgress
 						value={progress}
 						variant='determinate'
@@ -73,12 +65,12 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 						key={'area_tasks'}
 						title={'Tasks'}
 						modalConfig={{
-							config: TaskForm,
+							type: 'Task',
 							submitFunction: submitProjectTask,
 						}}
 					>
-						{tasks?.$values?.length > 0 ? (
-							tasks.$values.map((task: Task | any, index: any) => (
+						{tasks ? (
+							tasks.$values?.map((task: Task | any, index: any) => (
 								<ListItemTask key={`task_project_${index}`} task={task} />
 							))
 						) : (
@@ -89,12 +81,12 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 						key={'area_events'}
 						title={'Events'}
 						modalConfig={{
-							config: EventForm,
+							type: 'Event',
 							submitFunction: submitProjectEvent,
 						}}
 					>
-						{events?.$values?.length > 0 ? (
-							events.$values.map((event: any, index: any) => (
+						{events ? (
+							events.$values?.map((event: any, index: any) => (
 								<ListItemEvent key={`event_project_${index}`} event={event} />
 							))
 						) : (

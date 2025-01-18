@@ -9,7 +9,7 @@ import { uploadScheduleFromModeus } from '../lib/submitForm'
 import { ActionsArea, CalendarWrapper, PageCalendar, UploadButton } from './CalendarStyles'
 
 export const CalendarWeek = () => {
-	const [calendarDates, setCalendarDates] = useState({ monday: dayjs(), sunday: dayjs().add(6, 'day') })
+	const [calendarDates, setcalendarDates] = useState({ monday: dayjs(), sunday: dayjs().add(6, 'day') })
 	const dateRange = generateDateRange(calendarDates.monday, calendarDates.sunday)
 
 	const { data, isFetching } = useQuery({
@@ -33,7 +33,7 @@ export const CalendarWeek = () => {
 					buttonStyle={UploadButton}
 				/>
 				<WeekPicker
-					onChange={(startDate, endDate) => setCalendarDates({ monday: startDate, sunday: endDate })}
+					onChange={(startDate, endDate) => setcalendarDates({ monday: startDate, sunday: endDate })}
 				/>
 			</ActionsArea>
 

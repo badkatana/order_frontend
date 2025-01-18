@@ -1,5 +1,5 @@
-import { AddCircleButton, ModalBody } from '@/shared/ui'
-import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
+import { AddCircleButton } from '@/shared/ui'
+import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 
@@ -30,11 +30,13 @@ export const EntityArea = ({
 			<Box sx={{ marginBottom: '0.5em', fontWeight: 'bold' }}>{title}</Box>
 			{children}
 			<AddCircleButton iconSize='small' onClick={() => setOpen(true)} />
-			{/* Модальное окно */}
 			{modalConfig && (
-				<ModalBody open={open} handleClose={() => setOpen(false)} title={modalConfig.title || undefined}>
-					<GeneralForm config={modalConfig.config} submitFunction={modalConfig.submitFunction} />
-				</ModalBody>
+				<CreateEditEntityModalWindow
+					type={modalConfig.type}
+					open={open}
+					handleClose={() => setOpen(false)}
+					submit={modalConfig.submitFunction}
+				/>
 			)}
 		</Box>
 	)

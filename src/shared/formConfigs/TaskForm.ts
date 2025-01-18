@@ -3,7 +3,7 @@ import { InputDate, InputString, InputToggle } from '../ui/formGenerator/formIte
 
 export const TaskForm: DefaultConfig = [
 	{
-		name: 'Name',
+		name: 'name',
 		label: 'Name',
 		component: InputString,
 		multiline: true,
@@ -25,7 +25,7 @@ export const TaskForm: DefaultConfig = [
 		],
 	},
 	{
-		name: 'callendarDate',
+		name: 'calendarDate',
 		label: 'Calendar Date',
 		component: InputDate,
 	},

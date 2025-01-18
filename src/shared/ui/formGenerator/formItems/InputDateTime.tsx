@@ -1,21 +1,24 @@
+import { FormItem } from '@/entities/interfaces'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { Controller } from 'react-hook-form'
 
-/*  @ts-ignore */
+dayjs.extend(customParseFormat)
 
-export const InputDateTime = ({ control, name, maxDate, minDate, defaultValue, label = undefined }) => {
+export const InputDateTime = ({ control, name, maxDate, minDate, label, defaultValue }: FormItem) => {
+	console.log(dayjs(defaultValue, 'YYYY-MM-DDTHH:mm'))
 	return (
 		<Controller
 			name={name}
 			control={control}
-			defaultValue={defaultValue}
+			defaultValue={defaultValue && dayjs(defaultValue, 'YYYY-MM-DDTHH:mm')}
 			render={({ field: { onChange, value } }) => (
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DateTimePicker
 						label={label}
 						onChange={onChange}
-						format={'YYYY-MM-DDTHH:MM'}
 						value={value}
 						maxDate={maxDate ?? null}
 						minDate={minDate ?? null}
