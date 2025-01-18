@@ -12,18 +12,23 @@ import { useEffect, useState } from 'react'
 import { EntityArea } from './EntityArea'
 
 export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) => {
+	/// @ts-ignore
 	const { description, hardDeadline, priority, taskIds, id, tasks, events, tasksIds } = project || {}
 	const queryClient = useQueryClient()
 
 	if (project === null) return <ContainerPlaceholder placeholder={'Select or create a project'} />
 
+	/// @ts-ignore
 	const submitProjectTask = async task => {
 		submitTask({ ...task, projectId: id })
+		/// @ts-ignore
 		queryClient.invalidateQueries(['projects'])
 	}
 
+	/// @ts-ignore
 	const submitProjectEvent = async event => {
 		submitEvent({ ...event, projectId: id })
+		/// @ts-ignore
 		queryClient.invalidateQueries(['projects'])
 	}
 
@@ -31,6 +36,7 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 
 	useEffect(() => {
 		if (tasks && tasks.$values.length > 0) {
+			/// @ts-ignore
 			const completedTasks = tasks.$values.filter(task => task.status).length
 			const totalTasks = tasks.$values.length
 			setProgress((completedTasks / totalTasks) * 100)
@@ -72,7 +78,7 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 						}}
 					>
 						{tasks?.$values?.length > 0 ? (
-							tasks.$values.map((task, index) => (
+							tasks.$values.map((task: Task | any, index: any) => (
 								<ListItemTask key={`task_project_${index}`} task={task} />
 							))
 						) : (
@@ -88,7 +94,7 @@ export const ProjectItem = ({ project }: { project?: Project; tasks?: Task[] }) 
 						}}
 					>
 						{events?.$values?.length > 0 ? (
-							events.$values.map((event, index) => (
+							events.$values.map((event: any, index: any) => (
 								<ListItemEvent key={`event_project_${index}`} event={event} />
 							))
 						) : (

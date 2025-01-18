@@ -42,7 +42,9 @@ export const CalendarWeek = () => {
 					dateRange.map(date => {
 						return (
 							<BaseDayCalendar
+								/*  @ts-ignore */
 								tasks={calendarItem[date] ? calendarItem[date].tasks : []}
+								/*  @ts-ignore */
 								events={calendarItem[date] ? calendarItem[date].events : []}
 								key={date}
 								date={date}

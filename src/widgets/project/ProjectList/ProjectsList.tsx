@@ -23,7 +23,6 @@ export const ProjectsList = ({
 				) : (
 					projects?.map((project, index) => (
 						<ListItem
-							button
 							sx={{
 								cursor: 'pointer',
 								backgroundColor: selectedProject === project ? '#989488' : null,

@@ -22,6 +22,9 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 	const { tasks, events, date } = props
 	const [open, setOpen] = useState(false)
 	// todo: optimaze; when we sort task get it also
+
+	/*  @ts-ignore */
+
 	const { hardDeadlinesTasks, softDeadlinesTasks } = getTaskWithDeadlines(tasks, date)
 
 	return (
@@ -33,6 +36,7 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 				<ListWrapper>{events && events.map(event => <ListItemEvent event={event} />)}</ListWrapper>
 				<ListWrapper>
 					{tasks.map(task => (
+						/*  @ts-ignore */
 						<ListItemTask task={task} taskClick={() => changeTask(task)} />
 					))}
 				</ListWrapper>
@@ -45,12 +49,14 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 	)
 }
 
+/*  @ts-ignore */
 const DeadlinesArea = ({ tasks, color }) => {
 	if (tasks.lenght < 1) return
 	return (
 		<Box>
 			{tasks &&
-				tasks.map((hard: Task, index) => (
+				tasks.map((hard: Task) => (
+					/*  @ts-ignore */
 					<Box
 						key={hard.id}
 						backgroundColor={color}

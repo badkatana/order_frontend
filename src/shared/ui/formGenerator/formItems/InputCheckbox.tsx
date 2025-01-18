@@ -1,5 +1,7 @@
-import { Checkbox } from '@mui/material'
+import { Box, Checkbox, Typography } from '@mui/material'
 import { Controller } from 'react-hook-form'
+
+/*  @ts-ignore */
 
 export const InputCheckbox = ({ control, name, label }) => {
 	return (
@@ -8,18 +10,22 @@ export const InputCheckbox = ({ control, name, label }) => {
 			control={control}
 			defaultValue={''}
 			render={({ field: { onChange, value, ref } }) => (
-				<Checkbox
-					value={value}
-					ref={ref}
-					onChange={onChange}
-					key={name}
-					sx={{
-						color: 'white',
-						'&.Mui-checked': {
+				<Box display={'flex'} alignItems={'center'}>
+					<Checkbox
+						value={value}
+						ref={ref}
+						onChange={onChange}
+						key={name}
+						sx={{
 							color: 'white',
-						},
-					}}
-				/>
+							'&.Mui-checked': {
+								color: 'white',
+							},
+							marginLeft: '0.5em',
+						}}
+					/>
+					<Typography color='white'>{label}</Typography>
+				</Box>
 			)}
 		/>
 	)

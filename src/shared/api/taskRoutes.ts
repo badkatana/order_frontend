@@ -7,22 +7,26 @@
 
 import { authBackend } from './hostConfig'
 
+/*  @ts-ignore */
 export const getTask = async ({ taskId }) => {
-	const { data } = await authBackend.get(`Task/${taskId}`)
+	const { data } = await authBackend.get(`/api/Task/${taskId}`)
 	return data
 }
 
+/*  @ts-ignore */
 export const changeTask = async task => {
-	const { data } = await authBackend.put(`Task/${task.id}`, task)
+	const { data } = await authBackend.put(`/api/Task/${task.id}`, task)
 	return data
 }
 
+/*  @ts-ignore */
 export const deleteTask = async taskId => {
-	const { data } = await authBackend.delete(`Task/${taskId}`)
+	const { data } = await authBackend.delete(`/api/Task/${taskId}`)
 	return data
 }
 
+/*  @ts-ignore */
 export const createTask = async task => {
-	const { data } = await authBackend.post(`Task`, task)
+	const { data } = await authBackend.post(`/api/Task`, task)
 	return data
 }

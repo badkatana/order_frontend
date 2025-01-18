@@ -1,15 +1,17 @@
+import { TokenPayload } from '@/entities/interfaces'
+import { jwtDecode } from 'jwt-decode'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from './AuthContext'
 
 // @ts-ignore
 export const AuthProvider = ({ children }) => {
-	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>(undefined)
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		const token = sessionStorage.getItem('access_token')
-		setIsAuthenticated(!!token)
+		const isAuth = checkAuth()
+		setIsAuthenticated(isAuth)
 	}, [])
 
 	const login = () => {
@@ -24,4 +26,22 @@ export const AuthProvider = ({ children }) => {
 	}
 
 	return <AuthContext.Provider value={{ isAuthenticated, login, logout }}>{children}</AuthContext.Provider>
+}
+
+const checkAuth = () => {
+	const token = sessionStorage.getItem('access_token')
+
+	if (!token) {
+		return false
+	}
+
+	try {
+		const decoded: TokenPayload = jwtDecode(token)
+		const isExpired = decoded.exp * 1000 < Date.now()
+
+		return !isExpired
+	} catch (error) {
+		console.error('Ошибка при декодировании токена', error)
+		return false
+	}
 }

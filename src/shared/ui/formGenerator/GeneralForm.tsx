@@ -22,10 +22,12 @@ export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 
 	return (
 		<FormProvider {...methods}>
+			{/*  @ts-ignore */}
 			<Form control={control} onSubmit={handleSubmit(submitFunction)}>
 				<Grid container spacing={2}>
 					{config.map((item, index) => (
 						<Grid item xs={4} key={index}>
+							{/*  @ts-ignore */}
 							<item.component key={`form_${item.name}_${index}`} control={control} {...item} />
 						</Grid>
 					))}

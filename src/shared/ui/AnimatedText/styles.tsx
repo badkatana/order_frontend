@@ -11,6 +11,8 @@ export const TextWrapper = styled(Box)({
 	whiteSpace: 'nowrap',
 })
 
+/*  @ts-ignore */
+
 export const BigText = styled(Typography)({
 	fontWeight: 'bold',
 	fontStyle: 'italic',

@@ -2,7 +2,9 @@ import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Controller } from 'react-hook-form'
 
-export const InputDateTime = ({ control, name, maxDate, minDate, defaultValue }) => {
+/*  @ts-ignore */
+
+export const InputDateTime = ({ control, name, maxDate, minDate, defaultValue, label = undefined }) => {
 	return (
 		<Controller
 			name={name}
@@ -11,7 +13,7 @@ export const InputDateTime = ({ control, name, maxDate, minDate, defaultValue })
 			render={({ field: { onChange, value } }) => (
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DateTimePicker
-						label={'sdfds'}
+						label={label}
 						onChange={onChange}
 						format={'YYYY-MM-DDTHH:MM'}
 						value={value}

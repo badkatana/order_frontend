@@ -31,4 +31,5 @@ export type DefaultConfig = {
 	maxDate?: Dayjs
 	minDate?: Dayjs
 	label?: string
+	multiline?: boolean
 }[]

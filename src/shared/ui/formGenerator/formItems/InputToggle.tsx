@@ -4,11 +4,11 @@ import { Controller } from 'react-hook-form'
 
 /*  @ts-ignore */
 
-export const InputToggle = ({ control, name = '', groupItems = [], label = '' }) => {
+export const InputToggle = ({ control, name = '', groupItems = [], label = '', ...props }) => {
 	const [formats, setFormats] = useState()
 	return (
-		<Box>
-			<Typography>{label}</Typography>
+		<Box display={'flex'} alignItems={'flex-start'} flexDirection={'column'}>
+			<Typography color='white'>{label}</Typography>
 			<Controller
 				control={control}
 				name={name}

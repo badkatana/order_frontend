@@ -1,6 +1,7 @@
+import { DefaultConfig } from '../constants/constants'
 import { InputDate, InputString, InputToggle } from '../ui/formGenerator/formItems'
 
-export const TaskForm = [
+export const TaskForm: DefaultConfig = [
 	{
 		name: 'Name',
 		label: 'Name',
@@ -15,7 +16,7 @@ export const TaskForm = [
 	},
 	{
 		name: 'priority',
-		title: 'Priority',
+		label: 'Priority',
 		component: InputToggle,
 		groupItems: [
 			{ value: 1, label: 'High' },
@@ -38,7 +39,4 @@ export const TaskForm = [
 		label: 'Soft Deadline',
 		component: InputDate,
 	},
-	// context: {
-	// 	component: 'autocomplete',
-	// },
 ]

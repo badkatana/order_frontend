@@ -3,8 +3,9 @@ import { Event } from '../../entities/Event'
 import { Task } from '../../entities/Task'
 
 export const groupArraysByDate = (input: Calendar, datesRange: string[]) => {
-	console.log('input', input)
+	/*  @ts-ignore */
 	const tasks = input.tasks.$values
+	/*  @ts-ignore */
 	const events = input.events.$values
 	const outputArray: { [key: string]: { tasks: Task[] | []; events: Event[] | [] } } = {}
 

@@ -1,6 +1,8 @@
 import { TextField } from '@mui/material'
 import { Controller } from 'react-hook-form'
 
+/*  @ts-ignore */
+
 export const InputString = ({ control, label, name = '', multiline = false, required = false }) => {
 	return (
 		<Controller

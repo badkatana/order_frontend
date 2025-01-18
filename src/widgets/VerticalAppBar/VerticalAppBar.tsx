@@ -12,6 +12,7 @@ interface VerticalAppBarProps {
 export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 	const navigate = useNavigate()
 
+	/*  @ts-ignore */
 	const handleClick = item => {
 		if (item.clickFunction) {
 			item.clickFunction()
@@ -21,6 +22,7 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 
 	const items = AppBarItems.map(item => {
 		return (
+			/*  @ts-ignore */
 			<ListItem key={item.key} onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
 				<item.icon sx={{ color: 'white' }} />
 				{open && <ListItemText primary={item.name} sx={{ color: 'white', px: '1em' }} />}

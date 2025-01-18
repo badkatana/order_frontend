@@ -2,10 +2,12 @@ import { TaskForm } from '@/shared/formConfigs'
 import { EventForm } from '@/shared/formConfigs/EventForm'
 import { ModalBody } from '@/shared/ui'
 import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
-import { Box, Button, styled, Tab, Tabs } from '@mui/material'
+import { Box, Tab, Tabs } from '@mui/material'
 import { useState } from 'react'
 import { submitTask } from '../lib/submitForm'
 import { submitEvent } from '../lib/submitForm/submitFunctions'
+
+// @ts-ignore
 
 export const TaskModalWindow = ({ open, handleClose }) => {
 	const [value, setValue] = useState(0)
@@ -20,9 +22,11 @@ export const TaskModalWindow = ({ open, handleClose }) => {
 					</Tabs>
 				</Box>
 				<CustomTabPanel value={value} index={0}>
+					{/*  @ts-ignore */}
 					<GeneralForm config={TaskForm} submitFunction={submitTask} />
 				</CustomTabPanel>
 				<CustomTabPanel value={value} index={1}>
+					{/*  @ts-ignore */}
 					<GeneralForm config={EventForm} submitFunction={submitEvent} />
 				</CustomTabPanel>
 			</Box>
@@ -30,38 +34,38 @@ export const TaskModalWindow = ({ open, handleClose }) => {
 	)
 }
 
-const style = {
-	position: 'absolute',
-	top: '50%',
-	left: '50%',
-	transform: 'translate(-50%, -50%)',
-	width: '80%',
-	bgcolor: 'background.paper',
-	boxShadow: 24,
-	p: 4,
-	borderRadius: 2,
-	display: 'flex',
-	flexDirection: 'column',
-}
+// const style = {
+// 	position: 'absolute',
+// 	top: '50%',
+// 	left: '50%',
+// 	transform: 'translate(-50%, -50%)',
+// 	width: '80%',
+// 	bgcolor: 'background.paper',
+// 	boxShadow: 24,
+// 	p: 4,
+// 	borderRadius: 2,
+// 	display: 'flex',
+// 	flexDirection: 'column',
+// }
 
-const ButtonStyled = styled(Button)({
-	marginTop: '1em',
-	backgroundColor: '#187018',
-	color: 'white',
-})
+// const ButtonStyled = styled(Button)({
+// 	marginTop: '1em',
+// 	backgroundColor: '#187018',
+// 	color: 'white',
+// })
 
-const BlurredOverlay = styled(Box)({
-	position: 'fixed',
-	top: 0,
-	left: 0,
-	right: 0,
-	bottom: 0,
-	//backgroundColor: 'rgba(0, 0, 0, 0.5)',
-	backdropFilter: 'blur(3px)',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-})
+// const BlurredOverlay = styled(Box)({
+// 	position: 'fixed',
+// 	top: 0,
+// 	left: 0,
+// 	right: 0,
+// 	bottom: 0,
+// 	//backgroundColor: 'rgba(0, 0, 0, 0.5)',
+// 	backdropFilter: 'blur(3px)',
+// 	display: 'flex',
+// 	justifyContent: 'center',
+// 	alignItems: 'center',
+// })
 
 //   const [value, setValue] = useState(0);
 
@@ -89,6 +93,7 @@ const BlurredOverlay = styled(Box)({
 //       </CustomTabPanel>
 //     </Box>
 
+/// @ts-ignore
 function CustomTabPanel({ children, value, index, ...other }) {
 	return (
 		<div

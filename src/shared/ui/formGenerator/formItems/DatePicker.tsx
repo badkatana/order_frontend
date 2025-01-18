@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from 'dayjs'
 import { Controller } from 'react-hook-form'
 
+/*  @ts-ignore */
 export const InputDate = ({ control, name = '', label = '' }) => {
 	return (
 		<Controller

@@ -1,7 +1,7 @@
 import { authBackend } from './hostConfig'
 
+/*  @ts-ignore */
 export const createEvent = async event => {
-	const userId = localStorage.getItem('user_id')
-	const { data } = await authBackend.post('Event', event)
+	const { data } = await authBackend.post('/api/Event', event)
 	return data
 }

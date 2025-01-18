@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { ChangeEvent, CSSProperties, useRef } from 'react'
 
 interface FileUploadButtonProps {
-	onUpload: (files: FileList | File | null | undefined) => void
+	onUpload: (files: File | null | undefined) => void
 	accept?: string
 	multiple?: boolean
 	buttonText?: string
@@ -26,10 +26,9 @@ export const FileUploadButton = ({
 
 	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const files = event.target.files
-		console.log(files)
-		onUpload(multiple ? files : files?.[0])
+		onUpload(files?.[0])
 		if (inputRef.current) {
-			inputRef.current.value = '' // Reset input so the same file can be uploaded again
+			inputRef.current.value = ''
 		}
 	}
 

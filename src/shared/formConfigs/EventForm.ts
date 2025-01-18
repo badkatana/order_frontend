@@ -7,23 +7,10 @@ export const EventForm: DefaultConfig = [
 		name: 'name',
 		component: InputString,
 	},
-	// {
-	// 	name: 'callendarDate',
-	// 	component: InputDate,
-	// 	required: true,
-	// },
-	{
-		name: 'priority',
-		component: InputToggle,
-		groupItems: [
-			{ value: 1, label: 'High' },
-			{ value: 2, label: 'Middle' },
-			{ value: 3, label: 'Low' },
-		],
-	},
 	{
 		name: 'periodStart',
 		component: InputDateTime,
+		label: 'From time: ',
 		defaultValue: dayjs(),
 		maxDate: dayjs(),
 		minDate: dayjs(),
@@ -31,14 +18,27 @@ export const EventForm: DefaultConfig = [
 	},
 	{
 		name: 'periodEnd',
+		label: 'To Time: ',
 		component: InputDateTime,
 		maxDate: dayjs(),
 		minDate: dayjs(),
 		defaultValue: dayjs(),
 		required: true,
 	},
+
+	{
+		name: 'priority',
+		component: InputToggle,
+		label: 'priority',
+		groupItems: [
+			{ value: 1, label: 'High' },
+			{ value: 2, label: 'Middle' },
+			{ value: 3, label: 'Low' },
+		],
+	},
 	{
 		name: 'isPrivate',
+		label: 'Can other users see this event?',
 		component: InputCheckbox,
 	},
 ]

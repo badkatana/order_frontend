@@ -1,4 +1,4 @@
-export { isAuthenticated, loginUser } from './authRoutes'
+export { loginUser } from './authRoutes'
 export { getCalendar, uploadFileTypeModeus } from './calendarRoutes'
 export { createEvent } from './eventsRoutes'
 export { createProject, deleteProject, editProject, getAllProjects } from './projectRoutes'

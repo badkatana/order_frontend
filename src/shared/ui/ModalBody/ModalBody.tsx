@@ -2,6 +2,8 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Box, IconButton, Modal, Typography } from '@mui/material'
 import { BlurredOverlay, style } from './ModalBodyStyles'
 
+/*  @ts-ignore */
+
 export const ModalBody = ({ children, open, handleClose, title }) => {
 	return (
 		<Modal open={open} onClose={handleClose}>

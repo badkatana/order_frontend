@@ -19,8 +19,10 @@ export const ProjectsPage = () => {
 	return (
 		<WithPageWrapper>
 			<ProjectPageWrapper>
+				{/*  @ts-ignore */}
 				<ProjectsList projects={projects?.$values} set={setSelectedProject} selectedProject={selectedProject} />
 				<Divider orientation='vertical' variant='middle' flexItem sx={{ margin: '1em' }} />
+				{/*  @ts-ignore */}
 				<ProjectItem project={selectedProject} />
 			</ProjectPageWrapper>
 		</WithPageWrapper>

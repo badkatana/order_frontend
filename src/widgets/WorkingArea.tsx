@@ -2,10 +2,11 @@ import styled from '@emotion/styled'
 import { Box } from '@mui/material'
 import { PageHeader } from '../shared/ui/PageHeader'
 
+/*  @ts-ignore */
 export const WorkingArea = ({ children }) => {
 	return (
 		<Wrapper>
-			<PageHeader path={undefined} />
+			<PageHeader />
 			<InnerWrapper>{children}</InnerWrapper>
 		</Wrapper>
 	)
