@@ -34,7 +34,7 @@ export const groupProjectsByPriority = (projects: Project[] | null | undefined) 
 	const low: Project[] = []
 	const middle: Project[] = []
 	projects?.map(item => {
-		item.priority === 3 ? high.push(item) : item.priority === 2 ? middle.push(item) : low.push(item)
+		item.priority === 3 ? low.push(item) : item.priority === 2 ? middle.push(item) : high.push(item)
 	})
 
 	return { high, middle, low }

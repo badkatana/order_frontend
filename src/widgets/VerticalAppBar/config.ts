@@ -27,7 +27,7 @@ export const AppBarItems: AppBarItemType[] = [
 	},
 	{
 		name: 'helpful utmn',
-		path: '',
+		path: '/university',
 		tooltip: 'helpful utmn',
 		key: 'helpful_utmn',
 		icon: SchoolOutlinedIcon,
