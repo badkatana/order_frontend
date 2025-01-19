@@ -16,7 +16,14 @@ export const InputString = ({
 			name={name}
 			control={control}
 			defaultValue={defaultValue}
-			render={({ field: { onChange, value, ref } }) => (
+			rules={{
+				required: 'This field is required',
+				minLength: {
+					value: 3,
+					message: 'Minimum 3 characters required',
+				},
+			}}
+			render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
 				<TextField
 					value={value}
 					ref={ref}
@@ -24,6 +31,8 @@ export const InputString = ({
 					label={label ?? name}
 					onChange={onChange}
 					required={required}
+					error={!!error}
+					helperText={error?.message}
 					multiline={multiline}
 				/>
 			)}
