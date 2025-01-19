@@ -7,15 +7,11 @@ export const CategorySelector: React.FC<{
 }> = ({ categories, onCategoryChange, selectedCategory }) => {
 	return (
 		<Autocomplete
-			disablePortal
 			value={selectedCategory}
 			options={categories}
 			sx={{ width: 300 }}
-			onChange={(_, newValue) => {
-				console.log(newValue)
-				onCategoryChange(newValue)
-			}}
-			renderInput={params => <TextField {...params} label='Movie' />}
+			onChange={(_, newValue) => onCategoryChange(newValue)}
+			renderInput={params => <TextField {...params} label='Category' />}
 		/>
 	)
 }

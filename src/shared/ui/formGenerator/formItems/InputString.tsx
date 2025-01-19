@@ -9,6 +9,7 @@ export const InputString = ({
 	multiline = false,
 	required = false,
 	defaultValue = '',
+	type,
 }: FormItem) => {
 	return (
 		<Controller
@@ -19,6 +20,7 @@ export const InputString = ({
 				<TextField
 					value={value}
 					ref={ref}
+					type={type}
 					label={label ?? name}
 					onChange={onChange}
 					required={required}

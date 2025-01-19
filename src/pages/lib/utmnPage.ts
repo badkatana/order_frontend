@@ -15,7 +15,6 @@ const classifyTopic = (topic: string): string => {
 const extractAndClassifyEvent = (
 	eventStr: string
 ): { topic: string; category: string; date: string | null | undefined; original: string } => {
-	console.log(eventStr)
 	const regex = /(?:конференция|диктант|игра|круглый стол|форум|тренинг|обсуждение)\s+«(.+?)»/i
 	const match = eventStr.match(regex)
 

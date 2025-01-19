@@ -21,32 +21,34 @@ export const UtmnPage = () => {
 
 	return (
 		<WithPageWrapper>
-			<ActionsArea>
-				<CategorySelector
-					categories={categories}
-					onCategoryChange={setSelectedCategory}
-					selectedCategory={selectedCategory}
-				/>
-			</ActionsArea>
+			<Box sx={{ height: '87vh' }}>
+				<ActionsArea>
+					<CategorySelector
+						categories={categories}
+						onCategoryChange={setSelectedCategory}
+						selectedCategory={selectedCategory}
+					/>
+				</ActionsArea>
 
-			<List
-				sx={{
-					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'center',
-					alignItems: 'center',
-					width: '100%',
-					maxHeight: '80vh',
-					overflowY: 'auto',
-					borderRadius: '8px',
-				}}
-			>
-				{currentEvents.length > 0 ? (
-					currentEvents.map(event => <ListItemUtmnEvent key={event.topic} event={event} />)
-				) : (
-					<ContainerPlaceholder placeholder='No events in this category' fullHeight />
-				)}
-			</List>
+				<List
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'center',
+						width: '100%',
+
+						overflowY: 'auto',
+						borderRadius: '8px',
+					}}
+				>
+					{currentEvents.length > 0 ? (
+						currentEvents.map(event => <ListItemUtmnEvent key={event.topic} event={event} />)
+					) : (
+						<ContainerPlaceholder placeholder='No events in this category' fullHeight />
+					)}
+				</List>
+			</Box>
 		</WithPageWrapper>
 	)
 }

@@ -20,5 +20,6 @@ export interface FormItem extends DefaultConfig {
 	minDate?: Dayjs | string
 	defaultValue?: any
 	multiline?: boolean
+	type?: string
 	required?: boolean
 }

@@ -23,7 +23,7 @@ export const AuthPage = () => {
 			<Box
 				sx={{
 					position: 'relative',
-					width: '40%',
+					width: '30em',
 					height: '100%',
 					backdropFilter: 'blur(10px)',
 					display: 'flex',

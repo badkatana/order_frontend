@@ -28,19 +28,31 @@ export const SessionForm = () => {
 	}
 
 	return (
-		// @ts-ignore
-		<Form control={control} onSubmit={handleSubmit(values => registerOrLoginUser(values))}>
-			<Box sx={{ padding: 4, zIndex: 1 }}>
-				<Typography variant='h4' gutterBottom>
-					Join Us
-				</Typography>
-				{AuthConfig.map(item => (
-					<item.component key={`${item.name}`} control={control} {...item} />
-				))}
-				<Button variant='contained' color='primary' type='submit'>
-					start session
-				</Button>
-			</Box>
-		</Form>
+		<Box
+			sx={{
+				width: '100%',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+			}}
+		>
+			{/*  @ts-ignore */}
+			<Form control={control} onSubmit={handleSubmit(values => registerOrLoginUser(values))}>
+				<Box sx={{ zIndex: 1 }}>
+					<Typography variant='h4' gutterBottom>
+						order
+					</Typography>
+					{AuthConfig.map(item => (
+						<Box marginBottom={'0.5em'}>
+							<item.component key={`${item.name}`} control={control} {...item} />
+						</Box>
+					))}
+					<Button variant='contained' color='primary' type='submit'>
+						start session
+					</Button>
+				</Box>
+			</Form>
+		</Box>
 	)
 }

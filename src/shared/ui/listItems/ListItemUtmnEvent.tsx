@@ -1,5 +1,6 @@
 import { addEventToCalender } from '@/shared/api/utmnRoutes'
-import { Box, Divider, ListItemText, styled } from '@mui/material'
+import { Box, Divider, styled, Typography } from '@mui/material'
+import 'dayjs/locale/ru'
 import { AddCircleButton } from '../AddCircleButton/AddCircleButton'
 
 type ListItemUtmnEventProps = {
@@ -14,8 +15,10 @@ export const ListItemUtmnEvent = ({ event }: ListItemUtmnEventProps) => {
 	return (
 		<Wrapper>
 			<Box display={'flex'} flexDirection={'column'} flex={1}>
-				<ListItemText>{event.topic} </ListItemText>
-				<ListItemText>{event.date}</ListItemText>
+				<Typography fontSize={'1.2em'}>{event.topic} </Typography>
+				<Typography fontStyle={'italic'} color='grey'>
+					{event.date}
+				</Typography>
 			</Box>
 			<RightSection>
 				<Divider orientation='vertical' variant='middle' flexItem sx={{ margin: '1em' }} />
