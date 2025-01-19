@@ -15,7 +15,6 @@ export const ListItemTask = ({ task }: ListItemTask) => {
 	const [value, setValue] = useState(task.status)
 	const [open, setOpen] = useState<boolean>(false)
 
-	console.log('task', task)
 	return (
 		<>
 			<ListItemTaskWrapper>

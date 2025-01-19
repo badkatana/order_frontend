@@ -22,12 +22,10 @@ export const BaseDayCalendar = (props: BaseDayCalendarProps) => {
 	const { tasks, events, date } = props
 	const [open, setOpen] = useState(false)
 	// todo: optimaze; when we sort task get it also
-
 	/*  @ts-ignore */
 
 	const { hardDeadlinesTasks, softDeadlinesTasks } = getTaskWithDeadlines(tasks, date)
 
-	console.log('tasks', tasks)
 	return (
 		<Wrapper>
 			<Box px={'1em'}>

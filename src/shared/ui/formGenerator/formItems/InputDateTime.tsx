@@ -8,7 +8,6 @@ import { Controller } from 'react-hook-form'
 dayjs.extend(customParseFormat)
 
 export const InputDateTime = ({ control, name, maxDate, minDate, label, defaultValue }: FormItem) => {
-	console.log(dayjs(defaultValue, 'YYYY-MM-DDTHH:mm'))
 	return (
 		<Controller
 			name={name}

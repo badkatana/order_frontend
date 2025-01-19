@@ -24,7 +24,6 @@ export const formatDateForDB = (date: any, dateFormat: string) => {
 }
 
 export const formatDatesTask = (task: Task) => {
-	console.log(task)
 	const hardDeadline = formatDateForDB(task.hardDeadline, DATE_FORMAT)
 	const softDeadline = formatDateForDB(task.softDeadline, DATE_FORMAT)
 	const calendarDate = formatDateForDB(task.calendarDate, DATE_FORMAT)
