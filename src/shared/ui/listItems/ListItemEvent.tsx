@@ -22,6 +22,7 @@ export const ListItemEvent = ({ event }: ListItemEventProps) => {
 		<>
 			<ListItemWrapper
 				sx={{
+					// @ts-ignore
 					background: EventColors[event.type] ?? EventColors['personal'],
 					borderRadius: '1em',
 					display: 'flex',
@@ -38,6 +39,7 @@ export const ListItemEvent = ({ event }: ListItemEventProps) => {
 				handleClose={() => setOpen(false)}
 				type='Event'
 				editEntityItem={event}
+				// @ts-ignore
 				submit={values => submitEditedEvent(values, event, queryClient)}
 			/>
 		</>

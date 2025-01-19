@@ -1,23 +1,23 @@
+import { useAppStore } from '@/app'
 import { getCalendar } from '@/shared/api'
-import { BaseDayCalendar, FileUploadButton } from '@/shared/ui'
+import { BaseDayCalendar, ContainerPlaceholder, FileUploadButton } from '@/shared/ui'
 import WeekPicker from '@/shared/ui/WeekPeeker'
 import { useQuery } from '@tanstack/react-query'
-import dayjs from 'dayjs'
-import { useState } from 'react'
+import { Dayjs } from 'dayjs'
 import { generateDateRange, groupArraysByDate } from '../lib'
 import { uploadScheduleFromModeus } from '../lib/submitForm'
 import { ActionsArea, CalendarWrapper, PageCalendar, UploadButton } from './CalendarStyles'
 
 export const CalendarWeek = () => {
-	const [calendarDates, setcalendarDates] = useState({ monday: dayjs(), sunday: dayjs().add(6, 'day') })
-	const dateRange = generateDateRange(calendarDates.monday, calendarDates.sunday)
+	const { savedWeek, setSavedWeek } = useAppStore()
+	const dateRange = generateDateRange(savedWeek.monday, savedWeek.sunday)
 
 	const { data, isFetching } = useQuery({
-		queryKey: ['calendar', calendarDates],
+		queryKey: ['calendar', savedWeek],
 		queryFn: () =>
 			getCalendar({
-				dateStart: calendarDates?.monday?.format('YYYY-MM-DD').toString(),
-				dateEnd: calendarDates?.sunday?.format('YYYY-MM-DD').toString(),
+				dateStart: (savedWeek?.monday as Dayjs).format('YYYY-MM-DD').toString(),
+				dateEnd: (savedWeek?.sunday as Dayjs).format('YYYY-MM-DD').toString(),
 			}),
 	})
 
@@ -32,13 +32,11 @@ export const CalendarWeek = () => {
 					accept='.ics'
 					buttonStyle={UploadButton}
 				/>
-				<WeekPicker
-					onChange={(startDate, endDate) => setcalendarDates({ monday: startDate, sunday: endDate })}
-				/>
+				<WeekPicker onChange={(monday, sunday) => setSavedWeek({ monday, sunday })} />
 			</ActionsArea>
 
 			<CalendarWrapper>
-				{!isFetching &&
+				{!isFetching ? (
 					dateRange.map(date => {
 						return (
 							<BaseDayCalendar
@@ -50,7 +48,10 @@ export const CalendarWeek = () => {
 								date={date}
 							/>
 						)
-					})}
+					})
+				) : (
+					<ContainerPlaceholder fullHeight progress />
+				)}
 			</CalendarWrapper>
 		</PageCalendar>
 	)

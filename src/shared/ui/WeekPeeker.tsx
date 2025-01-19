@@ -1,9 +1,10 @@
+import { getWeekBoundaries, useAppStore } from '@/app/store/store'
 import { TextField, TextFieldProps } from '@mui/material'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
-import React, { useState } from 'react'
+import React from 'react'
 
 dayjs.extend(isoWeek)
 
@@ -12,14 +13,13 @@ interface WeekPickerProps {
 }
 
 const WeekPicker: React.FC<WeekPickerProps> = ({ onChange }) => {
-	const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null)
+	const { savedDate, setSavedDate } = useAppStore()
 
 	const handleDateChange = (date: Dayjs | null) => {
 		if (date) {
-			const startOfWeek = date.startOf('isoWeek')
-			const endOfWeek = date.endOf('isoWeek')
-			setSelectedDate(date)
-			onChange?.(startOfWeek, endOfWeek)
+			const { monday, sunday } = getWeekBoundaries(date)
+			setSavedDate(date)
+			onChange?.(monday, sunday)
 		}
 	}
 
@@ -27,7 +27,7 @@ const WeekPicker: React.FC<WeekPickerProps> = ({ onChange }) => {
 		<LocalizationProvider dateAdapter={AdapterDayjs}>
 			<DatePicker
 				label='Select Week'
-				value={selectedDate}
+				value={savedDate}
 				onChange={handleDateChange}
 				slots={{ textField: CustomTextField }}
 			/>

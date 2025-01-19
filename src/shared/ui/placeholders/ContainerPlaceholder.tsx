@@ -1,6 +1,8 @@
 import { Box } from '@mui/material'
+import { LoadingScreen } from '../LoadingScreen/LoadingScreen'
 
-export const ContainerPlaceholder = ({ placeholder = 'Empty', fullHeight = true }) => {
+export const ContainerPlaceholder = ({ placeholder = 'Empty', fullHeight = true, progress = false }) => {
+	const placeHolder = progress && !placeholder ? 'Empty' : 'Loading'
 	return (
 		<Box
 			sx={{
@@ -14,7 +16,8 @@ export const ContainerPlaceholder = ({ placeholder = 'Empty', fullHeight = true 
 				textAlign: 'center',
 			}}
 		>
-			{placeholder}
+			{progress && <LoadingScreen />}
+			{placeHolder}
 		</Box>
 	)
 }

@@ -25,16 +25,18 @@ export const submitEditedTask = (values: Task) => {
 	editTask({ ...values, ...taskDates, userId })
 }
 
-export const submitEvent = (values: Event) => {
+export const submitEvent = (values: DefaultObjectString) => {
 	const userId = localStorage.getItem('user_id')
 	const newEvent = {
 		...values,
 		periodStart: formatDateForDB(values.periodStart, DATE_TIME_FORMAT),
 		periodEnd: formatDateForDB(values.periodEnd, DATE_TIME_FORMAT),
 		userId,
+		isPrivate: values.isPrivate !== '' && typeof values.isPrivate === 'boolean' ? values.isPrivate : false,
 		status: false,
 	}
 
+	// @ts-ignore
 	createEvent(newEvent)
 }
 
@@ -47,6 +49,7 @@ export const submitEditedEvent = async (values: DefaultObjectString, event: Even
 		isPrivate:
 			values.isPrivate !== '' && typeof values.isPrivate === 'boolean' ? values.isPrivate : event.isPrivate,
 	})
+	// @ts-ignore
 	queryClient.refetchQueries(['projects'])
 }
 

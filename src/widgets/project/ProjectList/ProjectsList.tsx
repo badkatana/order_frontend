@@ -3,7 +3,7 @@ import { AddCircleButton, ContainerPlaceholder } from '@/shared/ui'
 import { groupProjectsByPriority } from '@/widgets/lib'
 import { ProjectModalWindow } from '@/widgets/modals'
 import { Divider, List, ListItem, Typography } from '@mui/material'
-import { Dispatch, ReactElement, SetStateAction, useState } from 'react'
+import { ReactElement, useState } from 'react'
 
 export const ProjectsList = ({
 	projects,
@@ -12,12 +12,11 @@ export const ProjectsList = ({
 }: {
 	projects: Project[]
 	selectedProject: Project | null
-	set: Dispatch<SetStateAction<null | Project>>
+	set: (project: Project | null) => void
 }) => {
 	const [open, setOpen] = useState(false)
 	const { high, middle, low } = groupProjectsByPriority(projects)
 
-	console.log('here 3')
 	const PriorityList = ({ projects, priority }: { projects: Project[]; priority: string }): ReactElement => {
 		return (
 			<>
