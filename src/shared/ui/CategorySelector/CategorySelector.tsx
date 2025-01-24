@@ -10,6 +10,8 @@ export const CategorySelector: React.FC<{
 			value={selectedCategory}
 			options={categories}
 			sx={{ width: 300 }}
+			size='small'
+			/// @ts-ignore
 			onChange={(_, newValue) => onCategoryChange(newValue)}
 			renderInput={params => <TextField {...params} label='Category' />}
 		/>

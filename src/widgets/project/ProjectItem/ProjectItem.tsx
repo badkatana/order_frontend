@@ -24,6 +24,7 @@ export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Tas
 	}
 
 	const submitProjectEvent = async (event: Event) => {
+		/// @ts-ignore
 		submitEvent({ ...event, projectId: id })
 		/// @ts-ignore
 		queryClient.invalidateQueries(['projects'])

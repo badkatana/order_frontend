@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import routes from './app/routes/Routes'
 import { AuthProvider } from './shared/context/AuthProvider'
+import { SnackbarProvider } from './shared/context/SnackbarProvider'
 import { useAuth } from './shared/hooks'
 import { theme } from './shared/ui/theme'
 
@@ -15,20 +16,22 @@ function App() {
 			<AuthProvider>
 				<QueryClientProvider client={queryClient}>
 					<ThemeProvider theme={theme}>
-						<Routes>
-							{routes.map(route => {
-								if (route.protected) {
-									return (
-										<Route
-											key={route.path}
-											path={route.path}
-											element={<ProtectedRoute element={<route.element />} />}
-										/>
-									)
-								}
-								return <Route key={route.path} path={route.path} element={<route.element />} />
-							})}
-						</Routes>
+						<SnackbarProvider>
+							<Routes>
+								{routes.map(route => {
+									if (route.protected) {
+										return (
+											<Route
+												key={route.path}
+												path={route.path}
+												element={<ProtectedRoute element={<route.element />} />}
+											/>
+										)
+									}
+									return <Route key={route.path} path={route.path} element={<route.element />} />
+								})}
+							</Routes>
+						</SnackbarProvider>
 					</ThemeProvider>
 				</QueryClientProvider>
 			</AuthProvider>

@@ -21,7 +21,7 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 
 	const items = AppBarItems.map(item => {
 		return (
-			<Tooltip title={item.tooltip ?? 'page'}>
+			<Tooltip title={item.tooltip ?? 'page'} key={`tooltip_${item.name}`}>
 				{/*  @ts-ignore */}
 				<ListItem key={item.key} onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
 					<item.icon sx={{ color: 'white' }} />

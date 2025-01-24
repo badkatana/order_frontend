@@ -54,3 +54,5 @@ export const categories = {
 	ecology: ['экология', 'климат', 'природа', 'зеленые технологии'],
 	science: ['наука', 'исследования', 'развитие', 'технология', 'инновации'],
 }
+
+export const sortByDate = ['created', 'last edited']

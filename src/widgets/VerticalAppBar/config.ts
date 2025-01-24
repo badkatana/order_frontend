@@ -6,7 +6,7 @@ import { logOutUser } from '../lib'
 export const AppBarItems: AppBarItemType[] = [
 	{
 		name: 'inbox',
-		path: '',
+		path: '/inbox',
 		tooltip: 'Inbox',
 		key: 'inbox_page',
 		icon: Inbox,
