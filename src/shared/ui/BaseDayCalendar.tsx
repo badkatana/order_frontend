@@ -70,11 +70,11 @@ const DeadlinesArea = ({ tasks, color }) => {
 	)
 }
 const Wrapper = styled(Box)({
-	width: '30vh',
-	height: '70vh',
-	margin: '0.3em',
+	width: '45%',
+	height: '77vh',
+	margin: '0.2em',
 	border: '0.1em solid #606162',
-	borderRadius: '3em',
+	borderRadius: '1em',
 	paddingTop: '1em',
 	display: 'flex',
 	background: `linear-gradient(to bottom, 
