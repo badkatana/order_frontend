@@ -56,3 +56,5 @@ export const categories = {
 }
 
 export const sortByDate = ['created', 'last edited']
+
+export type WEEK_DIRECTION = 'previous' | 'next'
