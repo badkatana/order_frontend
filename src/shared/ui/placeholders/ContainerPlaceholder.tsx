@@ -1,7 +1,12 @@
 import { Box } from '@mui/material'
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen'
 
-export const ContainerPlaceholder = ({ placeholder = 'Empty', fullHeight = true, progress = false }) => {
+export const ContainerPlaceholder = ({
+	placeholder = 'Empty',
+	fullHeight = true,
+	progress = false,
+	sx = undefined,
+}) => {
 	const placeHolder = progress ? 'Loading' : placeholder === 'Empty' ? 'Empty' : placeholder
 	return (
 		<Box
@@ -15,6 +20,7 @@ export const ContainerPlaceholder = ({ placeholder = 'Empty', fullHeight = true,
 				color: 'gray',
 				fontSize: '1em',
 				textAlign: 'center',
+				...sx,
 			}}
 		>
 			{progress && <LoadingScreen />}

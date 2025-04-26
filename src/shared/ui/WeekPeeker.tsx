@@ -4,10 +4,15 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
+import updateLocale from 'dayjs/plugin/updateLocale'
 import { CustomIconButton } from '../buttons/CustomIconButton'
 import { WEEK_DIRECTION } from '../constants/constants'
 
 dayjs.extend(isoWeek)
+dayjs.extend(updateLocale)
+dayjs.updateLocale('en', {
+	weekStart: 1,
+})
 
 interface WeekPickerProps {
 	onChange?: (startOfWeek: Dayjs, endOfWeek: Dayjs) => void
@@ -48,7 +53,7 @@ const WeekPicker = ({ onChange }: WeekPickerProps) => {
 	}
 
 	return (
-		<Box sx={{ maxWidth: '20%', display: 'flex', flexDirection: 'row' }}>
+		<Box sx={{ display: 'flex', flexDirection: 'row' }}>
 			<WeekSwitcher direction={'previous'} iconName={'leftArrow'} />
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<DatePicker
