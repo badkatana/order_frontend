@@ -1,3 +1,4 @@
+import { Task } from '@/entities/Task'
 import { Dayjs } from 'dayjs'
 import { ComponentType } from 'react'
 
@@ -36,6 +37,7 @@ export type DefaultConfig = {
 
 export const DATE_FORMAT = 'YYYY-MM-DD'
 export const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm'
+export type CALENDAR_ITEM = { [key: string]: { tasks: Task[] | []; events: Event[] | [] } }
 
 export const categories = {
 	economy: ['экономика', 'финансы', 'цифровая экономика', 'бизнес', 'майнинг'],

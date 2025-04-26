@@ -1,3 +1,3 @@
 export { AuthPage } from './AuthPage'
-export { MainPage } from './mainPage'
+export { CalendarPage } from './CalendarPage'
 export { ProjectsPage } from './ProjectsPage'

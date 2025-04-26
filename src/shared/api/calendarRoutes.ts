@@ -1,16 +1,16 @@
 import { authBackend } from './hostConfig'
 
-/*  @ts-ignore */
-export const getCalendar = async ({ dateStart, dateEnd }) => {
+export const getCalendar = async ({ dateStart, dateEnd }: { dateStart: string; dateEnd: string }) => {
 	const userId = localStorage.getItem('user_id')
+
 	const { data } = await authBackend.get(`/api/Calendar/Weekly/${userId}`, {
 		params: { data: `["${dateStart}","${dateEnd}"]` },
 	})
+
 	return data
 }
 
-/*  @ts-ignore */
-export const uploadFileTypeModeus = async formData => {
+export const uploadFileTypeModeus = async (formData: any) => {
 	const { data } = await authBackend.post(`/api/Schedule/upload-ics`, formData, {
 		params: {
 			userId: localStorage.getItem('user_id'),

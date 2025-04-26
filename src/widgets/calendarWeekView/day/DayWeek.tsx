@@ -1,19 +1,24 @@
 import { useAppStore } from '@/app'
+import { Event } from '@/entities/Event'
 import { DATE_FORMAT } from '@/shared/constants/constants'
+import { DateHeader } from '@/shared/ui/DateHeader'
 import { submitEvent } from '@/widgets/lib/submitForm'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { Box, Button, Paper, Typography } from '@mui/material'
 import dayjs from 'dayjs'
 import { useRef, useState } from 'react'
-import { DateHeader } from '../../DateHeader'
 
-export const DayWeek = ({ date, events, isTimeColumn = false }) => {
+type DayWeekProps = {
+	date?: string | undefined
+	events?: Event[] | undefined | any[]
+	isTimeColumn?: boolean
+}
+
+export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) => {
 	const { setSavedDate, savedDate } = useAppStore()
 	const [selection, setSelection] = useState<{ startY: number; endY: number } | null>(null)
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [isDragging, setIsDragging] = useState(false)
-
-	console.log(events)
 	const [openModal, setOpenModal] = useState(false)
 
 	const handleMouseDown = (e: React.MouseEvent) => {
