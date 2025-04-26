@@ -2,8 +2,7 @@ import { VerticalAppBar, WorkingArea } from '@/widgets'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 
-// @ts-ignore
-export const WithPageWrapper = ({ children }) => {
+export const WithPageWrapper = ({ children }: { children: React.ReactElement }) => {
 	const [open, setOpen] = useState(false)
 
 	const toggleDrawer = () => {

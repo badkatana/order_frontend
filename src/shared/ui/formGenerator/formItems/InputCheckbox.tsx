@@ -2,8 +2,6 @@ import { FormItem } from '@/entities/interfaces'
 import { Box, Checkbox, Typography } from '@mui/material'
 import { Controller } from 'react-hook-form'
 
-/*  @ts-ignore */
-
 export const InputCheckbox = ({ control, name, label }: FormItem) => {
 	return (
 		<Controller

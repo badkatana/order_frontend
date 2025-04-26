@@ -34,9 +34,8 @@ export const submitEvent = (values: DefaultObjectString) => {
 		userId,
 		isPrivate: values.isPrivate !== '' && typeof values.isPrivate === 'boolean' ? values.isPrivate : false,
 		status: false,
-	}
+	} as Event
 
-	// @ts-ignore
 	createEvent(newEvent)
 }
 
@@ -49,8 +48,8 @@ export const submitEditedEvent = async (values: DefaultObjectString, event: Even
 		isPrivate:
 			values.isPrivate !== '' && typeof values.isPrivate === 'boolean' ? values.isPrivate : event.isPrivate,
 	})
-	// @ts-ignore
-	queryClient.refetchQueries(['projects'])
+
+	queryClient.refetchQueries({ queryKey: ['projects'] })
 }
 
 export const uploadScheduleFromModeus = (file: File | null | undefined) => {
@@ -63,6 +62,5 @@ export const uploadScheduleFromModeus = (file: File | null | undefined) => {
 
 export const submitProject = async (project: Project, queryClient: QueryClient) => {
 	await createProject(project)
-	// @ts-ignore
-	queryClient.refetchQueries(['projects'])
+	queryClient.refetchQueries({ queryKey: ['projects'] })
 }

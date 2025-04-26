@@ -7,7 +7,7 @@ import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
 import { useEffect, useState } from 'react'
 
 type CreateEditEntityModalWindow = {
-	editEntityItem?: Task | Event | Project
+	editEntityItem?: Task | Event | Project | Record<string, any>
 	defaultDate?: string
 	open: boolean
 	handleClose: () => void

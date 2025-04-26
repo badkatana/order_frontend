@@ -15,6 +15,7 @@ export const WeekOverview = ({
 	setOpen: (flag: boolean) => void
 }) => {
 	const { setSavedWeek, savedDate } = useAppStore()
+
 	return (
 		<Box width={'25%'} display={'flex'} flexDirection={'column'} gap={'1em'}>
 			<WeekPicker onChange={(monday, sunday) => setSavedWeek({ monday, sunday })} />

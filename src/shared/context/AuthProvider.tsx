@@ -1,11 +1,10 @@
 import { TokenPayload } from '@/entities/interfaces'
 import { jwtDecode } from 'jwt-decode'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from './AuthContext'
 
-// @ts-ignore
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: { children: React.ReactElement }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>(undefined)
 	const navigate = useNavigate()
 

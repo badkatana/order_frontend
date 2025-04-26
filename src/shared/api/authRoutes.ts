@@ -1,13 +1,12 @@
+import { DefaultObject } from '../constants/constants'
 import { backend } from './hostConfig'
 
-/*  @ts-ignore */
-export const loginUser = async values => {
+export const loginUser = async (values: DefaultObject) => {
 	const { data } = await backend.post('/api/User/login', values)
 	return { token: data.token, userId: data.user.id }
 }
 
-/*  @ts-ignore */
-export const registerUser = async values => {
+export const registerUser = async (values: DefaultObject) => {
 	const { data: unused } = await backend.post('/api/User/register', values)
 	const { data } = await backend.post('/api/User/login', values)
 	return { token: data.token, userId: unused.id }

@@ -2,17 +2,14 @@ import { Task } from '@/entities/Task'
 import { DATE_FORMAT } from '@/shared/constants/constants'
 import { Dayjs } from 'dayjs'
 
-/*  @ts-ignore */
-export const generateDateRange = (start, end) => {
-	/*  @ts-ignore */
-	const dates = []
+export const generateDateRange = (start: Dayjs, end: Dayjs) => {
+	const dates: string[] = []
 	let currentDate = start
 
-	/*  @ts-ignore */
 	if (!currentDate) return dates
 
 	while (currentDate.isBefore(end) || currentDate.isSame(end)) {
-		dates.push(currentDate.format('YYYY-MM-DD'))
+		dates.push(currentDate.format(DATE_FORMAT))
 		currentDate = currentDate.add(1, 'day')
 	}
 
