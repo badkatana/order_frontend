@@ -137,7 +137,7 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 							...(halfHourIndex % 2 !== 0 && { borderTop: '0.05em solid gray' }),
 						}}
 					>
-						<Typography fontWeight={'bold'}>
+						<Typography fontWeight={'light'} fontSize={'0.9em'}>
 							{isTimeColumn &&
 								(halfHourIndex % 2 === 0
 									? `${6 + halfHourIndex / 2}:00`

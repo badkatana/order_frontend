@@ -3,17 +3,6 @@ import { DayWeek } from '@/widgets/calendarWeekView/day/DayWeek'
 import { Box } from '@mui/material'
 
 export const CalendarWeekView = ({ calendarItem, dateRange }: { calendarItem: CALENDAR_ITEM; dateRange: string[] }) => {
-	const styles = {
-		background: 'linear-gradient(to right, #e6f970, #cbe2ec)',
-		width: '70%',
-		borderRadius: '2em',
-		padding: '1em',
-		height: '85vh',
-		display: 'flex',
-		flexDirection: 'column',
-		overflow: 'hidden',
-	}
-
 	return (
 		<Box sx={styles}>
 			<Box
@@ -47,4 +36,15 @@ export const CalendarWeekView = ({ calendarItem, dateRange }: { calendarItem: CA
 			</Box>
 		</Box>
 	)
+}
+
+const styles = {
+	background: 'linear-gradient(to right, #e6f970, #cbe2ec)',
+	width: '70%',
+	borderRadius: '2em',
+	padding: '1em',
+	height: '85vh',
+	display: 'flex',
+	flexDirection: 'column',
+	overflow: 'hidden',
 }

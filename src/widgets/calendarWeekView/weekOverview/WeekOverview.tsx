@@ -25,17 +25,7 @@ export const WeekOverview = ({
 				accept='.ics'
 				buttonStyle={UploadButton}
 			/>
-			<Box
-				sx={{
-					borderRadius: '0.5em',
-					borderColor: 'grey',
-					border: '0.1em solid gray',
-					display: 'flex',
-					minHeight: '15em',
-					flexDirection: 'column',
-					alignItems: 'center',
-				}}
-			>
+			<Box sx={BoxContainerStyles}>
 				<Typography>Tasks</Typography>
 				{calendarItem[savedDate.format(DATE_FORMAT)]?.tasks.length === 0 && <ContainerPlaceholder fullHeight />}
 				{calendarItem[savedDate.format(DATE_FORMAT)]?.tasks.map((task, index) => (
@@ -50,4 +40,14 @@ export const WeekOverview = ({
 			</Box>
 		</Box>
 	)
+}
+
+const BoxContainerStyles = {
+	borderRadius: '0.5em',
+	borderColor: 'grey',
+	border: '0.1em solid gray',
+	display: 'flex',
+	minHeight: '15em',
+	flexDirection: 'column',
+	alignItems: 'center',
 }

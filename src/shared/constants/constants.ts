@@ -17,6 +17,8 @@ export type DefaultObject = {
 	[key: string]: any
 }
 
+export type DefaultDate = Dayjs | undefined | string | null
+
 export type DefaultObjectString = {
 	[key: string]: string | undefined | null
 }

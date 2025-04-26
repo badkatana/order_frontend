@@ -1,10 +1,10 @@
 import { Task } from '@/entities/Task'
-import { DATE_FORMAT } from '@/shared/constants/constants'
+import { DATE_FORMAT, DefaultDate } from '@/shared/constants/constants'
 import { Dayjs } from 'dayjs'
 
-export const generateDateRange = (start: Dayjs, end: Dayjs) => {
+export const generateDateRange = (start: DefaultDate, end: DefaultDate) => {
 	const dates: string[] = []
-	let currentDate = start
+	let currentDate = start as Dayjs
 
 	if (!currentDate) return dates
 
