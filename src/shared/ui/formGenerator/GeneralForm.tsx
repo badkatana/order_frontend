@@ -1,5 +1,5 @@
 import { DefaultConfig } from '@/shared/constants/constants'
-import { Box, Button, Grid, styled } from '@mui/material'
+import { Box, Button, styled } from '@mui/material'
 import { Form, FormProvider, useForm } from 'react-hook-form'
 
 type GeneralFormProps = {
@@ -15,15 +15,12 @@ export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 		<FormProvider {...methods}>
 			{/*  @ts-ignore */}
 			<Form control={control} onSubmit={handleSubmit(submitFunction)}>
-				<Grid container spacing={2}>
-					{config.map((item, index) => (
-						<Grid item xs={4} key={index}>
-							{/*  @ts-ignore */}
-							<item.component key={`form_${item.name}_${index}`} control={control} {...item} />
-						</Grid>
-					))}
-				</Grid>
-				<Box marginLeft={'auto'} display={'flex'} alignItems={'flex-start'} flexDirection={'row'}>
+				{config.map((item, index) => (
+					<>
+						<item.component key={`form_${item.name}_${index}`} control={control} {...item} />
+					</>
+				))}
+				<Box marginLeft={'auto'} display={'flex'} alignItems={'center'} flexDirection={'row'}>
 					<ButtonStyled type='submit'>Here</ButtonStyled>
 				</Box>
 			</Form>
