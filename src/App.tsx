@@ -1,6 +1,11 @@
 import { ThemeProvider } from '@emotion/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactNode } from 'react'
+import dayjs from 'dayjs'
+import 'dayjs/locale/en'
+import 'dayjs/locale/ru'
+import updateLocale from 'dayjs/plugin/updateLocale'
+import { ReactNode, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './app/i18n/i18n'
 import routes from './app/routes/Routes'
@@ -9,8 +14,19 @@ import { SnackbarProvider } from './shared/context/SnackbarProvider'
 import { useAuth } from './shared/hooks'
 import { theme } from './shared/ui/theme'
 
+dayjs.extend(updateLocale)
+dayjs.updateLocale('en', {
+	weekStart: 1,
+})
+
 function App() {
 	const queryClient = new QueryClient()
+	const { i18n } = useTranslation()
+
+	useEffect(() => {
+		dayjs.locale(i18n.language)
+	}, [i18n.language])
+
 	return (
 		<Router>
 			<AuthProvider>

@@ -2,10 +2,10 @@ import { useAppStore } from '@/app'
 import { CALENDAR_ITEM, DATE_FORMAT } from '@/shared/constants/constants'
 import { AddCircleButton, ContainerPlaceholder, FileUploadButton } from '@/shared/ui'
 import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
-import WeekPicker from '@/shared/ui/WeekPeeker'
 import { uploadScheduleFromModeus } from '@/widgets/lib/submitForm'
 import { Box, Typography } from '@mui/material'
 import { UploadButton } from '../CalendarStyles'
+import { WeekPicker } from './WeekPeeker'
 
 export const WeekOverview = ({
 	calendarItem,

@@ -1,25 +1,22 @@
 import { getWeekBoundaries, useAppStore } from '@/app/store/store'
+import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
+import { WEEK_DIRECTION } from '@/shared/constants/constants'
 import { Box, TextField } from '@mui/material'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs, { Dayjs } from 'dayjs'
+import 'dayjs/locale/ru'
 import isoWeek from 'dayjs/plugin/isoWeek'
-import updateLocale from 'dayjs/plugin/updateLocale'
-import { CustomIconButton } from '../buttons/CustomIconButton'
-import { WEEK_DIRECTION } from '../constants/constants'
+import { useTranslation } from 'react-i18next'
 
 dayjs.extend(isoWeek)
-dayjs.extend(updateLocale)
-dayjs.updateLocale('en', {
-	weekStart: 1,
-})
-
 interface WeekPickerProps {
 	onChange?: (startOfWeek: Dayjs, endOfWeek: Dayjs) => void
 }
 
-const WeekPicker = ({ onChange }: WeekPickerProps) => {
+export const WeekPicker = ({ onChange }: WeekPickerProps) => {
 	const { savedDate, setSavedDate } = useAppStore()
+	const { i18n } = useTranslation()
 
 	const handleDateChange = (date: Dayjs | null) => {
 		if (date) {
@@ -55,7 +52,7 @@ const WeekPicker = ({ onChange }: WeekPickerProps) => {
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'row' }}>
 			<WeekSwitcher direction={'previous'} iconName={'leftArrow'} />
-			<LocalizationProvider dateAdapter={AdapterDayjs}>
+			<LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.language}>
 				<DatePicker
 					value={savedDate}
 					onChange={handleDateChange}
@@ -83,8 +80,6 @@ const WeekPicker = ({ onChange }: WeekPickerProps) => {
 		</Box>
 	)
 }
-
-export default WeekPicker
 
 const MUI_FocusedStyles = {
 	'& .MuiOutlinedInput-root': {

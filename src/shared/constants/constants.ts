@@ -35,6 +35,7 @@ export type DefaultConfig = {
 	minDate?: Dayjs
 	label?: string
 	multiline?: boolean
+	isFullRow?: boolean
 }[]
 
 export const DATE_FORMAT = 'YYYY-MM-DD'

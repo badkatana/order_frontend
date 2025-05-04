@@ -1,8 +1,5 @@
 import { Box } from '@mui/material'
 import dayjs from 'dayjs'
-import localeData from 'dayjs/plugin/localeData'
-dayjs.extend(localeData)
-
 type DateProps = {
 	date: string | null | undefined
 }
