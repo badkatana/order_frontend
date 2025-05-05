@@ -15,11 +15,8 @@ export const editProject = () => {
 export const deleteProject = () => Promise.reject()
 
 export const createProject = async (project: Project) => {
-	const UserId = localStorage.getItem('user_id')?.toString()
-	const { data } = await authBackend.post(`/api/Project`, {params:
-			{...project,
-		status: false,
-		userId: UserId}
-	})
+	const userId = localStorage.getItem('user_id')?.toString()
+	const newProject = { ...project, status: false, userId }
+	const { data } = await authBackend.post(`/api/Project`, newProject)
 	return data
 }

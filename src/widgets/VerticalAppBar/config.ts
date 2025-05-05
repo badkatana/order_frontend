@@ -1,5 +1,6 @@
 import { Assignment, CalendarToday, ExitToApp, Inbox } from '@mui/icons-material'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import { SvgIconProps } from '@mui/material'
 import { logOutUser } from '../lib'
 
@@ -39,6 +40,13 @@ export const AppBarItems: AppBarItemType[] = [
 		tooltip: 'logout',
 		key: 'logout',
 		icon: ExitToApp,
+	},
+	{
+		name: 'settings',
+		path: '/settings',
+		tooltip: 'user settings',
+		key: 'settings',
+		icon: SettingsOutlinedIcon,
 	},
 ]
 

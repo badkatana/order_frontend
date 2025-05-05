@@ -13,8 +13,7 @@ export const createUserNote = async (note: Note) => {
 }
 
 export const editUserNote = async (note: Note) => {
-	const userId = localStorage.getItem('user_id')
-	const { data } = await authBackend.put(`/api/Note/${note.id}`, { ...note, userId })
+	const { data } = await authBackend.put(`/api/Note/${note.id}`, note)
 	return data
 }
 

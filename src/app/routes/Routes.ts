@@ -1,5 +1,6 @@
 import { AuthPage, CalendarPage, ProjectsPage } from '@/pages'
 import { InboxPage } from '@/pages/InboxPage/InboxPage'
+import { SettingsPage } from '@/pages/SettingsPage'
 import { UtmnPage } from '@/pages/UtmnPage/UtmnPage'
 
 const routes: RoutesType = [
@@ -14,6 +15,11 @@ const routes: RoutesType = [
 	{
 		path: '/inbox',
 		element: InboxPage,
+		protected: true,
+	},
+	{
+		path: '/settings',
+		element: SettingsPage,
 		protected: true,
 	},
 ]

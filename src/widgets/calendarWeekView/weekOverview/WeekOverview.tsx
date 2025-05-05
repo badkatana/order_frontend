@@ -4,6 +4,7 @@ import { AddCircleButton, ContainerPlaceholder, FileUploadButton } from '@/share
 import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
 import { uploadScheduleFromModeus } from '@/widgets/lib/submitForm'
 import { Box, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { UploadButton } from '../CalendarStyles'
 import { WeekPicker } from './WeekPeeker'
 
@@ -15,13 +16,14 @@ export const WeekOverview = ({
 	setOpen: (flag: boolean) => void
 }) => {
 	const { setSavedWeek, savedDate } = useAppStore()
+	const { t } = useTranslation()
 
 	return (
 		<Box width={'25%'} display={'flex'} flexDirection={'column'} gap={'1em'}>
 			<WeekPicker onChange={(monday, sunday) => setSavedWeek({ monday, sunday })} />
 			<FileUploadButton
 				onUpload={uploadScheduleFromModeus}
-				buttonText='Upload Schedule'
+				buttonText={t('upload_schedule')}
 				accept='.ics'
 				buttonStyle={UploadButton}
 			/>

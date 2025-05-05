@@ -1,5 +1,6 @@
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
+import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined'
@@ -19,6 +20,8 @@ export const getIcon = ({ name }: { name: string }) => {
 			return <DeleteOutlineOutlinedIcon />
 		case 'cancel':
 			return <CloseOutlinedIcon />
+		case 'convert':
+			return <ChangeCircleOutlinedIcon />
 		default:
 			return null
 	}
