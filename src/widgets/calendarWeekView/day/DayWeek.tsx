@@ -69,8 +69,6 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 			startTime,
 			endTime,
 		}
-
-		console.log(newEvent)
 		// setEvents(prev => [...prev, newEvent])
 		setSelection(null)
 		setIsDragging(false)

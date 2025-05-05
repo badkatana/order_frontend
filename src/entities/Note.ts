@@ -1,7 +1,11 @@
 export interface Note {
+	id?: string
+	userId: string
+	text: string
+	tag?: string
+	isDone?: boolean
 	dateCreated: string | null
 	lastEdited: string | null
-	text: string | null
-	saved?: boolean
-	id?: string
+	projectId?: string
+	isDraft?: boolean
 }

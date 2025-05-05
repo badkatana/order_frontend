@@ -4,12 +4,11 @@ import { authBackend } from './hostConfig'
 export const getAllUserNotes = async () => {
 	const userId = localStorage.getItem('user_id')
 	const response = await authBackend.get(`/api/Note/inbox/${userId}`)
-	return response.status === 404 ? [] : response.data
+	return response.status === 200 ? response.data?.$values : []
 }
 
 export const createUserNote = async (note: Note) => {
-	const userId = localStorage.getItem('user_id')
-	const { data } = await authBackend.post(`/api/Note`, { ...note, userId })
+	const { data } = await authBackend.post(`/api/Note`, note)
 	return data
 }
 
