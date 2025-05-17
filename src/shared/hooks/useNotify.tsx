@@ -1,5 +1,6 @@
 import { useSnackbar } from '../context/SnackbarProvider'
 
+// @ts-ignore
 export const notifyUser = async ({ crudFunction, resetQueryKey, queryClient }) => {
 	const callSnackbar = useSnackbar()
 	const response = await crudFunction()

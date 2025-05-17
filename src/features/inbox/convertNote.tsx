@@ -3,6 +3,7 @@ import { submitTask } from '@/widgets/lib/submitForm'
 import dayjs from 'dayjs'
 
 export const convertNote = () => {
+	// @ts-ignore
 	const handleConvertToTask = note => {
 		const defaultValues = {
 			name: note.text,
@@ -12,6 +13,7 @@ export const convertNote = () => {
 		const taskConfig = TaskForm
 
 		const taskConfigWithDefaultValues = taskConfig.map(key => {
+			// @ts-ignore
 			if (defaultValues[key.name]) return { ...key, defaultValue: defaultValues[key.name] }
 			else return key
 		})

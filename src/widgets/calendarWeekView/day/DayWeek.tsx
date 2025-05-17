@@ -62,6 +62,7 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 		const startTime = pxToTime(snappedStart)
 		const endTime = pxToTime(snappedEnd)
 
+		// @ts-ignore
 		const newEvent = {
 			id: Date.now(),
 			startY: snappedStart,

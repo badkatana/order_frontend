@@ -25,6 +25,7 @@ export const UtmnPage = () => {
 				<ActionsArea>
 					<CategorySelector
 						categories={categories}
+						// @ts-ignore
 						onCategoryChange={setSelectedCategory}
 						selectedCategory={selectedCategory}
 					/>

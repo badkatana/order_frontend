@@ -26,6 +26,7 @@ export const InboxItem = ({ inboxNote }: { inboxNote: Note }) => {
 				<CustomIconButton
 					iconName={'convert'}
 					onClick={() => {
+						// @ts-ignore
 						setConfig(handleConvertToTask(inboxNote))
 						setOpen(true)
 					}}

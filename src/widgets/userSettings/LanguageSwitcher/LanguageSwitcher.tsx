@@ -1,7 +1,8 @@
 import i18n from '@/app/i18n/i18n'
 
 // todo
-const LanguageSwitcher = () => {
+
+export const LanguageSwitcher = () => {
 	const handleSwitch = (lng: 'en' | 'ru') => {
 		i18n.changeLanguage(lng)
 	}

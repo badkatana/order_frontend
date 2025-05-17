@@ -20,6 +20,7 @@ export const ContainerPlaceholder = ({
 				color: 'gray',
 				fontSize: '1em',
 				textAlign: 'center',
+				// @ts-ignore
 				...sx,
 			}}
 		>

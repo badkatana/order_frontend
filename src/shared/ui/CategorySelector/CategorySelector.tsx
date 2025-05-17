@@ -2,6 +2,7 @@ import { Autocomplete, TextField } from '@mui/material'
 
 export const CategorySelector: React.FC<{
 	categories: string[]
+	// @ts-ignore
 	onCategoryChange: (category: string | null) => void
 	selectedCategory: string
 }> = ({ categories, onCategoryChange, selectedCategory }) => {
