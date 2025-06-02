@@ -1,20 +1,13 @@
 import { Note } from '@/entities/Note'
-import { useInboxStore } from '@/features/inbox/store'
-import { createUserNote, deleteUserNote, editUserNote, getAllUserNotes } from '@/shared/api/notesRoutes'
+import { createUserNote, deleteUserNote, editUserNote } from '@/shared/api/notesRoutes'
 import { DATE_TIME_FORMAT } from '@/shared/constants/constants'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import dayjs from 'dayjs'
+import { useInboxStore } from './store'
 
-export const useInboxNotes = () => {
-	const { drafts, addDraft, removeDraft } = useInboxStore()
+export const useInboxNotes = ({ refetch = undefined }) => {
 	const userId = localStorage.getItem('user_id') || ''
-	const queryClient = useQueryClient()
-
-	const { data, isFetching, refetch } = useQuery({
-		queryKey: ['inbox'],
-		queryFn: getAllUserNotes,
-		staleTime: 1000 * 60 * 2,
-	})
+	const { addDraft, removeDraft } = useInboxStore()
 
 	const handleAddNewNote = () => {
 		const newNote: Note = {
@@ -41,28 +34,22 @@ export const useInboxNotes = () => {
 		if (isDraft) {
 			removeDraft(id || '')
 			saveNewNote({ ...rest, isDraft: false })
-		} else saveOldNote(note)
+		} else editUserNote(note)
 	}
 
 	const { mutateAsync: saveNewNote } = useMutation({
 		mutationFn: createUserNote,
 		onSuccess: createdNote => {
-			queryClient.setQueryData(['inbox'], (prev: any[] = []) => [...prev, createdNote])
+			refetch?.()
 		},
-	})
-
-	const { mutateAsync: saveOldNote } = useMutation({
-		mutationFn: editUserNote,
 	})
 
 	const { mutateAsync: deleteNote } = useMutation({
 		mutationFn: deleteUserNote,
-		onSuccess: () => refetch(),
+		onSuccess: () => refetch?.(),
 	})
 
 	return {
-		userNotes: [...(data ?? []), ...drafts],
-		isNotesFetching: isFetching,
 		handleAddNewNote,
 		handleSaveNote,
 		saveNewNote,

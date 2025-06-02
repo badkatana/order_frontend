@@ -14,7 +14,7 @@ export const InboxItem = ({ inboxNote }: { inboxNote: Note }) => {
 	const { isDraft, text, id } = inboxNote
 	const [isEditable, setIsEditable] = useState(isDraft || false)
 	const [newText, setNewText] = useState(text)
-	const { handleSaveNote, handleRemoveNote } = useInboxNotes()
+	const { handleSaveNote, handleRemoveNote } = useInboxNotes({})
 	const { handleConvertToTask } = convertNote()
 	const [open, setOpen] = useState(false)
 

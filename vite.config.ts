@@ -2,12 +2,15 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
 export default defineConfig({
+	base: './',
 	plugins: [react()],
+	define: {
+		'import.meta.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL || 'http://localhost:5141'),
+	},
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, 'src'), // Указывает, что "@" — это путь к папке "src"
+			'@': path.resolve(__dirname, 'src'),
 		},
 	},
 })

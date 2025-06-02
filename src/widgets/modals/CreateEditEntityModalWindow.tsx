@@ -46,10 +46,12 @@ export const CreateEditEntityModalWindow = ({
 		setEntityConfig(editEntityConfig)
 	}, [editEntityItem])
 
-	if (defaultDate && (type === 'Task' || type === 'Event')) {
-		const configWithDate = getRightDefaultValues(entityConfig, type, defaultDate)
-		setEntityConfig(configWithDate)
-	}
+	useEffect(() => {
+		if (defaultDate && (type === 'Task' || type === 'Event')) {
+			const configWithDate = getRightDefaultValues(entityConfig, type, defaultDate)
+			setEntityConfig(configWithDate)
+		}
+	}, [defaultDate])
 
 	return (
 		<ModalBody open={open} handleClose={handleClose} title={`${method ?? 'create'} ${type}`}>

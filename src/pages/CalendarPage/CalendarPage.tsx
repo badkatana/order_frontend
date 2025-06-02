@@ -8,14 +8,14 @@ import { CreateTaskEventModalWindow } from '@/widgets/modals'
 import { Box } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { Dayjs } from 'dayjs'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 export const CalendarPage = () => {
 	const { savedWeek } = useAppStore()
 	const dateRange = generateDateRange(savedWeek.monday, savedWeek.sunday)
 	const [open, setOpen] = useState(false)
 
-	const { data } = useQuery({
+	const { data, refetch } = useQuery({
 		queryKey: ['calendar', savedWeek],
 		queryFn: () =>
 			getCalendar({
@@ -24,7 +24,7 @@ export const CalendarPage = () => {
 			}),
 	})
 
-	const calendarItem = groupArraysByDate(data, dateRange)
+	const calendarItem = useMemo(() => groupArraysByDate(data, dateRange), [data, dateRange])
 
 	return (
 		<WithPageWrapper>
@@ -41,7 +41,13 @@ export const CalendarPage = () => {
 				<WeekOverview calendarItem={calendarItem} setOpen={setOpen} />
 				<CalendarWeekView calendarItem={calendarItem} dateRange={dateRange} />
 			</Box>
-			<CreateTaskEventModalWindow open={open} handleClose={() => setOpen(!open)} />
+			<CreateTaskEventModalWindow
+				open={open}
+				handleClose={() => {
+					refetch()
+					setOpen(!open)
+				}}
+			/>
 		</WithPageWrapper>
 	)
 }

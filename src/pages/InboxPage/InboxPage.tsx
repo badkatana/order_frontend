@@ -1,3 +1,4 @@
+import { useInboxData } from '@/features/inbox/useInboxData'
 import { ContainerPlaceholder, WithPageWrapper } from '@/shared/ui'
 import { InboxItem } from '@/widgets/inbox/InboxItem'
 import { Box, Button, styled } from '@mui/material'
@@ -5,7 +6,8 @@ import React from 'react'
 import { useInboxNotes } from '../../features/inbox/useInboxNotes'
 
 export const InboxPage: React.FC = () => {
-	const { userNotes, isNotesFetching, handleAddNewNote } = useInboxNotes()
+	const { userNotes, isNotesFetching, refetch } = useInboxData()
+	const { handleAddNewNote } = useInboxNotes({ refetch })
 
 	if (isNotesFetching) return <ContainerPlaceholder progress />
 
@@ -18,7 +20,7 @@ export const InboxPage: React.FC = () => {
 						variant='contained'
 						color='primary'
 						style={{ backgroundColor: '#989488' }}
-						onClick={handleAddNewNote}
+						onClick={() => handleAddNewNote()}
 					>
 						create a note
 					</Button>

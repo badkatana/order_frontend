@@ -4,10 +4,8 @@ import { CALENDAR_ITEM } from '@/shared/constants/constants'
 
 export const groupArraysByDate = (input: Calendar, datesRange: string[]): CALENDAR_ITEM => {
 	if (!input) return {}
-	/*  @ts-ignore */
-	const tasks = input.tasks.$values
-	/*  @ts-ignore */
-	const events = input.events.$values
+	const tasks = input.tasks
+	const events = input.events
 	const outputArray: CALENDAR_ITEM = {}
 
 	datesRange.map(date => {

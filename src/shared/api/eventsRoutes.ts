@@ -12,6 +12,6 @@ export const deleteEvent = async (eventId: number) => {
 }
 
 export const editEvent = async (event: Event) => {
-	const { data } = await authBackend.put(`/api/Event/${event.id}`, event)
+	const { data } = await authBackend.put(`/api/Event/${event.eventId}`, event)
 	return data
 }

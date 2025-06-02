@@ -23,6 +23,7 @@ export const SessionForm = () => {
 		delete values.type
 		const { token, userId } = type?.includes('1') ? await registerUser(values) : await loginUser(values)
 
+		console.log(token, userId)
 		if (token && userId) {
 			localStorage.setItem('user_id', userId)
 			sessionStorage.setItem('access_token', token)

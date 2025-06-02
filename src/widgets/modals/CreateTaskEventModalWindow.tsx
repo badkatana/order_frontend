@@ -10,6 +10,12 @@ import { submitEvent } from '../lib/submitForm/submitFunctions'
 export const CreateTaskEventModalWindow = ({ open, handleClose }: { open: boolean; handleClose: () => void }) => {
 	const [value, setValue] = useState(0)
 
+	/// @ts-ignore
+	const submitFunction = async (submitFunc, props) => {
+		await submitFunc(props)
+		handleClose()
+	}
+
 	return (
 		<ModalBody open={open} handleClose={handleClose} title={'Create'}>
 			<Box>
@@ -20,10 +26,10 @@ export const CreateTaskEventModalWindow = ({ open, handleClose }: { open: boolea
 					</Tabs>
 				</Box>
 				<CustomTabPanel value={value} index={0}>
-					<GeneralForm config={TaskForm} submitFunction={submitTask} />
+					<GeneralForm config={TaskForm} submitFunction={props => submitFunction(submitTask, props)} />
 				</CustomTabPanel>
 				<CustomTabPanel value={value} index={1}>
-					<GeneralForm config={EventForm} submitFunction={submitEvent} />
+					<GeneralForm config={EventForm} submitFunction={props => submitFunction(submitEvent, props)} />
 				</CustomTabPanel>
 			</Box>
 		</ModalBody>
