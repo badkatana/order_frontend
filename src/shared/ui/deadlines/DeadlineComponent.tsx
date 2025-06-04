@@ -17,6 +17,7 @@ export const DeadlinesComponent = ({
 				backgroundColor: variant === 'hard' ? 'red' : 'orange',
 				borderRadius: '1.5em',
 				px: 1,
+				fontSize: '1em',
 				display: date ? 'flex' : 'none',
 			}}
 		>

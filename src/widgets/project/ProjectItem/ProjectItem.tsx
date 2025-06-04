@@ -27,8 +27,7 @@ export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Tas
 	const submitProjectEvent = async (event: Event) => {
 		/// @ts-ignore
 		submitEvent({ ...event, projectId: id })
-		/// @ts-ignore
-		queryClient.invalidateQueries(['projects'])
+		queryClient.invalidateQueries({ queryKey: ['projects'] })
 	}
 
 	return (
@@ -36,13 +35,13 @@ export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Tas
 			<ProjectUsersModal open={openModal} handleClose={() => setOpenModal(false)} />
 			<Box>
 				<Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
-					<>
+					<Box>
 						<Typography variant='h4'>{description}</Typography>
 						<Box display={'flex'} flexDirection={'row'} gap={1}>
-							<DeadlinesComponent variant='hard' date={hardDeadline} />
 							<DeadlinesComponent variant='soft' date={softDeadline} />
+							<DeadlinesComponent variant='hard' date={hardDeadline} />
 						</Box>
-					</>
+					</Box>
 
 					<CustomIconButton iconName={'manageUser'} onClick={() => setOpenModal(true)} />
 				</Box>
@@ -66,7 +65,7 @@ export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Tas
 						}}
 					>
 						{tasks ? (
-							tasks.$values?.map((task: Task | any, index: any) => (
+							tasks?.map((task: Task | any, index: any) => (
 								<ListItemTask key={`task_project_${index}`} task={task} />
 							))
 						) : (
@@ -82,7 +81,7 @@ export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Tas
 						}}
 					>
 						{events ? (
-							events.$values?.map((event: any, index: any) => (
+							events?.map((event: any, index: any) => (
 								<ListItemEvent key={`event_project_${index}`} event={event} />
 							))
 						) : (
