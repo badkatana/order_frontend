@@ -1,9 +1,10 @@
 import { loginUser } from '@/shared/api'
-import { registerUser } from '@/shared/api/authRoutes'
+import { registerUser } from '@/shared/api/userRoutes'
 import { DefaultObjectString } from '@/shared/constants/constants'
 import { AuthConfig } from '@/shared/formConfigs'
 import { useAuth } from '@/shared/hooks/useAuth'
 import { Box, Button, Typography } from '@mui/material'
+import { t } from 'i18next'
 import { useState } from 'react'
 import { FieldValues, Form, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -13,23 +14,24 @@ export const SessionForm = () => {
 	const navigate = useNavigate()
 	const [helperText, setHelperText] = useState<string | null>()
 	const { login } = useAuth()
+	const isRegistrationAllowed = import.meta.env.VITE_ALLOW_REGISTRATION
 
 	const validateFields = async (values: DefaultObjectString) => {
-		if (!values.type) setHelperText('Are you want to register or login? ')
+		if (!values.type && isRegistrationAllowed) setHelperText('Are you want to register or login? ')
 	}
+
 	const registerOrLoginUser = async (values: DefaultObjectString) => {
 		await validateFields(values)
-		const type = values.type
+		const { type } = values
 		delete values.type
-		const { token, userId } = type?.includes('1') ? await registerUser(values) : await loginUser(values)
+		const authFn = isRegistrationAllowed && type?.includes('1') ? registerUser : loginUser
+		const { token, userId } = await authFn({ ...values, language: '' })
 
-		console.log(token, userId)
 		if (token && userId) {
 			localStorage.setItem('user_id', userId)
 			sessionStorage.setItem('access_token', token)
 
 			login()
-
 			navigate('/calenders')
 		}
 	}
@@ -46,8 +48,13 @@ export const SessionForm = () => {
 		>
 			<Typography>{helperText}</Typography>
 			{/*  @ts-ignore */}
+			{!isRegistrationAllowed && (
+				<Typography gutterBottom sx={{ fontSize: '0.8em', fontStyle: 'italic', width: '20em' }}>
+					{t('messages.registrationNotAllowed')}
+				</Typography>
+			)}
 			<Form control={control} onSubmit={handleSubmit(values => registerOrLoginUser(values))}>
-				<Box sx={{ zIndex: 1 }}>
+				<Box sx={{ zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 					<Typography variant='h4' gutterBottom>
 						order
 					</Typography>

@@ -1,21 +1,22 @@
 import { Event } from '@/entities/Event'
 import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
-import { ContainerPlaceholder } from '@/shared/ui'
+import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
+import { ContainerPlaceholder, DeadlinesComponent } from '@/shared/ui'
 import { ListItemEvent } from '@/shared/ui/listItems/ListItemEvent'
 import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
 import { submitEvent, submitTask } from '@/widgets/lib/submitForm'
+import { ProjectUsersModal } from '@/widgets/modals'
 import { Box, styled, Typography } from '@mui/material'
-import LinearProgress from '@mui/material/LinearProgress'
 import { useQueryClient } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { EntityArea } from './EntityArea'
 
 export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Task[] }) => {
-	/// @ts-ignore
 	if (!project) return <ContainerPlaceholder placeholder={'Select or create a project'} />
-	const { description, id, tasks, events } = project
+	const { description, id, tasks, events, hardDeadline, softDeadline, links } = project
 	const queryClient = useQueryClient()
+	const [openModal, setOpenModal] = useState(false)
 
 	const submitProjectTask = async (task: Task) => {
 		submitTask({ ...task, projectId: id })
@@ -30,26 +31,20 @@ export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Tas
 		queryClient.invalidateQueries(['projects'])
 	}
 
-	const [progress, setProgress] = useState(0)
-
-	useEffect(() => {
-		const completedTasks = tasks?.$values?.filter(task => task.status).length ?? 0
-		const totalTasks = tasks?.$values?.length ?? 0
-		setProgress((completedTasks / totalTasks) * 100 || 0)
-	}, [tasks])
-
 	return (
 		<ProjectCard>
+			<ProjectUsersModal open={openModal} handleClose={() => setOpenModal(false)} />
 			<Box>
-				<Typography variant='h4'>{description}</Typography>
-				<Box sx={{ paddingTop: '1em' }}>
-					Tasks: {progress} %
-					<LinearProgress
-						value={progress}
-						variant='determinate'
-						color='inherit'
-						sx={{ marginTop: '0.5em' }}
-					/>
+				<Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
+					<>
+						<Typography variant='h4'>{description}</Typography>
+						<Box display={'flex'} flexDirection={'row'} gap={1}>
+							<DeadlinesComponent variant='hard' date={hardDeadline} />
+							<DeadlinesComponent variant='soft' date={softDeadline} />
+						</Box>
+					</>
+
+					<CustomIconButton iconName={'manageUser'} onClick={() => setOpenModal(true)} />
 				</Box>
 
 				<Box

@@ -7,6 +7,10 @@ import { Controller } from 'react-hook-form'
 
 export const InputToggle = ({ control, name = '', groupItems = [], label = '', ...props }: FormItem) => {
 	const [formats, setFormats] = useState()
+
+	const filteredGroupItems = groupItems.filter(({ hidden }) => hidden == null || !hidden)
+	if (filteredGroupItems.length <= 1) return
+
 	return (
 		<Box display={'flex'} alignItems={'flex-start'} flexDirection={'column'}>
 			<Typography color='white'>{label}</Typography>

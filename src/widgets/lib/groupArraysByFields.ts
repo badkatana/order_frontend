@@ -35,5 +35,6 @@ export const groupProjectsByPriority = (projects: Project[] | null | undefined) 
 		item.priority === 3 ? low.push(item) : item.priority === 2 ? middle.push(item) : high.push(item)
 	})
 
+	console.log(projects, high, middle, low)
 	return { high, middle, low }
 }

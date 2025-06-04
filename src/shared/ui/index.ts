@@ -1,4 +1,5 @@
 export { AddCircleButton } from './AddCircleButton/AddCircleButton'
+export { DeadlinesComponent } from './deadlines/DeadlineComponent'
 export { FileUploadButton } from './fileUpload'
 export { ModalBody } from './ModalBody/ModalBody'
 export { PageHeader } from './PageHeader'

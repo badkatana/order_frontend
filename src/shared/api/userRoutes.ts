@@ -1,5 +1,5 @@
 import { DefaultObject } from '../constants/constants'
-import { backend } from './hostConfig'
+import { authBackend, backend } from './hostConfig'
 
 export const loginUser = async (values: DefaultObject) => {
 	const { data } = await backend.post('/api/User/login', values)
@@ -9,5 +9,10 @@ export const loginUser = async (values: DefaultObject) => {
 export const registerUser = async (values: DefaultObject) => {
 	const { data: unused } = await backend.post('/api/User/register', values)
 	const { data } = await backend.post('/api/User/login', values)
-	return { token: data.token, userId: unused.user.userId }
+	return { token: data.token, userId: unused.userId }
+}
+
+export const getAllUsers = async () => {
+	const { data } = await authBackend.get('/api/User/users')
+	return data
 }

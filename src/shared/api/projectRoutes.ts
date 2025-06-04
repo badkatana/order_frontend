@@ -16,7 +16,14 @@ export const deleteProject = () => Promise.reject()
 
 export const createProject = async (project: Project) => {
 	const userId = localStorage.getItem('user_id')?.toString()
-	const newProject = { ...project, status: false, userId }
-	const { data } = await authBackend.post(`/api/Project`, newProject)
+	const newProject = { ...project, status: false }
+	const { data } = await authBackend.post(
+		`/api/Project`,
+		newProject, // тело запроса
+		{
+			params: { userId }, // query-параметр
+		}
+	)
+
 	return data
 }

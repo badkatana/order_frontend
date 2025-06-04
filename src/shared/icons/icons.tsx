@@ -3,6 +3,7 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 
@@ -22,6 +23,8 @@ export const getIcon = ({ name }: { name: string }) => {
 			return <CloseOutlinedIcon />
 		case 'convert':
 			return <ChangeCircleOutlinedIcon />
+		case 'manageUser':
+			return <ManageAccountsOutlinedIcon />
 		default:
 			return null
 	}

@@ -12,7 +12,8 @@ export const ProjectsPage = () => {
 
 	const { data: projects, isFetching } = useQuery({
 		queryKey: ['projects'],
-		queryFn: () => getAllProjects(),
+		queryFn: getAllProjects,
+		refetchInterval: Infinity, // потом убрать
 	})
 
 	if (isFetching) return <ContainerPlaceholder progress fullHeight />
@@ -20,7 +21,7 @@ export const ProjectsPage = () => {
 	return (
 		<WithPageWrapper>
 			<ProjectPageWrapper>
-				<ProjectsList projects={projects?.$values} set={setSelectedProject} selectedProject={selectedProject} />
+				<ProjectsList projects={projects} set={setSelectedProject} selectedProject={selectedProject} />
 				<Divider orientation='vertical' variant='middle' flexItem sx={{ margin: '1em' }} />
 				<ProjectItem project={selectedProject} />
 			</ProjectPageWrapper>

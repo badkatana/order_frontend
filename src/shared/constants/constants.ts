@@ -26,7 +26,7 @@ export type DefaultObjectString = {
 export type DefaultConfig = {
 	component: ComponentType<any>
 	name: string
-	groupItems?: { value: string | number; label: string | null }[]
+	groupItems?: { value: string | number; label: string | null; hidden?: boolean }[]
 	required?: boolean
 	placeholder?: string
 	type?: string

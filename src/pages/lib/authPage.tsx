@@ -1,5 +1,5 @@
 import { DefaultObject } from '@/shared/constants/constants'
-import { loginUser, registerUser } from '../../shared/api/authRoutes'
+import { loginUser, registerUser } from '../../shared/api/userRoutes'
 
 export const registerOrLoginUser = async (values: DefaultObject, navigate: (data: string) => void) => {
 	const type = values.type
