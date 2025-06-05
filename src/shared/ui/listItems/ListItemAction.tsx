@@ -35,7 +35,7 @@ export const ListItemActions = ({
 	}
 
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'row', marginLeft: 'auto', color: 'white' }}>
+		<Box sx={{ display: 'flex', flexDirection: 'row', marginLeft: 'auto', color: 'white', width: '1em' }}>
 			{getUserActions().map(button => (
 				<CustomIconButton
 					sx={{

@@ -1,7 +1,15 @@
 import { Event } from '@/entities/Event'
 import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
-import { createEvent, createProject, createTask, editTask, uploadFileTypeModeus } from '@/shared/api'
+import {
+	createEvent,
+	createProject,
+	createTask,
+	deleteProject,
+	editProject,
+	editTask,
+	uploadFileTypeModeus,
+} from '@/shared/api'
 import { editEvent } from '@/shared/api/eventsRoutes'
 import { DATE_TIME_FORMAT, DefaultObjectString } from '@/shared/constants/constants'
 import { QueryClient } from '@tanstack/react-query'
@@ -61,6 +69,18 @@ export const uploadScheduleFromModeus = (file: File | null | undefined) => {
 }
 
 export const submitProject = async (project: Project, queryClient: QueryClient) => {
-	await createProject(project)
+	const newProject: Project = {
+		...project,
+		hardDeadline: project.hardDeadline || null,
+		softDeadline: project.softDeadline || null,
+	}
+
+	if (newProject.projectId) await editProject(newProject)
+	else await createProject(newProject)
+	queryClient.refetchQueries({ queryKey: ['projects'] })
+}
+
+export const deleteProjectById = async (projectId: number, queryClient: QueryClient) => {
+	await deleteProject(projectId)
 	queryClient.refetchQueries({ queryKey: ['projects'] })
 }

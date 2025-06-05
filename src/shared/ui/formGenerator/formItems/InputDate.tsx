@@ -6,11 +6,12 @@ import dayjs from 'dayjs'
 import { Controller } from 'react-hook-form'
 
 export const InputDate = ({ control, name, label, defaultValue, minDate, maxDate }: FormItem) => {
+	console.log()
 	return (
 		<Controller
 			name={name}
 			control={control}
-			defaultValue={defaultValue ? dayjs(defaultValue, DATE_FORMAT) : null}
+			defaultValue={defaultValue ? dayjs(defaultValue).format(DATE_FORMAT) : ''}
 			render={({ field: { onChange, value } }) => (
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DatePicker

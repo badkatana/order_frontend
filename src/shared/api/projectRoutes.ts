@@ -8,22 +8,21 @@ export const getAllProjects = async () => {
 	return response.data ?? []
 }
 
-export const editProject = () => {
-	return Promise.reject()
-}
+export const editProject = async (project: Project) =>
+	await authBackend.put(`api/Project/${project.projectId}`, project)
 
-export const deleteProject = () => Promise.reject()
+export const deleteProject = async (projectId: number) => await authBackend.delete(`api/Project/${projectId}`)
 
 export const createProject = async (project: Project) => {
 	const userId = localStorage.getItem('user_id')?.toString()
-	const newProject = { ...project, status: false }
-	const { data } = await authBackend.post(
-		`/api/Project`,
-		newProject, // тело запроса
-		{
-			params: { userId }, // query-параметр
-		}
-	)
+	const newProject = {
+		...project,
+		status: false,
+	}
+
+	const { data } = await authBackend.post(`/api/Project`, newProject, {
+		params: { userId },
+	})
 
 	return data
 }

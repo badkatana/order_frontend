@@ -3,15 +3,15 @@ import { Note } from './Note'
 import { Task } from './Task'
 
 export interface Project {
-	id: number
+	projectId: number
 	status: boolean
 	ownerId: string
 
 	description?: string
 	priority?: number
 	contextId?: number
-	hardDeadline?: string
-	softDeadline?: string
+	hardDeadline?: string | null
+	softDeadline?: string | null
 	taskIds?: any[]
 	links?: string[]
 	tasks?: Task[]

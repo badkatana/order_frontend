@@ -1,6 +1,6 @@
 import { Event } from '@/entities/Event'
 import { deleteEvent } from '@/shared/api/eventsRoutes'
-import { CustomContextMenu } from '@/widgets/calendarWeekView/events/EventContextMenu'
+import { CustomContextMenu } from '@/shared/ui'
 import { submitEditedEvent, submitEvent } from '@/widgets/lib/submitForm/submitFunctions'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
