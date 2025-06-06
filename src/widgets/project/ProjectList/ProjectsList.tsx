@@ -6,6 +6,7 @@ import { deleteProjectById } from '@/widgets/lib/submitForm/submitFunctions'
 import { ProjectModalWindow } from '@/widgets/modals'
 import { Box, Divider, List, ListItem, Typography } from '@mui/material'
 import { useQueryClient } from '@tanstack/react-query'
+import { t } from 'i18next'
 import { ReactElement, useState } from 'react'
 
 export const ProjectsList = ({
@@ -82,7 +83,7 @@ export const ProjectsList = ({
 	return (
 		<List sx={{ width: '15%', minWidth: '6em', height: 'inherit', alignSelf: 'stretch' }}>
 			{projects === undefined ? (
-				<ContainerPlaceholder placeholder='Empty for now on' fullHeight={false} />
+				<ContainerPlaceholder placeholder={t('project.createProject')} fullHeight={false} />
 			) : (
 				<>
 					{high.length !== 0 && <PriorityList projects={high} priority='High' />}

@@ -26,3 +26,7 @@ export const createProject = async (project: Project) => {
 
 	return data
 }
+
+export const assignUserToProject = async (usersIds: string[], projectId: number) => {
+	return await authBackend.post(`/api/Project/${projectId}/users`, usersIds)
+}

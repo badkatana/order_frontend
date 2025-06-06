@@ -1,4 +1,4 @@
-import { CALENDAR_ITEM } from '@/shared/constants/constants'
+import { CALENDAR_ITEM, SCROLLBAR } from '@/shared/constants/constants'
 import { DayWeek } from '@/widgets/calendarWeekView/day/DayWeek'
 import { Box } from '@mui/material'
 
@@ -12,21 +12,7 @@ export const CalendarWeekView = ({ calendarItem, dateRange }: { calendarItem: CA
 					display: 'flex',
 					flexDirection: 'row',
 					borderRadius: '1em',
-					'&::-webkit-scrollbar': {
-						width: '8px',
-					},
-					'&::-webkit-scrollbar-track': {
-						backgroundColor: 'transparent',
-					},
-					'&::-webkit-scrollbar-thumb': {
-						backgroundColor: '#c1c1c1',
-						borderRadius: '8px',
-						border: '2px solid transparent',
-						backgroundClip: 'padding-box',
-					},
-					'&::-webkit-scrollbar-thumb:hover': {
-						backgroundColor: '#a0a0a0',
-					},
+					...SCROLLBAR,
 				}}
 			>
 				<DayWeek isTimeColumn />

@@ -4,11 +4,11 @@ import { BlurredOverlay, style } from './ModalBodyStyles'
 
 /*  @ts-ignore */
 
-export const ModalBody = ({ children, open, handleClose, title }) => {
+export const ModalBody = ({ children, open, handleClose, title, sx = {} }) => {
 	return (
 		<Modal open={open} onClose={handleClose}>
 			<BlurredOverlay>
-				<Box sx={style} display={'flex'} flexDirection={'column'}>
+				<Box sx={{ ...style, ...sx }} display={'flex'} flexDirection={'column'}>
 					<Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
 						<Typography id='modal-modal-title' variant='h6' component='h2' color='white'>
 							{title}

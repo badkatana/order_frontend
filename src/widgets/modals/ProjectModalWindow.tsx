@@ -13,12 +13,13 @@ export const ProjectModalWindow = ({
 }: {
 	open: boolean
 	handleClose: () => void
-	editingProject?: Project
+	editingProject?: Project | null
 }) => {
 	const queryClient = useQueryClient()
 	const config = useMemo(() => {
 		if (!editingProject) return ProjectForm
-		return ProjectForm.map(item => ({ ...item, defaultValue: editingProject[item.name] }))
+		// @ts-ignore
+		return ProjectForm.map(item => ({ ...item, defaultValue: editingProject?.[item.name] }))
 	}, [editingProject])
 
 	return (

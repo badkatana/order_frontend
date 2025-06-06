@@ -17,5 +17,5 @@ export interface Project {
 	tasks?: Task[]
 	notes?: Note[]
 	events?: Event[]
-	projectUsers?: any[]
+	projectUsers?: string[]
 }

@@ -5,7 +5,9 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined'
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
+import TaskAltIcon from '@mui/icons-material/TaskAlt'
 
 export const getIcon = ({ name }: { name: string }) => {
 	switch (name) {
@@ -25,6 +27,10 @@ export const getIcon = ({ name }: { name: string }) => {
 			return <ChangeCircleOutlinedIcon />
 		case 'manageUser':
 			return <ManageAccountsOutlinedIcon />
+		case 'addUser':
+			return <PersonAddAltOutlinedIcon />
+		case 'task':
+			return <TaskAltIcon />
 		default:
 			return null
 	}
