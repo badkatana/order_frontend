@@ -6,7 +6,6 @@ import dayjs from 'dayjs'
 import { Controller } from 'react-hook-form'
 
 export const InputDate = ({ control, name, label, defaultValue, minDate, maxDate }: FormItem) => {
-	console.log()
 	return (
 		<Controller
 			name={name}

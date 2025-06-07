@@ -15,22 +15,25 @@ import { DATE_TIME_FORMAT, DefaultObjectString } from '@/shared/constants/consta
 import { QueryClient } from '@tanstack/react-query'
 import { formatDateForDB, formatDatesTask } from '../formatDates'
 
-export const submitTask = (values: Task) => {
+export const submitTask = async (values: Task) => {
 	const userId = localStorage.getItem('user_id')
+	const priority = values.priority ? +values.priority : 1
 	const taskDates = formatDatesTask(values)
 	const newTask = {
 		...values,
 		...taskDates,
 		status: false,
 		userId,
+		priority,
 	}
-	createTask(newTask)
+	return await createTask(newTask)
 }
 
 export const submitEditedTask = (values: Task) => {
 	const userId = localStorage.getItem('user_id')
-	const taskDates = formatDatesTask(values)
-	editTask({ ...values, ...taskDates, userId })
+	const priority = values.priority ? +values.priority : 1
+	// const taskDates = formatDatesTask(values)
+	editTask({ ...values, priority, userId })
 }
 
 export const submitEvent = (values: DefaultObjectString) => {

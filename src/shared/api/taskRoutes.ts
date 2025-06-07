@@ -7,7 +7,7 @@ export const getTask = async ({ taskId }: { taskId: number }) => {
 }
 
 export const editTask = async (task: Task) => {
-	const { data } = await authBackend.put(`/api/Task/${task.id}`, task)
+	const { data } = await authBackend.put(`/api/Task/${task.taskId}`, task)
 	return data
 }
 export const deleteTask = async (taskId: number) => {

@@ -30,3 +30,15 @@ export const createProject = async (project: Project) => {
 export const assignUserToProject = async (usersIds: string[], projectId: number) => {
 	return await authBackend.post(`/api/Project/${projectId}/users`, usersIds)
 }
+
+export const unassignUserFromProject = async (usersIds: string[], projectId: number) => {
+	return await authBackend.delete(`/api/Project/${projectId}/users`, { data: usersIds })
+}
+
+export const assignTaskToProject = async (taskId: string, projectId) => {
+	return await authBackend.post(`/api/Project/${projectId}/assign-tasks`, [taskId])
+}
+
+export const unassignTaskFromProject = async (taskId: string, projectId: number) => {
+	return await authBackend.post(`/api/Project/${projectId}/unassign-tasks`, [taskId])
+}

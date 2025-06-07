@@ -17,12 +17,12 @@ export const CustomTabs = ({
 
 	return (
 		<Paper
-			elevation={2}
+			elevation={0}
 			sx={{
-				borderRadius: 4,
-				p: 1,
-				backgroundColor: theme.palette.background.paper,
-				boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
+				borderRadius: 3,
+				p: 2,
+				backgroundColor: theme.palette.background.default,
+				border: `1px solid ${theme.palette.divider}`,
 				...tabListSx,
 			}}
 		>
@@ -30,39 +30,38 @@ export const CustomTabs = ({
 				value={tabValue}
 				onChange={(_, newValue) => setTabValue(newValue)}
 				sx={{
-					mb: 2,
+					mb: 1.5,
+					minHeight: 'unset',
 					'& .MuiTabs-indicator': {
 						display: 'none',
 					},
 				}}
 			>
 				{tabs.map((tab, index) => {
-					const { label, icon } = tab
 					const selected = tabValue === index
-
 					return (
 						<Tab
-							key={`tab-header-${label}`}
+							key={`tab-${tab.label}`}
 							iconPosition='start'
+							disableRipple
 							label={
 								<Typography
-									variant='subtitle1'
-									fontWeight={selected ? 700 : 500}
-									color={selected ? 'primary.main' : 'text.primary'}
+									variant='body1'
+									fontWeight={selected ? 600 : 500}
+									color={selected ? 'primary.main' : 'text.secondary'}
 								>
 									{t(tab.label)}
 								</Typography>
 							}
-							disableRipple
 							sx={{
 								textTransform: 'none',
-								minWidth: 140,
-								px: 2.5,
-								py: 1.2,
+								minHeight: 'unset',
+								px: 2,
+								py: 1,
 								mr: 1,
 								borderRadius: 2,
-								backgroundColor: selected ? theme.palette.action.selected : 'transparent',
-								transition: 'all 0.3s',
+								backgroundColor: selected ? 'action.selected' : 'transparent',
+								transition: 'all 0.2s',
 								'&:hover': {
 									backgroundColor: theme.palette.action.hover,
 								},
@@ -72,13 +71,13 @@ export const CustomTabs = ({
 				})}
 			</Tabs>
 
-			<Box sx={{ mt: 2 }}>
+			<Box>
 				{tabs.map((tab, index) => (
 					<Box
 						key={`tab-panel-${tab.label}`}
 						hidden={tabValue !== index}
 						sx={{
-							animation: tabValue === index ? 'fadeIn 0.25s ease' : 'none',
+							animation: tabValue === index ? 'fadeIn 0.2s ease' : 'none',
 							...tabPanelSx,
 						}}
 					>
@@ -89,11 +88,11 @@ export const CustomTabs = ({
 
 			<style>
 				{`
-              @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(4px); }
-                to { opacity: 1; transform: translateY(0); }
-              }
-            `}
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `}
 			</style>
 		</Paper>
 	)

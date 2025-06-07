@@ -64,7 +64,7 @@ export const SessionForm = () => {
 						</Box>
 					))}
 					<Button variant='contained' color='primary' type='submit'>
-						start session
+						{t('actions.login')}
 					</Button>
 				</Box>
 			</Form>

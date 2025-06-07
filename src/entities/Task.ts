@@ -13,4 +13,7 @@ export interface Task {
 	userId: string | null
 	links?: string[]
 	projectId?: number | string | null
+
+	/// front-only
+	isDraft?: boolean
 }

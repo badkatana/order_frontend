@@ -1,5 +1,6 @@
 import { Calendar } from '@/entities/Calendar'
 import { Project } from '@/entities/Project'
+import { Task } from '@/entities/Task'
 import { CALENDAR_ITEM } from '@/shared/constants/constants'
 
 export const groupArraysByDate = (input: Calendar, datesRange: string[]): CALENDAR_ITEM => {
@@ -27,14 +28,13 @@ export const groupArraysByDate = (input: Calendar, datesRange: string[]): CALEND
 	return outputArray
 }
 
-export const groupProjectsByPriority = (projects: Project[] | null | undefined) => {
-	const high: Project[] = []
-	const low: Project[] = []
-	const middle: Project[] = []
+export const groupByPriority = (projects: Project[] | null | undefined | Task[]) => {
+	const high: Project[] | Task[] = []
+	const low: Project[] | Task[] = []
+	const middle: Project[] | Task[] = []
 	projects?.map(item => {
 		item.priority === 3 ? low.push(item) : item.priority === 2 ? middle.push(item) : high.push(item)
 	})
 
-	console.log(projects, high, middle, low)
 	return { high, middle, low }
 }

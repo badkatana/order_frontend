@@ -9,7 +9,7 @@ export const CustomIconButton = ({ iconName, onClick, title = undefined, ...prop
 		// @ts-ignore
 		<Button onClick={onClick} color='white' {...props}>
 			{storedIcon}
-			{title && <Typography>{title}</Typography>}
+			{title && <Typography marginLeft={0.5}>{title}</Typography>}
 		</Button>
 	)
 }

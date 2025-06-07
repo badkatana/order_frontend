@@ -6,6 +6,7 @@ type ListItemActionsProps = {
 	editAction: () => void
 	isEditable?: boolean
 	saveAction?: () => void
+	actionsStyles?: Record<string, any>
 	cancelAction?: () => void
 }
 
@@ -15,6 +16,7 @@ export const ListItemActions = ({
 	isEditable,
 	saveAction,
 	cancelAction,
+	actionsStyles = {},
 }: ListItemActionsProps) => {
 	const getUserActions = () => {
 		if (!isEditable) {
@@ -35,7 +37,30 @@ export const ListItemActions = ({
 	}
 
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'row', marginLeft: 'auto', color: 'white', width: '1em' }}>
+		<Box
+			className={'actions'}
+			sx={{
+				flex: '0 0 30%', // ✅ занимает 30% ширины родителя
+				display: 'flex',
+				justifyContent: 'flex-end', // ✅ элементы внутри прижаты вправо
+				alignItems: 'center',
+				color: 'white',
+				opacity: 0,
+				gap: 1,
+				transition: 'opacity 0.3s',
+				'& svg': {
+					fontSize: 18,
+				},
+				'& .MuiButton-root': {
+					minWidth: 'unset',
+					width: 28,
+					height: 28,
+					padding: '4px',
+					lineHeight: 1,
+				},
+				...actionsStyles,
+			}}
+		>
 			{getUserActions().map(button => (
 				<CustomIconButton
 					sx={{

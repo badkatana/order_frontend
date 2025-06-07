@@ -6,21 +6,18 @@ import { ContainerPlaceholder, CustomTabs, DeadlinesComponent } from '@/shared/u
 import { ProjectUsersModal } from '@/widgets/modals'
 import { Box, styled, Typography } from '@mui/material'
 import { useState } from 'react'
+import { ProjectItemTasks } from './ProjectItemTasks'
 
 export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Task[] }) => {
 	if (!project) return <ContainerPlaceholder placeholder={'Select or create a project'} />
-	const { description, projectId, tasks, events, hardDeadline, softDeadline, links } = project
+
+	const { description, projectId, tasks, events, hardDeadline, softDeadline, links } = project || {}
 	const [openModal, setOpenModal] = useState(false)
 
 	const projectTabs: CustomTabsType[] = [
 		{
 			label: 'task.titlePlural',
-			icon: 'addUser',
-			content: (
-				<>
-					<Box> here</Box>
-				</>
-			),
+			content: <ProjectItemTasks projectId={projectId} tasks={tasks} />,
 		},
 		{
 			label: 'events',

@@ -10,6 +10,7 @@ export const en = {
 		create: 'Create',
 		delete: 'Delete',
 		save: 'Save',
+		login: 'Start',
 	},
 	project: {
 		projectUsers: {
@@ -17,6 +18,7 @@ export const en = {
 			findUser: 'Enter name or email',
 			userInProject: 'In project',
 		},
+		search: 'Search project',
 	},
 	task: {
 		titleSingular: 'Задача',

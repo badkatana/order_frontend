@@ -1,6 +1,6 @@
 import { Task } from '@/entities/Task'
 import { DATE_FORMAT, DefaultDate } from '@/shared/constants/constants'
-import { Dayjs } from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 
 export const generateDateRange = (start: DefaultDate, end: DefaultDate) => {
 	const dates: string[] = []
@@ -17,7 +17,8 @@ export const generateDateRange = (start: DefaultDate, end: DefaultDate) => {
 }
 
 export const formatDateForDB = (date: any, dateFormat: string) => {
-	return (date as Dayjs)?.format(dateFormat)
+	if (date === '') return null
+	if (dayjs(date).isValid()) return dayjs(date).format(dateFormat)
 }
 
 export const formatDatesTask = (task: Task) => {

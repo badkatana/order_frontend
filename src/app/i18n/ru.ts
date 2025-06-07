@@ -10,6 +10,7 @@ export const ru = {
 		create: 'Создать',
 		delete: 'Удалить',
 		save: 'Сохранить',
+		login: 'Начать',
 	},
 	project: {
 		createProject: 'Создайте проект',
@@ -18,6 +19,7 @@ export const ru = {
 			findUser: 'Введите почту или пароль',
 			userInProject: 'Уже в проекте',
 		},
+		search: 'Найти проект',
 	},
 	task: {
 		titleSingular: 'Задача',
