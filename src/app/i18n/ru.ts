@@ -21,6 +21,9 @@ export const ru = {
 		},
 		search: 'Найти проект',
 	},
+	note: {
+		titlePlural: 'Notes',
+	},
 	task: {
 		titleSingular: 'Задача',
 		titlePlural: 'Задачи',

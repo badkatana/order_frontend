@@ -17,7 +17,7 @@ export const generateDateRange = (start: DefaultDate, end: DefaultDate) => {
 }
 
 export const formatDateForDB = (date: any, dateFormat: string) => {
-	if (date === '') return null
+	if (date === '' || !date) return null
 	if (dayjs(date).isValid()) return dayjs(date).format(dateFormat)
 }
 

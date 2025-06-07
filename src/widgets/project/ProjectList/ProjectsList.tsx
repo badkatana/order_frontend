@@ -99,11 +99,9 @@ export const ProjectsList = ({
 								fontSize: '0.875rem',
 							},
 						},
-						/// @ts-ignore
 						root: {
 							sx: {
 								borderRadius: 1,
-								/// @ts-ignore
 								backgroundColor: theme => theme.palette.background.paper,
 							},
 						},

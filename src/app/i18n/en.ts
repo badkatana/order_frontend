@@ -13,6 +13,7 @@ export const en = {
 		login: 'Start',
 	},
 	project: {
+		createProject: 'Create a project',
 		projectUsers: {
 			title: 'Share project',
 			findUser: 'Enter name or email',
@@ -20,8 +21,11 @@ export const en = {
 		},
 		search: 'Search project',
 	},
+	note: {
+		titlePlural: 'Notes',
+	},
 	task: {
-		titleSingular: 'Задача',
-		titlePlural: 'Задачи',
+		titleSingular: 'Task',
+		titlePlural: 'Tasks',
 	},
 }
