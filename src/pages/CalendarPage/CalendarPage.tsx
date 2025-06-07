@@ -1,5 +1,6 @@
 import { useAppStore } from '@/app'
 import { getCalendar } from '@/shared/api'
+import { getOverview } from '@/shared/api/calendarRoutes'
 import { WithPageWrapper } from '@/shared/ui/WithPageWrapper/WithPageWrapper'
 import { CalendarWeekView } from '@/widgets'
 import { WeekOverview } from '@/widgets/calendarWeekView/weekOverview/WeekOverview'
@@ -8,7 +9,7 @@ import { CreateTaskEventModalWindow } from '@/widgets/modals'
 import { Box } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { Dayjs } from 'dayjs'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export const CalendarPage = () => {
 	const { savedWeek } = useAppStore()
@@ -24,6 +25,13 @@ export const CalendarPage = () => {
 			}),
 	})
 
+	const { data: overview } = useQuery({
+		queryKey: ['overview', savedWeek],
+		queryFn: getOverview,
+	})
+
+	useEffect(() => console.log(overview), [overview])
+
 	const calendarItem = useMemo(() => groupArraysByDate(data, dateRange), [data, dateRange])
 
 	return (
@@ -38,7 +46,7 @@ export const CalendarPage = () => {
 					justifyContent: 'space-between',
 				}}
 			>
-				<WeekOverview calendarItem={calendarItem} setOpen={setOpen} />
+				<WeekOverview calendarItem={calendarItem} setOpen={setOpen} overview={overview} />
 				<CalendarWeekView calendarItem={calendarItem} dateRange={dateRange} />
 			</Box>
 			<CreateTaskEventModalWindow

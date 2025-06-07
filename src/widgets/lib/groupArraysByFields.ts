@@ -33,6 +33,7 @@ export const groupByPriority = (projects: Project[] | null | undefined | Task[])
 	const low: Project[] | Task[] = []
 	const middle: Project[] | Task[] = []
 	projects?.map(item => {
+		if (Object.keys(item).length < 1) return
 		item.priority === 3 ? low.push(item) : item.priority === 2 ? middle.push(item) : high.push(item)
 	})
 

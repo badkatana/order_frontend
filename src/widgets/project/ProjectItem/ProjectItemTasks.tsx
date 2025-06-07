@@ -20,7 +20,7 @@ export const ProjectItemTasks = ({ tasks, projectId }: { tasks: Task[] | any[]; 
 						No tasks
 					</Typography>
 				) : (
-					items.map(task => <ListItemTask task={task} sx={{ width: '70%' }} />)
+					items.map(task => <ListItemTask afterSubmit={clearDrafts} task={task} sx={{ width: '70%' }} />)
 				)}
 			</Box>
 			<CustomIconButton

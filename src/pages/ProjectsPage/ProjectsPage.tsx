@@ -5,6 +5,7 @@ import { WithPageWrapper } from '@/shared/ui/WithPageWrapper'
 import { ProjectItem, ProjectsList } from '@/widgets/project'
 import { Divider } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
 import { ProjectPageWrapper } from './styles'
 
 export const ProjectsPage = () => {
@@ -13,17 +14,22 @@ export const ProjectsPage = () => {
 	const { data: projects, isFetching } = useQuery({
 		queryKey: ['projects'],
 		queryFn: getAllProjects,
-		refetchInterval: Infinity, // потом убрать
 	})
 
-	if (isFetching) return <ContainerPlaceholder progress fullHeight />
+	useEffect(() => {
+		if (projects && selectedProject) {
+			const updated = projects.find(p => p.projectId === selectedProject.projectId)
+			if (updated) setSelectedProject(updated)
+		}
+	}, [projects])
 
+	if (isFetching) return <ContainerPlaceholder progress fullHeight />
 	return (
 		<WithPageWrapper>
 			<ProjectPageWrapper>
 				<ProjectsList projects={projects} set={setSelectedProject} selectedProject={selectedProject} />
 				<Divider orientation='vertical' variant='middle' flexItem sx={{ margin: '1em' }} />
-				<ProjectItem project={selectedProject} />
+				<ProjectItem />
 			</ProjectPageWrapper>
 		</WithPageWrapper>
 	)

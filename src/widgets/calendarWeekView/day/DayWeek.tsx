@@ -100,7 +100,6 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 						}}
 					>
 						<Typography fontWeight={'light'} fontSize={'0.9em'}>
-							{isTimeColumn && `${i} `}
 							{isTimeColumn && (i % 2 === 0 ? `${6 + i / 2}:00` : `${6 + Math.floor(i / 2)}:30`)}
 						</Typography>
 					</Box>

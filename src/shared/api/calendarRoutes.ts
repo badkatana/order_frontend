@@ -22,3 +22,9 @@ export const uploadFileTypeModeus = async (formData: any) => {
 	})
 	return data
 }
+
+export const getOverview = async () => {
+	const userId = localStorage.getItem('user_id')
+	const { data } = await authBackend.get(`overview`, { params: { userId } })
+	return data
+}

@@ -1,3 +1,4 @@
+import { useAppStore } from '@/app'
 import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
 import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
@@ -8,8 +9,8 @@ import { Box, styled, Typography } from '@mui/material'
 import { useState } from 'react'
 import { ProjectItemTasks } from './ProjectItemTasks'
 
-export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Task[] }) => {
-	if (!project) return <ContainerPlaceholder placeholder={'Select or create a project'} />
+export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[] }) => {
+	const { selectedProject: project } = useAppStore()
 
 	const { description, projectId, tasks, events, hardDeadline, softDeadline, links } = project || {}
 	const [openModal, setOpenModal] = useState(false)
@@ -25,6 +26,7 @@ export const ProjectItem = ({ project }: { project?: Project | null; tasks?: Tas
 		},
 	]
 
+	if (!project) return <ContainerPlaceholder placeholder={'Select or create a project'} />
 	return (
 		<ProjectCard>
 			<ProjectUsersModal open={openModal} handleClose={() => setOpenModal(false)} />
