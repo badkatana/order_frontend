@@ -40,9 +40,9 @@ export const ListItemActions = ({
 		<Box
 			className={'actions'}
 			sx={{
-				flex: '0 0 30%', // ✅ занимает 30% ширины родителя
+				flex: '0 0 30%',
 				display: 'flex',
-				justifyContent: 'flex-end', // ✅ элементы внутри прижаты вправо
+				justifyContent: 'flex-end',
 				alignItems: 'center',
 				color: 'white',
 				opacity: 0,

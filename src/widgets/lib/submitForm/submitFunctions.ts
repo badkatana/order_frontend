@@ -17,7 +17,7 @@ import { formatDateForDB, formatDatesTask } from '../formatDates'
 
 export const submitTask = async (values: Task) => {
 	const userId = localStorage.getItem('user_id')
-	const priority = values.priority ? +values.priority : 1
+	const priority = values.priority ? +values.priority : 3
 	const taskDates = formatDatesTask(values)
 	const newTask = {
 		...values,
@@ -29,11 +29,11 @@ export const submitTask = async (values: Task) => {
 	return await createTask(newTask)
 }
 
-export const submitEditedTask = (values: Task) => {
+export const submitEditedTaskQuery = (values: Task) => {
 	const userId = localStorage.getItem('user_id')
-	const priority = values.priority ? +values.priority : 1
-	// const taskDates = formatDatesTask(values)
-	editTask({ ...values, priority, userId })
+	const priority = values.priority ? Number(values.priority) : 3
+	const taskDates = formatDatesTask(values)
+	editTask({ ...values, priority, ...taskDates, userId })
 }
 
 export const submitEvent = (values: DefaultObjectString) => {

@@ -1,5 +1,4 @@
-import { assignTaskToProject } from '@/shared/api/projectRoutes'
-import { submitTask } from '@/widgets/lib/submitForm/submitFunctions'
+import { useManageTasks } from '@/features/task/useManageTasks'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { Box, Button, Checkbox, TextField, Typography } from '@mui/material'
 import { useQueryClient } from '@tanstack/react-query'
@@ -19,19 +18,7 @@ export const ListItemTask = ({ task }: ListItemTask) => {
 	const [isEditable, setIsEditable] = useState<boolean>(task.isDraft || false)
 	const [editedText, setEditedText] = useState(task.name || '')
 	const queryClient = useQueryClient()
-
-	const submitEditedTask = async (task: Task) => {
-		if (isDraft) {
-			const { isDraft, taskId, ...clearedTask } = task
-			if (task.projectId) {
-				const newTask = await submitTask({ ...clearedTask, name: editedText })
-				await assignTaskToProject(newTask.taskId, task.projectId)
-			} else await submitTask({ ...clearedTask, name: editedText })
-		} else await submitEditedTask({ ...task, name: editedText })
-
-		isEditable && setIsEditable(false)
-		queryClient.refetchQueries({ queryKey: ['projects'], exact: false })
-	}
+	const { submitEditedTask } = useManageTasks({ isEditable, setIsEditable })
 
 	return (
 		<>
@@ -89,8 +76,11 @@ export const ListItemTask = ({ task }: ListItemTask) => {
 				handleClose={() => setOpen(false)}
 				type='Task'
 				method='edit'
-				editEntityItem={task}
-				submit={(values: any) => submitEditedTask({ ...task, ...values })}
+				editEntityItem={{ ...task }}
+				submit={(values: any) => {
+					submitEditedTask({ ...task, ...values })
+					setOpen(false)
+				}}
 			/>
 		</>
 	)
