@@ -1,4 +1,5 @@
 import { useAppStore } from '@/app'
+import { Note } from '@/entities/Note'
 import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
 import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
@@ -10,9 +11,9 @@ import { useState } from 'react'
 import { ProjectItemNotes } from './ProjectItemNotes'
 import { ProjectItemTasks } from './ProjectItemTasks'
 
-export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[] }) => {
+export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[]; notes?: Note[] }) => {
 	const { selectedProject: project } = useAppStore()
-	const { description, projectId, tasks, events, hardDeadline, softDeadline, links } = project || {}
+	const { description, projectId, tasks, events, hardDeadline, softDeadline, notes, links } = project || {}
 	const [openModal, setOpenModal] = useState(false)
 
 	const projectTabs: CustomTabsType[] = [
@@ -22,7 +23,7 @@ export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[] }) =>
 		},
 		{
 			label: 'note.titlePlural',
-			content: <ProjectItemNotes />,
+			content: <ProjectItemNotes notes={notes} />,
 		},
 	]
 

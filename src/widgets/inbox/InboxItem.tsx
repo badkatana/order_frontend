@@ -22,7 +22,7 @@ export const InboxItem = ({ inboxNote }: { inboxNote: Note }) => {
 
 	const InboxItemActions = () => {
 		return (
-			<>
+			<Box sx={{ color: 'red' }}>
 				<CustomIconButton
 					iconName={'convert'}
 					onClick={() => {
@@ -46,7 +46,7 @@ export const InboxItem = ({ inboxNote }: { inboxNote: Note }) => {
 					}}
 					cancelAction={() => setIsEditable(false)}
 				/>
-			</>
+			</Box>
 		)
 	}
 
@@ -59,6 +59,9 @@ export const InboxItem = ({ inboxNote }: { inboxNote: Note }) => {
 				border: isEditable ? '1px solid gray' : 'none',
 				padding: '1em',
 				borderRadius: '1em',
+				':hover .actions': {
+					opacity: 1,
+				},
 			}}
 		>
 			<Box display={'flex'} flexDirection={'column'} width={'100%'}>

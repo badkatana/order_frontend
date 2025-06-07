@@ -42,3 +42,7 @@ export const assignTaskToProject = async (taskId: string, projectId) => {
 export const unassignTaskFromProject = async (taskId: string, projectId: number) => {
 	return await authBackend.post(`/api/Project/${projectId}/unassign-tasks`, [taskId])
 }
+
+export const assingNotesToProject = async (noteId: number | string, projectId: number) => {
+	return await authBackend.post(`/api/Project/${projectId}`, noteId)
+}

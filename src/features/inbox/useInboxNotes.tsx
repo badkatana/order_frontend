@@ -25,14 +25,14 @@ export const useInboxNotes = ({ refetch = undefined }) => {
 	}
 
 	const handleRemoveNote = (note: Note) => {
-		const { isDraft, id } = note
-		isDraft && id ? removeDraft(id) : id ? deleteNote(id) : null
+		const { isDraft, noteId } = note
+		isDraft && noteId ? removeDraft(noteId) : noteId ? deleteNote(noteId) : null
 	}
 
 	const handleSaveNote = (note: Note) => {
-		const { isDraft, id, ...rest } = note
+		const { isDraft, noteId, ...rest } = note
 		if (isDraft) {
-			removeDraft(id || '')
+			removeDraft(noteId || '')
 			saveNewNote({ ...rest, isDraft: false })
 		} else editUserNote(note)
 	}
