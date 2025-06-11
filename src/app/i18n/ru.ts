@@ -11,6 +11,7 @@ export const ru = {
 		delete: 'Удалить',
 		save: 'Сохранить',
 		login: 'Начать',
+		show: 'Показать',
 	},
 	project: {
 		createProject: 'Создайте проект',
@@ -23,9 +24,15 @@ export const ru = {
 	},
 	note: {
 		titlePlural: 'Notes',
+		inbox: 'Входящие',
 	},
 	task: {
 		titleSingular: 'Задача',
 		titlePlural: 'Задачи',
+	},
+	settings: {
+		appearance: 'Вид приложения',
+		language: 'Язык приложения',
+		darkTheme: 'Тёмная тема',
 	},
 }

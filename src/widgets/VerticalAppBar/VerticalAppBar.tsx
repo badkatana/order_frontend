@@ -1,6 +1,8 @@
-import { Menu as MenuIcon } from '@mui/icons-material'
-import { AppBar, IconButton, List, ListItem, ListItemText, Toolbar, Tooltip } from '@mui/material'
+import { getIcon } from '@/shared/icons/icons'
+import { AppBar, List, ListItem, ListItemText, Toolbar, Tooltip } from '@mui/material'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserSettings } from '../userSettings/UserSettings'
 import { BlurredBackground, VerticalBar } from './VerticalAppBarStyles'
 import { AppBarItems, AppBarItemType } from './config'
 
@@ -11,6 +13,7 @@ interface VerticalAppBarProps {
 
 export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 	const navigate = useNavigate()
+	const [openSettings, setOpenSettings] = useState(false)
 
 	const handleClick = (item: AppBarItemType) => {
 		if (item.clickFunction) {
@@ -19,12 +22,29 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 		navigate(item.path)
 	}
 
-	const items = AppBarItems.map(item => {
+	const notPathItems: AppBarItemType[] = [
+		{
+			name: 'menu',
+			clickFunction: toggleDrawer,
+			tooltip: 'actions.show',
+			key: 'menu_toolbar',
+			icon: 'menu',
+		},
+		{
+			name: 'user',
+			clickFunction: () => setOpenSettings(true),
+			key: 'user_toolbar',
+			icon: 'user',
+			tooltip: 'user.titleSingular',
+		},
+	]
+
+	const items = [...notPathItems, ...AppBarItems].map(item => {
 		return (
 			<Tooltip title={item.tooltip ?? 'page'} key={`tooltip_${item.name}`}>
 				{/*  @ts-ignore */}
 				<ListItem key={item.key} onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
-					<item.icon sx={{ color: 'white' }} />
+					{getIcon({ name: item.icon })}
 					{open && <ListItemText primary={item.name} sx={{ color: 'white', px: '1em' }} />}
 				</ListItem>
 			</Tooltip>
@@ -41,15 +61,11 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 					...VerticalBar,
 				}}
 			>
-				<Toolbar sx={{ display: 'flex' }}>
-					<Tooltip title='click to open'>
-						<IconButton onClick={toggleDrawer} color='inherit'>
-							<MenuIcon />
-						</IconButton>
-					</Tooltip>
+				<Toolbar sx={{ display: 'flex', flexDirection: 'column' }}>
+					<List>{items}</List>
 				</Toolbar>
-				<List>{items}</List>
 			</AppBar>
+			<UserSettings open={openSettings} handleClose={() => setOpenSettings(!openSettings)} />
 		</>
 	)
 }

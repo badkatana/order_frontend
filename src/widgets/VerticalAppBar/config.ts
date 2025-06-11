@@ -1,7 +1,3 @@
-import { Assignment, CalendarToday, ExitToApp, Inbox } from '@mui/icons-material'
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import { SvgIconProps } from '@mui/material'
 import { logOutUser } from '../lib'
 
 export const AppBarItems: AppBarItemType[] = [
@@ -10,28 +6,28 @@ export const AppBarItems: AppBarItemType[] = [
 		path: '/inbox',
 		tooltip: 'Inbox',
 		key: 'inbox_page',
-		icon: Inbox,
+		icon: 'inbox',
 	},
 	{
 		name: 'calendar',
 		path: '/calenders',
 		tooltip: 'calendar',
 		key: 'calenders_page',
-		icon: CalendarToday,
+		icon: 'calendar',
 	},
 	{
 		name: 'projects',
 		path: '/projects',
 		tooltip: 'projects',
 		key: 'projects_page',
-		icon: Assignment,
+		icon: 'assignment',
 	},
 	{
 		name: 'helpful utmn',
 		path: '/university',
 		tooltip: 'helpful utmn',
 		key: 'helpful_utmn',
-		icon: SchoolOutlinedIcon,
+		icon: 'utmn',
 	},
 	{
 		name: 'log out',
@@ -39,22 +35,15 @@ export const AppBarItems: AppBarItemType[] = [
 		path: '/',
 		tooltip: 'logout',
 		key: 'logout',
-		icon: ExitToApp,
-	},
-	{
-		name: 'settings',
-		path: '/settings',
-		tooltip: 'user settings',
-		key: 'settings',
-		icon: SettingsOutlinedIcon,
+		icon: 'exit',
 	},
 ]
 
 export type AppBarItemType = {
 	name: string
 	clickFunction?: () => void
-	path: string
+	path?: string
 	tooltip: string
 	key: string
-	icon: React.ComponentType<SvgIconProps>
+	icon: string
 }

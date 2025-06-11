@@ -1,3 +1,5 @@
+import { Assignment, CalendarToday, ExitToApp, Inbox, Menu } from '@mui/icons-material'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
@@ -12,6 +14,8 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined'
 import PersonRemoveOutlinedIcon from '@mui/icons-material/PersonRemoveOutlined'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import TaskAltIcon from '@mui/icons-material/TaskAlt'
 
 export const getIcon = ({ name }: { name: string }) => {
@@ -46,6 +50,22 @@ export const getIcon = ({ name }: { name: string }) => {
 			return <DoubleArrowIcon />
 		case 'clear':
 			return <CloseIcon />
+		case 'user':
+			return <AccountCircleOutlinedIcon />
+		case 'menu':
+			return <Menu />
+		case 'assignment':
+			return <Assignment />
+		case 'calendar':
+			return <CalendarToday />
+		case 'exit':
+			return <ExitToApp />
+		case 'inbox':
+			return <Inbox />
+		case 'utmn':
+			return <SchoolOutlinedIcon />
+		case 'settings':
+			return <SettingsOutlinedIcon />
 		default:
 			return null
 	}

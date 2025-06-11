@@ -16,5 +16,4 @@ export const VerticalBar = {
 	transition: 'width 0.3s',
 	backgroundColor: 'black',
 	height: '100%',
-	zIndex: 3,
 }

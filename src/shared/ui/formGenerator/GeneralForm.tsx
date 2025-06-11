@@ -1,6 +1,7 @@
-import { DefaultConfig } from '@/shared/constants/constants'
+import { DefaultConfig, DefaultObjectString } from '@/shared/constants/constants'
 import { Box, Button, styled } from '@mui/material'
 import { Form, FormProvider, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 type GeneralFormProps = {
 	config: DefaultConfig
@@ -8,8 +9,14 @@ type GeneralFormProps = {
 }
 
 export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
+	const { t } = useTranslation()
+	const defaultValues = config.reduce((acc, field) => {
+		acc[field.name] = field.defaultValue || null
+		return acc
+	}, {} as DefaultObjectString)
+
 	const { control, handleSubmit } = useForm({ mode: 'onChange' })
-	const methods = useForm()
+	const methods = useForm({ defaultValues })
 
 	return (
 		<FormProvider {...methods}>
@@ -20,8 +27,8 @@ export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 						<item.component key={`form_${item.name}_${index}`} control={control} {...item} />
 					</>
 				))}
-				<Box marginLeft={'auto'} display={'flex'} alignItems={'center'} flexDirection={'row'}>
-					<ButtonStyled type='submit'>Here</ButtonStyled>
+				<Box justifyContent={'flex-end'} display={'flex'} flexDirection={'row'}>
+					<ButtonStyled type='submit'>{t('actions.save')}</ButtonStyled>
 				</Box>
 			</Form>
 		</FormProvider>

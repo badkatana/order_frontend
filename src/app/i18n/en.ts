@@ -10,6 +10,7 @@ export const en = {
 		create: 'Create',
 		delete: 'Delete',
 		save: 'Save',
+		show: 'Show',
 		login: 'Start',
 	},
 	project: {
@@ -23,9 +24,15 @@ export const en = {
 	},
 	note: {
 		titlePlural: 'Notes',
+		inbox: 'Inbox',
 	},
 	task: {
 		titleSingular: 'Task',
 		titlePlural: 'Tasks',
+	},
+	settings: {
+		appearance: 'Appereance',
+		language: 'Language',
+		darkTheme: 'Dark mode',
 	},
 }

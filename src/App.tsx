@@ -4,8 +4,7 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/en'
 import 'dayjs/locale/ru'
 import updateLocale from 'dayjs/plugin/updateLocale'
-import { ReactNode, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import { ReactNode } from 'react'
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './app/i18n/i18n'
 import routes from './app/routes/Routes'
@@ -21,11 +20,6 @@ dayjs.updateLocale('en', {
 
 function App() {
 	const queryClient = new QueryClient()
-	const { i18n } = useTranslation()
-
-	useEffect(() => {
-		dayjs.locale(i18n.language)
-	}, [i18n.language])
 
 	return (
 		<Router>
