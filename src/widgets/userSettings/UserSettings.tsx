@@ -2,8 +2,9 @@ import i18n from '@/app/i18n/i18n'
 import { getUserInfo } from '@/shared/api/userRoutes'
 import { DefaultConfig } from '@/shared/constants/constants'
 import { ModalBody } from '@/shared/ui'
+import { CustomQrCode } from '@/shared/ui/CustomQrCode/CustomQrCode'
 import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
-import { Avatar, Box, Paper, Stack, Typography, useTheme } from '@mui/material'
+import { Avatar, Box, Divider, Paper, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher'
 import { ThemeToggle } from './LanguageSwitcher/ThemeToggle'
@@ -43,16 +44,24 @@ export const UserSettings = ({ open, handleClose }) => {
 				}}
 			>
 				<Paper
-					elevation={4}
+					elevation={6}
 					sx={{
 						p: 3,
 						borderRadius: 4,
 						textAlign: 'center',
 						backgroundColor: theme.palette.background.paper,
-						maxWidth: 320,
+						maxWidth: 360,
 						mx: 'auto',
+						position: 'relative',
 					}}
 				>
+					<Box sx={{ position: 'absolute', top: 16, right: 16 }}>
+						<Tooltip title='Получить QR-код'>
+							<CustomQrCode />
+						</Tooltip>
+					</Box>
+
+					{/* Аватар */}
 					<Avatar
 						sx={{
 							width: 80,
@@ -61,9 +70,10 @@ export const UserSettings = ({ open, handleClose }) => {
 							mb: 2,
 							bgcolor: theme.palette.primary.main,
 							fontSize: 32,
+							boxShadow: 3,
 						}}
 					>
-						{user.name[0]}
+						{user.name?.[0]?.toUpperCase()}
 					</Avatar>
 
 					<Typography variant='h6' fontWeight={600} gutterBottom>
@@ -73,6 +83,8 @@ export const UserSettings = ({ open, handleClose }) => {
 					<Typography variant='body2' color='text.secondary' sx={{ wordBreak: 'break-word' }}>
 						{user.email}
 					</Typography>
+
+					<Divider sx={{ my: 3 }} />
 				</Paper>
 				<Stack spacing={3} mt={3}>
 					<GeneralForm config={userConfig} submitFunction={values => console.log(values)} />

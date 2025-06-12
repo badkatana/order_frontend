@@ -3071,6 +3071,7 @@ __metadata:
     react-hook-form: "npm:^7.53.2"
     react-i18next: "npm:^15.5.1"
     react-masonry-css: "npm:^1.0.16"
+    react-qr-code: "npm:^2.0.15"
     react-router-dom: "npm:^7.0.2"
     typescript: "npm:~5.6.2"
     typescript-eslint: "npm:^8.10.0"
@@ -3244,6 +3245,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qr.js@npm:0.0.0":
+  version: 0.0.0
+  resolution: "qr.js@npm:0.0.0"
+  checksum: 10c0/1c6a4c7a58d04e52ec2fee99e39b680fdc5b2a510a981df42c36b716a8eac6634d130fc4d65af8f030f2a07dbf5fa046b97cdfa7456c250ebb50a73916efdcb5
+  languageName: node
+  linkType: hard
+
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -3313,6 +3321,18 @@ __metadata:
   peerDependencies:
     react: ">=16.0.0"
   checksum: 10c0/058dac3ffeba0c56608a252561188d7964e8a943a0812517ec6266183bbea8df474fc57607c01458b96b16d06219f0466995f3d32984dceba43b4b8b993326b3
+  languageName: node
+  linkType: hard
+
+"react-qr-code@npm:^2.0.15":
+  version: 2.0.15
+  resolution: "react-qr-code@npm:2.0.15"
+  dependencies:
+    prop-types: "npm:^15.8.1"
+    qr.js: "npm:0.0.0"
+  peerDependencies:
+    react: "*"
+  checksum: 10c0/6a9d73918623eecbf6204da02bae1851b584f22f0724b2e5cf529a7eee991a757a211822146f670db63c21860ccb2d245b9288f48cd58ca2bff16de0dcdbdb25
   languageName: node
   linkType: hard
 

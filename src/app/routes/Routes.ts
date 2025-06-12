@@ -1,4 +1,5 @@
 import { AuthPage, CalendarPage, ProjectsPage } from '@/pages'
+import { QrCodeExchange } from '@/pages/AuthPage/mobile/QrCodeExchange'
 import { InboxPage } from '@/pages/InboxPage/InboxPage'
 import { SettingsPage } from '@/pages/SettingsPage'
 import { UtmnPage } from '@/pages/UtmnPage/UtmnPage'
@@ -21,6 +22,11 @@ const routes: RoutesType = [
 		path: '/settings',
 		element: SettingsPage,
 		protected: true,
+	},
+	{
+		path: '/mobile',
+		element: QrCodeExchange,
+		protected: false,
 	},
 ]
 

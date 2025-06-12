@@ -23,3 +23,8 @@ export const getUserInfo = async () => {
 	const { data } = await authBackend.get(`/api/User/id/${userId}`)
 	return data
 }
+
+export const getQrCodeToken = async () => {
+	const { data } = await authBackend.get('/api/User/qrCode')
+	return data
+}

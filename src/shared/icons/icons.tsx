@@ -1,4 +1,4 @@
-import { Assignment, CalendarToday, ExitToApp, Inbox, Menu } from '@mui/icons-material'
+import { Assignment, CalendarToday, ExitToApp, Inbox, Menu, QrCode } from '@mui/icons-material'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
@@ -66,6 +66,8 @@ export const getIcon = ({ name }: { name: string }) => {
 			return <SchoolOutlinedIcon />
 		case 'settings':
 			return <SettingsOutlinedIcon />
+		case 'qrCode':
+			return <QrCode />
 		default:
 			return null
 	}

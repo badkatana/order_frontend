@@ -15,6 +15,7 @@ export const CalendarPage = () => {
 	const { savedWeek } = useAppStore()
 	const dateRange = generateDateRange(savedWeek.monday, savedWeek.sunday)
 	const [open, setOpen] = useState(false)
+	const userId = localStorage.getItem('user_id')
 
 	const { data, refetch } = useQuery({
 		queryKey: ['calendar', savedWeek],
