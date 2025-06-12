@@ -7,29 +7,24 @@ import { Controller } from 'react-hook-form'
 
 dayjs.extend(customParseFormat)
 
-export const InputDateTime = ({ control, name, maxDate, minDate, label, defaultValue }: FormItem) => {
+export const InputDateTime = ({ control, name, maxDate, minDate, label }: FormItem) => {
 	return (
 		<Controller
 			name={name}
 			control={control}
-			defaultValue={defaultValue && dayjs(defaultValue, 'YYYY-MM-DDTHH:mm')}
-			render={({ field: { onChange, value } }) => (
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
-					<DateTimePicker
-						label={label}
-						onChange={onChange}
-						value={value}
-						maxDate={maxDate ?? null}
-						minDate={minDate ?? null}
-					/>
-				</LocalizationProvider>
-			)}
+			render={({ field: { onChange, value } }) => {
+				return (
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DateTimePicker
+							label={label}
+							onChange={onChange}
+							value={typeof value === 'string' ? dayjs(value) : value}
+							maxDate={maxDate ?? null}
+							minDate={minDate ?? null}
+						/>
+					</LocalizationProvider>
+				)
+			}}
 		/>
 	)
 }
-
-//  ;<LocalizationProvider dateAdapter={AdapterDayjs}>
-// 		<DemoContainer components={['DateTimePicker']}>
-// 			<DateTimePicker label='Basic date time picker' />
-// 		</DemoContainer>
-//  </LocalizationProvider>

@@ -36,7 +36,7 @@ export const ProjectUsersModal = ({ open, handleClose }) => {
 				onChange={e => setSearch(e.target.value)}
 			/>
 			<List sx={{ maxHeight: '20em', overflowY: 'scroll', ...SCROLLBAR }}>
-				{filteredUsers.length < 1 && <ContainerPlaceholder placeholder='messages.noUsers' />}
+				{filteredUsers?.length < 1 && <ContainerPlaceholder placeholder='messages.noUsers' />}
 				{filteredUsers.map(user => {
 					const { userId, name } = user || {}
 					const inProject = isInProject(userId)
