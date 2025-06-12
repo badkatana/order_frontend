@@ -1,6 +1,7 @@
 import { FormItem } from '@/entities/interfaces'
 import { TextField } from '@mui/material'
 import { Controller } from 'react-hook-form'
+import { CustomFormLabel } from './FormLabel'
 
 export const InputString = ({
 	control,
@@ -11,6 +12,7 @@ export const InputString = ({
 	defaultValue = '',
 	type,
 }: FormItem) => {
+	const formLabel = label ?? name
 	return (
 		<Controller
 			name={name}
@@ -24,17 +26,23 @@ export const InputString = ({
 				},
 			}}
 			render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-				<TextField
-					value={value}
-					ref={ref}
-					type={type}
-					label={label ?? name}
-					onChange={onChange}
-					required={required}
-					error={!!error}
-					helperText={error?.message}
-					multiline={multiline}
-				/>
+				<>
+					<CustomFormLabel label={formLabel} />
+					<TextField
+						value={value}
+						ref={ref}
+						fullWidth
+						size='small'
+						hiddenLabel
+						variant={'filled'}
+						type={type}
+						onChange={onChange}
+						required={required}
+						error={!!error}
+						helperText={error?.message}
+						multiline={multiline}
+					/>
+				</>
 			)}
 		/>
 	)

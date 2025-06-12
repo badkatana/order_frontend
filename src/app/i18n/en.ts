@@ -29,6 +29,22 @@ export const en = {
 	task: {
 		titleSingular: 'Task',
 		titlePlural: 'Tasks',
+		form: {
+			name: 'What to do?',
+			description: 'Additional information',
+			hardDeadline: 'Hard deadline',
+			calendarDate: 'When to do?',
+			softDeadline: 'Soft Deadline',
+			priority: 'Priority',
+		},
+	},
+	event: {
+		form: {
+			name: 'Event name',
+			priority: 'Priority',
+			periodStart: 'Start at',
+			periodEnd: 'End at',
+		},
 	},
 	settings: {
 		appearance: 'Appereance',

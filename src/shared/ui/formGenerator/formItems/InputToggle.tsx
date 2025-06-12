@@ -1,7 +1,8 @@
 import { FormItem } from '@/entities/interfaces'
-import { Box, Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
+import { Box, Stack, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
+import { CustomFormLabel } from './FormLabel'
 
 /*  @ts-ignore */
 
@@ -13,7 +14,7 @@ export const InputToggle = ({ control, name = '', groupItems = [], label = '', .
 
 	return (
 		<Box display={'flex'} alignItems={'flex-start'} flexDirection={'column'}>
-			<Typography color='white'>{label}</Typography>
+			<CustomFormLabel label={label ?? name} />
 			<Controller
 				control={control}
 				name={name}
@@ -27,16 +28,8 @@ export const InputToggle = ({ control, name = '', groupItems = [], label = '', .
 							color='success'
 							ref={field.ref}
 							onChange={newValue => {
-								/*  @ts-ignore */
-
 								let val = Number(newValue.target.value)
-
-								/*  @ts-ignore */
-
 								setFormats([val])
-
-								/*  @ts-ignore */
-
 								field.onChange(newValue.target.value)
 							}}
 						>

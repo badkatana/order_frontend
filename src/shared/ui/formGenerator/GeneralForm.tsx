@@ -11,7 +11,12 @@ type GeneralFormProps = {
 export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 	const { t } = useTranslation()
 
-	const defaultValues = config.reduce((acc, field) => {
+	const flatFields = [...config].flatMap(item => {
+		if ('column' in item) return item.column
+		return item
+	})
+
+	const defaultValues = flatFields.reduce((acc, field) => {
 		acc[field.name] = field.defaultValue ?? null
 		return acc
 	}, {} as DefaultObjectString)
@@ -24,12 +29,46 @@ export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 	return (
 		<FormProvider {...methods}>
 			<Form onSubmit={methods.handleSubmit(submitFunction)}>
-				<Stack spacing={3}>
-					{config.map((item, index) => (
-						<Box key={`form_${item.name}_${index}`}>
-							<item.component control={methods.control} {...item} />
-						</Box>
-					))}
+				<Stack spacing={3} marginTop={2} display='flex' flexDirection={'column'}>
+					{/* Отображение колонок */}
+					<Stack direction='row' spacing={3} display={'flex'} alignItems={'center'}>
+						{config
+							.filter(item => 'column' in item)
+							.map((item, index) => (
+								<Stack key={`column_${index}`} spacing={2} minWidth={240}>
+									{item.column?.map((field, subIndex) => (
+										<Box key={`field_${field.name}_${subIndex}`}>
+											<field.component control={methods.control} fullWidth {...field} />
+										</Box>
+									))}
+								</Stack>
+							))}
+					</Stack>
+
+					<Box
+						sx={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							gap: 1,
+							rowGap: 2,
+						}}
+					>
+						{config
+							.filter(item => !('column' in item))
+							.map((field, index) => (
+								<Box
+									key={`single_${field.name}_${index}`}
+									sx={{
+										flex: '1 1 30%',
+										minWidth: 250,
+										gap: 1,
+										flexDirection: 'column',
+									}}
+								>
+									<field.component fullWidth control={methods.control} {...field} />
+								</Box>
+							))}
+					</Box>
 				</Stack>
 
 				<Box display='flex' justifyContent='flex-end' mt={4}>

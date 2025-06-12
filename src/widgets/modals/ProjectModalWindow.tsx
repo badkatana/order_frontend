@@ -23,7 +23,7 @@ export const ProjectModalWindow = ({
 	}, [editingProject])
 
 	return (
-		<ModalBody open={open} handleClose={handleClose} title={'Create'}>
+		<ModalBody open={open} handleClose={handleClose} title={'Create'} sx={{ maxWidth: '50em' }}>
 			{/*  @ts-ignore */}
 			<GeneralForm
 				config={config}

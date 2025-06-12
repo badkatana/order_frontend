@@ -29,6 +29,22 @@ export const ru = {
 	task: {
 		titleSingular: 'Задача',
 		titlePlural: 'Задачи',
+		form: {
+			name: 'Что сделать?',
+			description: 'Дополнительная информация',
+			hardDeadline: 'Жёсткий дедлайн',
+			calendarDate: 'Когда сделать?',
+			softDeadline: 'Мягкий дедлайн',
+			priority: 'Приоритет',
+		},
+	},
+	event: {
+		form: {
+			name: 'Название мероприятия',
+			priority: 'Приоритет',
+			periodStart: 'Начинается',
+			periodEnd: 'Заканчивается',
+		},
 	},
 	settings: {
 		appearance: 'Вид приложения',

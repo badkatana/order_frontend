@@ -35,6 +35,7 @@ export type DefaultConfig = {
 	minDate?: Dayjs
 	label?: string
 	multiline?: boolean
+	column?: Record<string, any>[]
 	isFullRow?: boolean
 }[]
 

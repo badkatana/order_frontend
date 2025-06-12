@@ -5,17 +5,17 @@ import { WithPageWrapper } from '@/shared/ui/WithPageWrapper/WithPageWrapper'
 import { CalendarWeekView } from '@/widgets'
 import { WeekOverview } from '@/widgets/calendarWeekView/weekOverview/WeekOverview'
 import { generateDateRange, groupArraysByDate } from '@/widgets/lib'
-import { CreateTaskEventModalWindow } from '@/widgets/modals'
+import { submitTask } from '@/widgets/lib/submitForm'
+import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { Box } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { Dayjs } from 'dayjs'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 export const CalendarPage = () => {
 	const { savedWeek } = useAppStore()
 	const dateRange = generateDateRange(savedWeek.monday, savedWeek.sunday)
 	const [open, setOpen] = useState(false)
-	const userId = localStorage.getItem('user_id')
 
 	const { data, refetch } = useQuery({
 		queryKey: ['calendar', savedWeek],
@@ -31,9 +31,17 @@ export const CalendarPage = () => {
 		queryFn: getOverview,
 	})
 
-	useEffect(() => console.log(overview), [overview])
-
 	const calendarItem = useMemo(() => groupArraysByDate(data, dateRange), [data, dateRange])
+
+	const submitFunction = async (submitFunc, props) => {
+		await submitFunc(props)
+		handleClose()
+	}
+
+	const handleClose = () => {
+		refetch()
+		setOpen(!open)
+	}
 
 	return (
 		<WithPageWrapper>
@@ -50,12 +58,12 @@ export const CalendarPage = () => {
 				<WeekOverview calendarItem={calendarItem} setOpen={setOpen} overview={overview} />
 				<CalendarWeekView calendarItem={calendarItem} dateRange={dateRange} />
 			</Box>
-			<CreateTaskEventModalWindow
+			<CreateEditEntityModalWindow
+				type={'Task'}
+				submit={props => submitFunction(submitTask, props)}
 				open={open}
-				handleClose={() => {
-					refetch()
-					setOpen(!open)
-				}}
+				handleClose={handleClose}
+				sx={{ maxWidth: '50em', display: 'flex', flexDirection: 'column' }}
 			/>
 		</WithPageWrapper>
 	)
