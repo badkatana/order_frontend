@@ -1,5 +1,5 @@
 export interface Note {
-	id?: string
+	noteId?: string
 	userId: string
 	text: string
 	tag?: string

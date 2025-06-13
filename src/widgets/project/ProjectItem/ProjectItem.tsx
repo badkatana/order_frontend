@@ -14,7 +14,7 @@ import { ProjectItemTasks } from './ProjectItemTasks'
 
 export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[]; notes?: Note[] }) => {
 	const { selectedProject: project } = useAppStore()
-	const { description, projectId, tasks, events, hardDeadline, softDeadline, notes, links } = project || {}
+	const { description, projectId, tasks, hardDeadline, softDeadline, notes, links } = project || {}
 	const [openModal, setOpenModal] = useState(false)
 
 	const projectTabs: CustomTabsType[] = [

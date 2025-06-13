@@ -10,11 +10,11 @@ import { Box, Button, TextField } from '@mui/material'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 
-export const InboxItem = ({ inboxNote }: { inboxNote: Note }) => {
+export const InboxItem = ({ inboxNote, refetch }: { inboxNote: Note; refetch: () => void }) => {
 	const { isDraft, text, id } = inboxNote
 	const [isEditable, setIsEditable] = useState(isDraft || false)
 	const [newText, setNewText] = useState(text)
-	const { handleSaveNote, handleRemoveNote } = useInboxNotes({})
+	const { handleSaveNote, handleRemoveNote } = useInboxNotes({ refetch })
 	const { handleConvertToTask } = convertNote()
 	const [open, setOpen] = useState(false)
 

@@ -1,4 +1,5 @@
 import { TaskForm } from '@/shared/formConfigs'
+import { addDefaultValuesInConfig } from '@/shared/lib/addLabelFormComponents'
 import { submitTask } from '@/widgets/lib/submitForm'
 import dayjs from 'dayjs'
 
@@ -12,11 +13,7 @@ export const convertNote = () => {
 		}
 		const taskConfig = TaskForm
 
-		const taskConfigWithDefaultValues = taskConfig.map(key => {
-			// @ts-ignore
-			if (defaultValues[key.name]) return { ...key, defaultValue: defaultValues[key.name] }
-			else return key
-		})
+		const taskConfigWithDefaultValues = addDefaultValuesInConfig({ config: taskConfig, defaultValues })
 
 		return { config: taskConfigWithDefaultValues, submit: submitTask }
 	}

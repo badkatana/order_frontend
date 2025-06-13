@@ -10,5 +10,5 @@ interface InboxStore {
 export const useInboxStore = create<InboxStore>(set => ({
 	drafts: [],
 	addDraft: note => set(state => ({ drafts: [...state.drafts, note] })),
-	removeDraft: id => set(state => ({ drafts: state.drafts.filter(d => d.id !== id) })),
+	removeDraft: id => set(state => ({ drafts: state.drafts.filter(d => d.noteId !== id) })),
 }))

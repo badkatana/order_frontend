@@ -27,7 +27,7 @@ export const InboxPage: React.FC = () => {
 				</ActionsArea>
 				<Box sx={{ justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
 					{userNotes?.length > 0 ? (
-						userNotes.map(item => <InboxItem key={item.id} inboxNote={item} />)
+						userNotes.map(item => <InboxItem key={item.id} inboxNote={item} refetch={refetch} />)
 					) : (
 						<Box sx={{ height: '70vh' }}>
 							<ContainerPlaceholder fullHeight />
