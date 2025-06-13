@@ -10,6 +10,7 @@ const rawTaskForm = [
 				component: InputString,
 				multiline: true,
 				required: true,
+				minLength: 4,
 			},
 			{
 				name: 'description',

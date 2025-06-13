@@ -43,6 +43,7 @@ export const useRenderEvents = (events: Event[], handleOpenContextMenu) => {
 					cursor: 'pointer',
 					userSelect: 'none',
 					borderRadius: 1,
+					textWrap: 'wrap',
 					boxShadow: '0 1px 3px rgba(0,0,0,0.3)',
 				}}
 			>

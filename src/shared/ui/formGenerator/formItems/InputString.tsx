@@ -11,20 +11,26 @@ export const InputString = ({
 	required = false,
 	defaultValue = '',
 	type,
+	minLength = 3,
 }: FormItem) => {
 	const formLabel = label ?? name
+
 	return (
 		<Controller
 			name={name}
 			control={control}
 			defaultValue={defaultValue}
-			rules={{
-				required: 'This field is required',
-				minLength: {
-					value: 3,
-					message: 'Minimum 3 characters required',
-				},
-			}}
+			rules={
+				required
+					? {
+							required: 'This field is required',
+							minLength: {
+								value: minLength,
+								message: 'Not enogh letters',
+							},
+					  }
+					: {}
+			}
 			render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
 				<>
 					<CustomFormLabel label={formLabel} />
