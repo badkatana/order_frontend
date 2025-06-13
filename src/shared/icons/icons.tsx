@@ -3,6 +3,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
+import AssistantIcon from '@mui/icons-material/Assistant'
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined'
 import CloseIcon from '@mui/icons-material/Close'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
@@ -68,6 +69,8 @@ export const getIcon = ({ name }: { name: string }) => {
 			return <SettingsOutlinedIcon />
 		case 'qrCode':
 			return <QrCode />
+		case 'sparkle':
+			return <AssistantIcon />
 		default:
 			return null
 	}

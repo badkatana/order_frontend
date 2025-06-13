@@ -25,7 +25,6 @@ export const CreateEditEntityModalWindow = ({
 	handleClose,
 	open,
 	submit,
-	method,
 	sx = {},
 }: CreateEditEntityModalWindow) => {
 	const [entityConfig, setEntityConfig] = useState<DefaultConfig>(

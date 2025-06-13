@@ -25,7 +25,7 @@ export const useRenderEvents = (events: Event[], handleOpenContextMenu) => {
 		return (
 			<Paper
 				onClick={e => handleOpenContextMenu(e, undefined, event)}
-				key={event.id}
+				key={event.eventId}
 				sx={{
 					position: 'absolute',
 					top: `${topEm}rem`,

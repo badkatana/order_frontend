@@ -19,3 +19,9 @@ export const createTask = async (task: Task) => {
 	const { data } = await authBackend.post(`/api/Task`, task)
 	return data
 }
+
+export const getRecommendations = async () => {
+	const userId = localStorage.getItem('user_id')
+	const { data } = await authBackend.get('/api/intellectual-planning', { params: { userId } })
+	return data
+}

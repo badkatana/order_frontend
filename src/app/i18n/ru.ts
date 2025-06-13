@@ -38,6 +38,13 @@ export const ru = {
 			priority: 'Приоритет',
 		},
 	},
+	stats: {
+		taskStats: 'Статистика задач',
+		taskTotal: 'Всего задач',
+		completed: 'Завершено',
+		overdue: 'Просрочено',
+		delay: 'Ср. задержка (ч)',
+	},
 	event: {
 		form: {
 			name: 'Название мероприятия',

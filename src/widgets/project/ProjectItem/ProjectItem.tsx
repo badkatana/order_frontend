@@ -8,6 +8,7 @@ import { ContainerPlaceholder, CustomTabs, DeadlinesComponent } from '@/shared/u
 import { ProjectUsersModal } from '@/widgets/modals'
 import { Box, styled, Typography } from '@mui/material'
 import { useState } from 'react'
+import { ProjectItemLinks } from './ProjectItemLinks'
 import { ProjectItemNotes } from './ProjectItemNotes'
 import { ProjectItemTasks } from './ProjectItemTasks'
 
@@ -24,6 +25,10 @@ export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[]; note
 		{
 			label: 'note.titlePlural',
 			content: <ProjectItemNotes notes={notes} />,
+		},
+		{
+			label: 'project.links',
+			content: <ProjectItemLinks links={links} />,
 		},
 	]
 

@@ -38,6 +38,13 @@ export const en = {
 			priority: 'Priority',
 		},
 	},
+	stats: {
+		taskStats: 'Task statistics',
+		taskTotal: 'Total tasks',
+		completed: 'Completed',
+		overdue: 'Overdue',
+		delay: 'Average delay (h)',
+	},
 	event: {
 		form: {
 			name: 'Event name',

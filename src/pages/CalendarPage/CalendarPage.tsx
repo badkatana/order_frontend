@@ -29,12 +29,13 @@ export const CalendarPage = () => {
 	const { data: overview } = useQuery({
 		queryKey: ['overview', savedWeek],
 		queryFn: getOverview,
+		refetchInterval: Infinity,
 	})
 
 	const calendarItem = useMemo(() => groupArraysByDate(data, dateRange), [data, dateRange])
 
-	const submitFunction = async (submitFunc, props) => {
-		await submitFunc(props)
+	const submitFunction = async values => {
+		await submitTask(values)
 		handleClose()
 	}
 
@@ -60,7 +61,7 @@ export const CalendarPage = () => {
 			</Box>
 			<CreateEditEntityModalWindow
 				type={'Task'}
-				submit={props => submitFunction(submitTask, props)}
+				submit={submitFunction}
 				open={open}
 				handleClose={handleClose}
 				sx={{ maxWidth: '50em', display: 'flex', flexDirection: 'column' }}

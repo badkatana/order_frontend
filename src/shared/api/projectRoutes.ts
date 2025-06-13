@@ -46,3 +46,8 @@ export const unassignTaskFromProject = async (taskId: string, projectId: number)
 export const assingNotesToProject = async (noteId: number | string, projectId: number) => {
 	return await authBackend.post(`/api/Project/${projectId}`, noteId)
 }
+
+export const getLinksPreviews = async links => {
+	const { data } = await authBackend.post('/api/Project/link-preview', links)
+	return data
+}
