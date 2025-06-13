@@ -25,7 +25,6 @@ export const ProjectItemLinks = ({ links }: { links: string[] | undefined | null
 				links: [...(selectedProject?.links || []), input.trim()],
 			} as Project
 
-			console.log(editedProject)
 			await editProject(editedProject)
 			setInput('')
 		}

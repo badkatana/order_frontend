@@ -71,8 +71,10 @@ export const InboxItem = ({ inboxNote, refetch }: { inboxNote: Note; refetch: ()
 					placeholder='write something'
 					value={newText}
 					fullWidth
+					multiline
 					sx={{
 						border: 'none',
+						maxWidth: '100%',
 					}}
 					onChange={e => {
 						setNewText(e.target.value)
