@@ -57,6 +57,7 @@ export const ProjectUsersModal = ({ open, handleClose }) => {
 									/>
 									<CustomIconButton
 										iconName={'removeUser'}
+										sx={{ color: 'black' }}
 										onClick={() => setRemovedUserIds(prev => [...prev, userId])}
 									/>
 								</Box>
@@ -64,6 +65,7 @@ export const ProjectUsersModal = ({ open, handleClose }) => {
 							{!inProject && (
 								<CustomIconButton
 									iconName={'addUser'}
+									sx={{ color: 'black' }}
 									onClick={() => setAddedUserIds(prev => [...prev, userId])}
 								/>
 							)}

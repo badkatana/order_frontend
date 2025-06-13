@@ -21,6 +21,7 @@ export const en = {
 			userInProject: 'In project',
 		},
 		search: 'Search project',
+		links: 'Saved links',
 	},
 	note: {
 		titlePlural: 'Notes',

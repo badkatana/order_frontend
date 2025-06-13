@@ -41,7 +41,7 @@ export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[]; note
 				<Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
 					<Box>
 						<Typography variant='h4'>{description}</Typography>
-						<Box display={'flex'} flexDirection={'row'} gap={1}>
+						<Box display={'flex'} flexDirection={'row'} gap={1} mt={1}>
 							<DeadlinesComponent variant='soft' date={softDeadline} />
 							<DeadlinesComponent variant='hard' date={hardDeadline} />
 						</Box>

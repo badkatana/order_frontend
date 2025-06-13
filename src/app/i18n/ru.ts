@@ -21,6 +21,7 @@ export const ru = {
 			userInProject: 'Уже в проекте',
 		},
 		search: 'Найти проект',
+		links: 'Сохранённые ссылки',
 	},
 	note: {
 		titlePlural: 'Notes',

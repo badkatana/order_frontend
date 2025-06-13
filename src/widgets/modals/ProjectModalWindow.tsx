@@ -27,7 +27,7 @@ export const ProjectModalWindow = ({
 			{/*  @ts-ignore */}
 			<GeneralForm
 				config={config}
-				submitFunction={data => submitProject({ ...editingProject, ...data }, queryClient)}
+				submitFunction={data => submitProject({ projectId: editingProject?.projectId, ...data }, queryClient)}
 			/>
 		</ModalBody>
 	)

@@ -5,23 +5,18 @@ import { ContainerPlaceholder } from '@/shared/ui'
 import { Box, Button, Card, CardContent, CardMedia, TextField, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 
 export const ProjectItemLinks = ({ links }: { links: string[] | undefined | null }) => {
 	const { selectedProject } = useAppStore()
 
-	const {
-		data: previews,
-		isFetching,
-		refetch,
-	} = useQuery({
+	const { data: previews, isFetching } = useQuery({
 		queryKey: ['links-preview', selectedProject?.projectId],
-		queryFn: getLinksPreviews,
+		queryFn: async () => getLinksPreviews(links),
 		enabled: Array.isArray(links) && links.length > 0,
 	})
+	const [input, setInput] = useState('')
 
 	if (isFetching) return <ContainerPlaceholder progress />
-	const [input, setInput] = useState('')
 
 	const handleAddUrl = async () => {
 		if (input.trim()) {
@@ -56,29 +51,53 @@ export const ProjectItemLinks = ({ links }: { links: string[] | undefined | null
 
 const LinkPreviewCard = ({ preview }) => {
 	return (
-		<Card sx={{ display: 'flex', flexDirection: 'column', width: 320, m: 2 }}>
+		<Card
+			onClick={() => window.open(preview.url, '_blank')}
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				width: 320,
+				m: 2,
+				cursor: 'pointer',
+				borderRadius: 3,
+				boxShadow: 6,
+				transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+				'&:hover': {
+					transform: 'translateY(-4px)',
+					boxShadow: 10,
+				},
+				bgcolor: 'rgb(48, 60, 70)',
+				color: 'white',
+			}}
+		>
 			{preview.image && (
 				<CardMedia
 					component='img'
 					image={preview.image}
 					alt={preview.title}
-					sx={{ height: 160, objectFit: 'cover' }}
+					sx={{
+						height: 160,
+						objectFit: 'cover',
+						borderTopLeftRadius: 12,
+						borderTopRightRadius: 12,
+					}}
 				/>
 			)}
+
 			<CardContent>
-				<Typography variant='subtitle1' fontWeight={600}>
-					{preview.title}
+				<Typography variant='subtitle1' fontWeight={600} gutterBottom noWrap>
+					{preview.title || 'No title'}
 				</Typography>
+
 				{preview.description && (
-					<Typography variant='body2' color='text.secondary' sx={{ mt: 1 }}>
-						{preview.description}
+					<Typography variant='body2' sx={{ color: 'grey.400' }}>
+						{preview.description.length > 50 ? `${preview.description.slice(0, 50)}…` : preview.description}
 					</Typography>
 				)}
-				<Box mt={2}>
-					<Link href={preview.url} target='_blank' rel='noopener noreferrer'>
-						{preview.url}
-					</Link>
-				</Box>
+
+				<Typography variant='caption' sx={{ color: 'grey.500', mt: 2, wordBreak: 'break-all' }}>
+					{preview.url}
+				</Typography>
 			</CardContent>
 		</Card>
 	)

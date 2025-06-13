@@ -16,13 +16,10 @@ export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 		return item
 	})
 
-	console.log(config)
 	const defaultValues = flatFields.reduce((acc, field) => {
 		acc[field.name] = field.defaultValue ?? ''
 		return acc
 	}, {} as DefaultObjectString)
-
-	console.log(defaultValues)
 
 	const methods = useForm({
 		mode: 'onChange',
