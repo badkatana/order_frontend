@@ -35,6 +35,7 @@ tsconfig.node.tsbuildinfo
 
 deploy.sh
 build.sh
+jest.config.js
 
 # test files 
 .last-run.json
