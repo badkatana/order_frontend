@@ -1,7 +1,8 @@
 import { DefaultConfig } from '../constants/constants'
+import { addLabelToFormComponents } from '../lib/addLabelFormComponents'
 import { InputString, InputToggle } from '../ui/formGenerator/formItems'
 
-export const AuthConfig: DefaultConfig = [
+export const rawAuthConfig: DefaultConfig = [
 	{
 		name: 'type',
 		component: InputToggle,
@@ -32,3 +33,5 @@ export const AuthConfig: DefaultConfig = [
 		required: true,
 	},
 ]
+
+export const AuthConfig = addLabelToFormComponents({ prefix: 'user.auth', config: rawAuthConfig })

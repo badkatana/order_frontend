@@ -23,6 +23,13 @@ export const ru = {
 		search: 'Найти проект',
 		links: 'Сохранённые ссылки',
 	},
+	user: {
+		auth: {
+			name: 'Имя',
+			email: 'Электронная почта',
+			password: 'Пароль',
+		},
+	},
 	note: {
 		titlePlural: 'Notes',
 		inbox: 'Входящие',

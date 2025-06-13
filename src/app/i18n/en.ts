@@ -23,6 +23,13 @@ export const en = {
 		search: 'Search project',
 		links: 'Saved links',
 	},
+	user: {
+		auth: {
+			name: 'Name',
+			email: 'Email',
+			password: 'Password',
+		},
+	},
 	note: {
 		titlePlural: 'Notes',
 		inbox: 'Inbox',
