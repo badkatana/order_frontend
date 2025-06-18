@@ -12,10 +12,11 @@ export const UtmnPage = () => {
 		queryKey: ['utmn'],
 		queryFn: () => getActivities(),
 	})
-	const classifiedEvents = classifyEvents(events?.$values ?? [])
-	const categories = Object.keys(classifiedEvents)
+	const classifiedEvents = classifyEvents(events ?? [])
+	const categories = ['Все', 'ШКН']
 	const [selectedCategory, setSelectedCategory] = useState<string>(categories[0])
-	const currentEvents = classifiedEvents[selectedCategory] || []
+	const currentEvents = events || []
+	console.log(events)
 
 	if (isFetching) return <ContainerPlaceholder fullHeight progress />
 
@@ -44,7 +45,7 @@ export const UtmnPage = () => {
 					}}
 				>
 					{currentEvents.length > 0 ? (
-						currentEvents.map(event => <ListItemUtmnEvent key={event.topic} event={event} />)
+						currentEvents.map(event => <ListItemUtmnEvent key={event} event={event} />)
 					) : (
 						<ContainerPlaceholder placeholder='No events in this category' fullHeight />
 					)}

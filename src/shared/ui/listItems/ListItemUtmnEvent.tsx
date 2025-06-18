@@ -3,29 +3,28 @@ import { Box, Divider, styled, Typography } from '@mui/material'
 import 'dayjs/locale/ru'
 import { AddCircleButton } from '../AddCircleButton/AddCircleButton'
 
-type ListItemUtmnEventProps = {
-	event: {
-		topic: string
-		category: string
-		date: string | null | undefined
-		original: string
-	}
+interface ListItemUtmnEventProps {
+	event: string
 }
+
 export const ListItemUtmnEvent = ({ event }: ListItemUtmnEventProps) => {
+	const [datePart, ...rest] = event.split(':')
+	const title = rest.join(':').trim()
+
 	return (
 		<Wrapper>
-			<Box display={'flex'} flexDirection={'column'} flex={1}>
-				<Typography fontSize={'1.2em'}>{event.topic} </Typography>
-				<Typography fontStyle={'italic'} color='grey'>
-					{event.date}
+			<Box display='flex' flexDirection='column' flex={1}>
+				<Typography fontSize='1.2em' fontWeight={600}>
+					{title}
+				</Typography>
+				<Typography fontStyle='italic' color='grey'>
+					{datePart}
 				</Typography>
 			</Box>
+
 			<RightSection>
 				<Divider orientation='vertical' variant='middle' flexItem sx={{ margin: '1em' }} />
-				<AddCircleButton
-					onClick={() => addEventToCalender(event.original)}
-					tooltip={'add event to a calender'}
-				/>
+				<AddCircleButton onClick={() => addEventToCalender(event)} tooltip='Добавить в календарь' />
 			</RightSection>
 		</Wrapper>
 	)

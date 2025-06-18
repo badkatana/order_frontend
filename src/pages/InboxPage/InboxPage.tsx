@@ -22,7 +22,7 @@ export const InboxPage: React.FC = () => {
 						style={{ backgroundColor: '#989488' }}
 						onClick={() => handleAddNewNote()}
 					>
-						create a note
+						Создать заметку
 					</Button>
 				</ActionsArea>
 				<Box sx={{ justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>

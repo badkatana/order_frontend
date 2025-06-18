@@ -1,10 +1,11 @@
 import DarkModeIcon from '@mui/icons-material/DarkMode'
-import { Card, CardContent, Stack, Switch, Typography } from '@mui/material'
+import { Card, CardContent, Stack, Switch, Typography, useTheme } from '@mui/material'
 import { t } from 'i18next'
 import { Controller, useFormContext } from 'react-hook-form'
 
 export const ThemeToggle = () => {
 	const { control } = useFormContext()
+	const theme = useTheme()
 
 	return (
 		<Controller
@@ -18,7 +19,13 @@ export const ThemeToggle = () => {
 								<DarkModeIcon color={field.value ? 'primary' : 'disabled'} />
 								<Typography variant='subtitle1'>{t('settings.darkTheme')}</Typography>
 							</Stack>
-							<Switch {...field} checked={field.value} />
+							<Switch
+								{...field}
+								checked={field.value}
+								onChange={e => {
+									field.onChange()
+								}}
+							/>
 						</Stack>
 					</CardContent>
 				</Card>

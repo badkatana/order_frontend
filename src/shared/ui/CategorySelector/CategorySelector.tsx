@@ -13,7 +13,7 @@ export const CategorySelector: React.FC<{
 			sx={{ width: 300 }}
 			size='small'
 			onChange={(_, newValue) => onCategoryChange(newValue)}
-			renderInput={params => <TextField {...params} label='Category' />}
+			renderInput={params => <TextField {...params} label='Институт' />}
 		/>
 	)
 }

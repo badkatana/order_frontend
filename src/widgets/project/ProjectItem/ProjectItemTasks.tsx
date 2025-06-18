@@ -26,7 +26,7 @@ export const ProjectItemTasks = ({ tasks, projectId }: { tasks: Task[] | any[]; 
 			<CustomIconButton
 				iconName={'addCross'}
 				sx={{ marginTop: 1 }}
-				title={'Add task'}
+				title={'Добавить'}
 				onClick={() => setDrafts({ taskId: 'draft-task', isDraft: true, priority, status: false, projectId })}
 			></CustomIconButton>
 		</Grid>
@@ -35,9 +35,9 @@ export const ProjectItemTasks = ({ tasks, projectId }: { tasks: Task[] | any[]; 
 	return (
 		<Box sx={{ px: 2, py: 2 }}>
 			<Grid container spacing={2}>
-				{renderColumn('High Priority', high as Task[], 1)}
-				{renderColumn('Medium Priority', middle as Task[], 2)}
-				{renderColumn('Low Priority', low as Task[], 3)}
+				{renderColumn('Высокая важность', high as Task[], 1)}
+				{renderColumn('Средняя важность', middle as Task[], 2)}
+				{renderColumn('Низкая важность', low as Task[], 3)}
 			</Grid>
 		</Box>
 	)

@@ -40,6 +40,7 @@ export type DefaultConfig = {
 }[]
 
 export const DATE_FORMAT = 'YYYY-MM-DD'
+export const RU_DATE_FORMAT = 'DD.MM.YYYY'
 export const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm'
 export type CALENDAR_ITEM = { [key: string]: { tasks: Task[] | []; events: Event[] | [] } }
 

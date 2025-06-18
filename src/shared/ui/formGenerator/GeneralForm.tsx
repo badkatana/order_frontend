@@ -30,7 +30,6 @@ export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 		<FormProvider {...methods}>
 			<Form onSubmit={methods.handleSubmit(submitFunction)}>
 				<Stack spacing={3} marginTop={2} display='flex' flexDirection={'column'}>
-					{/* Отображение колонок */}
 					<Stack direction='row' spacing={3} display={'flex'} alignItems={'center'}>
 						{config
 							.filter(item => 'column' in item)

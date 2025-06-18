@@ -1,15 +1,14 @@
 import { useAppStore } from '@/app'
-import { getRecommendations } from '@/shared/api/taskRoutes'
 import { CALENDAR_ITEM, DATE_FORMAT, SCROLLBAR } from '@/shared/constants/constants'
-import { getIcon } from '@/shared/icons/icons'
 import { AddCircleButton, ContainerPlaceholder, FileUploadButton } from '@/shared/ui'
 import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
 import { uploadScheduleFromModeus } from '@/widgets/lib/submitForm'
 import AssistantIcon from '@mui/icons-material/Assistant'
-import { Box, Card, CardContent, Divider, IconButton, Typography } from '@mui/material'
-import { t } from 'i18next'
+import { Box, IconButton, Typography } from '@mui/material'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { UploadButton } from '../CalendarStyles'
+import { TaskActivityModal, TaskStatsCard } from './Stats'
 import { WeekPicker } from './WeekPeeker'
 
 export const WeekOverview = ({
@@ -23,8 +22,7 @@ export const WeekOverview = ({
 }) => {
 	const { setSavedWeek, savedDate } = useAppStore()
 	const { t } = useTranslation()
-	const response = getRecommendations()
-	const assistantIcon = getIcon('sparkle')
+	const [openModal, setOpenModal] = useState<boolean>(false)
 
 	return (
 		<Box width={'25%'} display={'flex'} flexDirection={'column'} gap={'1em'} maxHeight={'90vh'}>
@@ -37,7 +35,7 @@ export const WeekOverview = ({
 			/>
 			<Box sx={BoxContainerStyles}>
 				<Box sx={{ position: 'absolute', top: 8, right: 8 }}>
-					<IconButton onClick={() => console.log('')} size='small'>
+					<IconButton onClick={() => setOpenModal(true)} size='small'>
 						<AssistantIcon />
 					</IconButton>
 				</Box>
@@ -56,50 +54,9 @@ export const WeekOverview = ({
 			</Box>
 			<Box>
 				<TaskStatsCard {...overview} />
+				<TaskActivityModal open={openModal} onClose={() => setOpenModal(false)} />
 			</Box>
 		</Box>
-	)
-}
-
-type TaskStats = {
-	tasksTotal: number
-	tasksCompleted: number
-	tasksOverdue: number
-	averageCompletionDelayHours: number
-	completionRatePerDay: Record<string, number>
-}
-
-export const TaskStatsCard = ({ tasksTotal, tasksCompleted, tasksOverdue, averageCompletionDelayHours }: TaskStats) => {
-	return (
-		<Card sx={{ minWidth: 260, borderRadius: 2, boxShadow: 1 }}>
-			<CardContent>
-				<Typography variant='h6' gutterBottom>
-					{t('stats.taskStats')}
-				</Typography>
-
-				<Box display='flex' justifyContent='space-between' mb={1}>
-					<Typography variant='body2'>{t('stats.taskTotal')}</Typography>
-					<Typography fontWeight={500}>{tasksTotal || 15}</Typography>
-				</Box>
-
-				<Box display='flex' justifyContent='space-between' mb={1}>
-					<Typography variant='body2'>{t('stats.completed')}</Typography>
-					<Typography fontWeight={500}>{tasksCompleted || 6}</Typography>
-				</Box>
-
-				<Box display='flex' justifyContent='space-between' mb={1}>
-					<Typography variant='body2'>{t('stats.overdue')}</Typography>
-					<Typography fontWeight={500}>{tasksOverdue || 1}</Typography>
-				</Box>
-
-				<Divider sx={{ my: 1 }} />
-
-				<Box display='flex' justifyContent='space-between'>
-					<Typography variant='body2'>{t('stats.delay')}</Typography>
-					<Typography fontWeight={500}>{averageCompletionDelayHours || 2}</Typography>
-				</Box>
-			</CardContent>
-		</Card>
 	)
 }
 
@@ -115,5 +72,5 @@ const BoxContainerStyles = {
 	...SCROLLBAR,
 	flexDirection: 'column',
 	alignItems: 'center',
-	position: 'relative', // добавляем для абсолютного позиционирования
+	position: 'relative',
 }

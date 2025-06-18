@@ -4,6 +4,7 @@ export const en = {
 	messages: {
 		registrationNotAllowed: 'Temporary registration of new users is prohibited',
 		noUsers: 'No users. Please reload a page',
+		noDataEmpty: 'Empty',
 	},
 	actions: {
 		edit: 'Edit',
@@ -52,6 +53,11 @@ export const en = {
 		completed: 'Completed',
 		overdue: 'Overdue',
 		delay: 'Average delay (h)',
+		activityModal: {
+			title: 'Task Activity Summary',
+			avgTooltip: 'How much time you spend on one task on average: from creation to closure',
+			recommendToStart: 'Recommended start dates',
+		},
 	},
 	event: {
 		form: {

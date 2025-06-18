@@ -14,6 +14,7 @@ import { useAuth } from './shared/hooks'
 import { theme } from './shared/ui/theme'
 
 dayjs.extend(updateLocale)
+
 dayjs.updateLocale('en', {
 	weekStart: 1,
 })
