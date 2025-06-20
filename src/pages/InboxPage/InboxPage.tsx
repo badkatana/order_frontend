@@ -2,6 +2,7 @@ import { useInboxData } from '@/features/inbox/useInboxData'
 import { ContainerPlaceholder, WithPageWrapper } from '@/shared/ui'
 import { InboxItem } from '@/widgets/inbox/InboxItem'
 import { Box, Button, styled } from '@mui/material'
+import { t } from 'i18next'
 import React from 'react'
 import { useInboxNotes } from '../../features/inbox/useInboxNotes'
 
@@ -22,7 +23,7 @@ export const InboxPage: React.FC = () => {
 						style={{ backgroundColor: '#989488' }}
 						onClick={() => handleAddNewNote()}
 					>
-						Создать заметку
+						{t('note.create')}
 					</Button>
 				</ActionsArea>
 				<Box sx={{ justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>

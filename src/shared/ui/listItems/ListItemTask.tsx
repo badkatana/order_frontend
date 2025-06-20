@@ -1,5 +1,6 @@
 import { useManageTasks } from '@/features/task/useManageTasks'
 import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
+import { DefaultObjectString } from '@/shared/constants/constants'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { Box, Checkbox, TextField, Typography } from '@mui/material'
 import { useQueryClient } from '@tanstack/react-query'
@@ -11,9 +12,10 @@ import { ListWithActions } from './ListWithActions'
 type ListItemTask = {
 	task: Task
 	afterSubmit?: () => void
+	sx?: DefaultObjectString
 }
 
-export const ListItemTask = ({ task, afterSubmit }: ListItemTask) => {
+export const ListItemTask = ({ task, afterSubmit, sx = {} }: ListItemTask) => {
 	const { taskId, name, isDraft, status, projectId } = task
 	const [value, setValue] = useState(status)
 	const [open, setOpen] = useState<boolean>(false)
@@ -37,6 +39,7 @@ export const ListItemTask = ({ task, afterSubmit }: ListItemTask) => {
 				isEditable={isEditable}
 				actionsStyles={{
 					display: isEditable ? 'none' : 'flex',
+					...sx,
 				}}
 			>
 				<Checkbox

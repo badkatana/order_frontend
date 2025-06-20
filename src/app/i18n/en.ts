@@ -1,5 +1,4 @@
 export const en = {
-	calendar: 'Calendar',
 	upload_schedule: 'Upload Schedule',
 	messages: {
 		registrationNotAllowed: 'Temporary registration of new users is prohibited',
@@ -11,10 +10,13 @@ export const en = {
 		create: 'Create',
 		delete: 'Delete',
 		save: 'Save',
+		add: 'Add',
 		show: 'Show',
 		login: 'Start',
+		logout: 'Log out',
 	},
 	project: {
+		titlePlural: 'Projects',
 		createProject: 'Create a project',
 		projectUsers: {
 			title: 'Share project',
@@ -24,16 +26,21 @@ export const en = {
 		search: 'Search project',
 		links: 'Saved links',
 	},
+	calendar: {
+		title: 'Calendar',
+	},
 	user: {
 		auth: {
 			name: 'Name',
 			email: 'Email',
 			password: 'Password',
+			type: '',
 		},
 	},
 	note: {
 		titlePlural: 'Notes',
 		inbox: 'Inbox',
+		create: 'Create a note',
 	},
 	task: {
 		titleSingular: 'Task',
@@ -68,8 +75,11 @@ export const en = {
 		},
 	},
 	settings: {
-		appearance: 'Appereance',
+		title: 'Settings',
 		language: 'Language',
 		darkTheme: 'Dark mode',
+	},
+	utmn: {
+		title: 'Utmn events',
 	},
 }

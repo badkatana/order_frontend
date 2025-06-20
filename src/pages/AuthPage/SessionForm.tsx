@@ -14,7 +14,7 @@ export const SessionForm = () => {
 	const navigate = useNavigate()
 	const [helperText, setHelperText] = useState<string | null>()
 	const { login } = useAuth()
-	const isRegistrationAllowed = true
+	const isRegistrationAllowed = import.meta.env.VITE_ALLOW_REGISTRATION
 
 	const validateFields = async (values: DefaultObjectString) => {
 		if (!values.type && isRegistrationAllowed) setHelperText('Are you want to register or login? ')

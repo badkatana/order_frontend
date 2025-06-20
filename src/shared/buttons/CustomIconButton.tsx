@@ -1,10 +1,12 @@
 import { Button, Typography } from '@mui/material'
 import { getIcon } from '../icons/icons'
+import { getTranslatedText } from '../lib'
 
 // @ts-ignore
-export const CustomIconButton = ({ iconName, onClick, title = undefined, ...props }) => {
+export const CustomIconButton = ({ iconName, onClick, title = '', ...props }) => {
 	const storedIcon = getIcon({ name: iconName })
 	const { sx, ...restProps } = props
+	const translatedTitle = getTranslatedText(title)
 
 	return (
 		// @ts-ignore
@@ -20,7 +22,7 @@ export const CustomIconButton = ({ iconName, onClick, title = undefined, ...prop
 			{...restProps}
 		>
 			{storedIcon}
-			{title && <Typography marginLeft={0.5}>{title}</Typography>}
+			<Typography marginLeft={0.5}>{translatedTitle}</Typography>
 		</Button>
 	)
 }

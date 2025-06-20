@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen'
 
-export const ContainerPlaceholder = ({ placeholder, fullHeight = true, progress = false, sx = undefined }) => {
+export const ContainerPlaceholder = ({ placeholder = '', fullHeight = true, progress = false, sx = undefined }) => {
 	const { t } = useTranslation()
 	const emptyMessage = t('messages.noDataEmpty')
 	const canTranslateMessage = i18n.exists(placeholder)

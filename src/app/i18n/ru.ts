@@ -1,20 +1,28 @@
 export const ru = {
-	calendar: 'Календарь',
 	upload_schedule: 'Загрузить расписание',
 	messages: {
 		registrationNotAllowed: 'Временно регистрация новых пользователей запрещена',
 		noUsers: 'Нет пользователей. Пожалуйста, перезагрузите страницу',
 		noDataEmpty: 'Нет данных',
 	},
+	appbar: {
+		menu: 'Меню',
+	},
 	actions: {
 		edit: 'Редактировать',
 		create: 'Создать',
+		add: 'Добавить',
 		delete: 'Удалить',
 		save: 'Сохранить',
 		login: 'Начать',
 		show: 'Показать',
+		logout: 'Выйти',
+	},
+	calendar: {
+		title: 'Календарь',
 	},
 	project: {
+		titlePlural: 'Проекты',
 		createProject: 'Создайте проект',
 		projectUsers: {
 			title: 'Общий доступ',
@@ -29,11 +37,13 @@ export const ru = {
 			name: 'Имя',
 			email: 'Электронная почта',
 			password: 'Пароль',
+			type: '',
 		},
 	},
 	note: {
 		titlePlural: 'Заметки',
 		inbox: 'Входящие',
+		create: 'Создать заметку',
 	},
 	task: {
 		titleSingular: 'Задача',
@@ -68,8 +78,11 @@ export const ru = {
 		},
 	},
 	settings: {
-		appearance: 'Вид приложения',
+		title: 'Настройки',
 		language: 'Язык приложения',
 		darkTheme: 'Тёмная тема',
+	},
+	utmn: {
+		title: 'События университета',
 	},
 }

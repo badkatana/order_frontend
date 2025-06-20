@@ -1,5 +1,6 @@
 import { getIcon } from '@/shared/icons/icons'
 import { AppBar, List, ListItem, ListItemText, Toolbar, Tooltip } from '@mui/material'
+import { t } from 'i18next'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserSettings } from '../userSettings/UserSettings'
@@ -35,13 +36,13 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 			clickFunction: () => setOpenSettings(true),
 			key: 'user_toolbar',
 			icon: 'user',
-			tooltip: 'user.titleSingular',
+			tooltip: 'settings.title',
 		},
 	]
 
 	const items = [...notPathItems, ...AppBarItems].map(item => {
 		return (
-			<Tooltip title={item.tooltip ?? 'page'} key={`tooltip_${item.name}`}>
+			<Tooltip title={t(item.tooltip) ?? 'page'} key={`tooltip_${item.name}`}>
 				{/*  @ts-ignore */}
 				<ListItem key={item.key} onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
 					{getIcon({ name: item.icon })}

@@ -1,6 +1,5 @@
 import { Task } from '@/entities/Task'
 import { Dayjs } from 'dayjs'
-import { ComponentType } from 'react'
 
 export const texts = [
 	{ text: 'getting things done', direction: 'left', speed: 10 },
@@ -24,8 +23,8 @@ export type DefaultObjectString = {
 }
 
 export type DefaultConfig = {
-	component: ComponentType<any>
-	name: string
+	name?: string
+	component: any
 	groupItems?: { value: string | number; label: string | null; hidden?: boolean }[]
 	required?: boolean
 	placeholder?: string

@@ -1,6 +1,5 @@
 import i18n from '@/app/i18n/i18n'
 import { getUserInfo } from '@/shared/api/userRoutes'
-import { DefaultConfig } from '@/shared/constants/constants'
 import { ModalBody } from '@/shared/ui'
 import { CustomQrCode } from '@/shared/ui/CustomQrCode/CustomQrCode'
 import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
@@ -10,7 +9,7 @@ import { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher'
 import { ThemeToggle } from './LanguageSwitcher/ThemeToggle'
 
 export const UserSettings = ({ open, handleClose }) => {
-	const userConfig: DefaultConfig[] = [
+	const userConfig = [
 		{
 			name: 'language',
 			label: 'language',
@@ -36,7 +35,7 @@ export const UserSettings = ({ open, handleClose }) => {
 	if (isFetching) return
 
 	return (
-		<ModalBody open={open} handleClose={handleClose} title={'settings.appearance'} sx={{ maxWidth: '30em' }}>
+		<ModalBody open={open} handleClose={handleClose} title={'settings.title'} sx={{ maxWidth: '30em' }}>
 			<Box
 				sx={{
 					textAlign: 'center',
@@ -61,7 +60,6 @@ export const UserSettings = ({ open, handleClose }) => {
 						</Tooltip>
 					</Box>
 
-					{/* Аватар */}
 					<Avatar
 						sx={{
 							width: 80,

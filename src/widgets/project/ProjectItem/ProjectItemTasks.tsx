@@ -26,7 +26,7 @@ export const ProjectItemTasks = ({ tasks, projectId }: { tasks: Task[] | any[]; 
 			<CustomIconButton
 				iconName={'addCross'}
 				sx={{ marginTop: 1 }}
-				title={'Добавить'}
+				title={'actions.add'}
 				onClick={() => setDrafts({ taskId: 'draft-task', isDraft: true, priority, status: false, projectId })}
 			></CustomIconButton>
 		</Grid>

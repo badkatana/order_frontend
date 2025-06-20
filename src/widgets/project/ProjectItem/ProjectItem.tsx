@@ -14,13 +14,13 @@ import { ProjectItemTasks } from './ProjectItemTasks'
 
 export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[]; notes?: Note[] }) => {
 	const { selectedProject: project } = useAppStore()
-	const { description, projectId, tasks, hardDeadline, softDeadline, notes, links } = project || {}
+	const { description, projectId, tasks, hardDeadline, softDeadline, notes, links } = (project as Project) || {}
 	const [openModal, setOpenModal] = useState(false)
 
 	const projectTabs: CustomTabsType[] = [
 		{
 			label: 'task.titlePlural',
-			content: <ProjectItemTasks projectId={projectId} tasks={tasks} />,
+			content: <ProjectItemTasks projectId={projectId} tasks={tasks || []} />,
 		},
 		{
 			label: 'note.titlePlural',
@@ -49,17 +49,6 @@ export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[]; note
 
 					<CustomIconButton iconName={'manageUser'} onClick={() => setOpenModal(true)} />
 				</Box>
-
-				<Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'row',
-						justifyContent: 'space-between',
-						gap: '1em',
-						width: '100%',
-						paddingTop: '1em',
-					}}
-				></Box>
 			</Box>
 			<CustomTabs tabs={projectTabs} tabPanelSx={{ minHeight: '50em' }} />
 		</ProjectCard>
