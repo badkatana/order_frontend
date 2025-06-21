@@ -9,6 +9,9 @@ import { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher'
 import { ThemeToggle } from './LanguageSwitcher/ThemeToggle'
 
 export const UserSettings = ({ open, handleClose }) => {
+	const theme = useTheme()
+	console.log('theme', theme.palette.mode)
+
 	const userConfig = [
 		{
 			name: 'language',
@@ -20,7 +23,7 @@ export const UserSettings = ({ open, handleClose }) => {
 		{
 			name: 'theme',
 			label: 'theme',
-			defaultValue: 'dark',
+			defaultValue: theme.palette.mode === 'dark' ? true : false,
 			component: ThemeToggle,
 			required: true,
 		},
@@ -30,7 +33,6 @@ export const UserSettings = ({ open, handleClose }) => {
 		queryKey: ['userInfo'],
 		queryFn: getUserInfo,
 	})
-	const theme = useTheme()
 
 	if (isFetching) return
 

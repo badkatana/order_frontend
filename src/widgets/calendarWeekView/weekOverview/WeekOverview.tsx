@@ -4,7 +4,7 @@ import { AddCircleButton, ContainerPlaceholder, FileUploadButton } from '@/share
 import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
 import { uploadScheduleFromModeus } from '@/widgets/lib/submitForm'
 import AssistantIcon from '@mui/icons-material/Assistant'
-import { Box, IconButton, Typography } from '@mui/material'
+import { Box, IconButton, Paper, Typography, useTheme } from '@mui/material'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { UploadButton } from '../CalendarStyles'
@@ -23,6 +23,7 @@ export const WeekOverview = ({
 	const { setSavedWeek, savedDate } = useAppStore()
 	const { t } = useTranslation()
 	const [openModal, setOpenModal] = useState<boolean>(false)
+	const theme = useTheme()
 
 	return (
 		<Box width={'25%'} display={'flex'} flexDirection={'column'} gap={'1em'} maxHeight={'90vh'}>
@@ -33,14 +34,14 @@ export const WeekOverview = ({
 				accept='.ics'
 				buttonStyle={UploadButton}
 			/>
-			<Box sx={BoxContainerStyles}>
-				<Box sx={{ position: 'absolute', top: 8, right: 8 }}>
+			<Paper sx={BoxContainerStyles}>
+				<Box sx={{ position: 'absolute', top: 8, right: 8, color: theme.palette.text.primary }}>
 					<IconButton onClick={() => setOpenModal(true)} size='small'>
 						<AssistantIcon />
 					</IconButton>
 				</Box>
 
-				<Typography>{t('task.titlePlural')}</Typography>
+				<Typography color={theme.palette.text.primary}>{t('task.titlePlural')}</Typography>
 				{calendarItem[savedDate.format(DATE_FORMAT)]?.tasks.length === 0 && <ContainerPlaceholder fullHeight />}
 				{calendarItem[savedDate.format(DATE_FORMAT)]?.tasks.map((task, index) => (
 					<ListItemTask key={`${task.name}_${index}_${savedDate.format(DATE_FORMAT)}`} task={task} />
@@ -51,7 +52,7 @@ export const WeekOverview = ({
 						setOpen(true)
 					}}
 				/>
-			</Box>
+			</Paper>
 			<Box>
 				<TaskStatsCard {...overview} />
 				<TaskActivityModal open={openModal} onClose={() => setOpenModal(false)} />
@@ -63,8 +64,6 @@ export const WeekOverview = ({
 const BoxContainerStyles = {
 	padding: 1,
 	borderRadius: '0.5em',
-	borderColor: 'grey',
-	border: '0.1em solid gray',
 	display: 'flex',
 	minHeight: '25em',
 	height: '40%',

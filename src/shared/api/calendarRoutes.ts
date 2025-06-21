@@ -25,6 +25,6 @@ export const uploadFileTypeModeus = async (formData: any) => {
 
 export const getOverview = async () => {
 	const userId = localStorage.getItem('user_id')
-	const { data } = await authBackend.get(`overview`, { params: { userId } })
+	const { data } = await authBackend.get(`api/overview`, { params: { userId } })
 	return data
 }

@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@emotion/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import 'dayjs/locale/en'
@@ -10,8 +9,8 @@ import './app/i18n/i18n'
 import routes from './app/routes/Routes'
 import { AuthProvider } from './shared/context/AuthProvider'
 import { SnackbarProvider } from './shared/context/SnackbarProvider'
+import { ThemeContextProvider } from './shared/context/ThemeContext'
 import { useAuth } from './shared/hooks'
-import { theme } from './shared/ui/theme'
 
 dayjs.extend(updateLocale)
 
@@ -24,9 +23,9 @@ function App() {
 
 	return (
 		<Router>
-			<AuthProvider>
+			<ThemeContextProvider>
 				<QueryClientProvider client={queryClient}>
-					<ThemeProvider theme={theme}>
+					<AuthProvider>
 						<SnackbarProvider>
 							<Routes>
 								{routes.map(route => {
@@ -43,9 +42,9 @@ function App() {
 								})}
 							</Routes>
 						</SnackbarProvider>
-					</ThemeProvider>
+					</AuthProvider>
 				</QueryClientProvider>
-			</AuthProvider>
+			</ThemeContextProvider>
 		</Router>
 	)
 }

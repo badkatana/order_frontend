@@ -2,7 +2,7 @@ import { useManageTasks } from '@/features/task/useManageTasks'
 import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
 import { DefaultObjectString } from '@/shared/constants/constants'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
-import { Box, Checkbox, TextField, Typography } from '@mui/material'
+import { Box, Checkbox, TextField, Typography, useTheme } from '@mui/material'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Task } from '../../../entities/Task'
@@ -22,6 +22,7 @@ export const ListItemTask = ({ task, afterSubmit, sx = {} }: ListItemTask) => {
 	const [isEditable, setIsEditable] = useState<boolean>(isDraft || false)
 	const [editedText, setEditedText] = useState(task.name || '')
 	const queryClient = useQueryClient()
+	const theme = useTheme()
 	const { submitEditedTask } = useManageTasks({ editedText, isEditable, setIsEditable })
 
 	return (
@@ -50,10 +51,10 @@ export const ListItemTask = ({ task, afterSubmit, sx = {} }: ListItemTask) => {
 						editTask({ ...task, status: !value })
 					}}
 					sx={{
-						color: 'white',
+						color: theme.palette.text.primary,
 						display: isEditable ? 'none' : 'block',
 						'&.Mui-checked': {
-							color: 'white',
+							color: theme.palette.text.primary,
 						},
 					}}
 				/>

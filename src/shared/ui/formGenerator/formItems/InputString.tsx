@@ -33,7 +33,7 @@ export const InputString = ({
 			}
 			render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
 				<>
-					<CustomFormLabel label={formLabel} />
+					<CustomFormLabel label={formLabel} required={required} />
 					<TextField
 						value={value}
 						ref={ref}

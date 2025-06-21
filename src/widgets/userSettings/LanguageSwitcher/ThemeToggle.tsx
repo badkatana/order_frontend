@@ -1,11 +1,12 @@
+import { useAppTheme } from '@/shared/context/ThemeContext'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
-import { Card, CardContent, Stack, Switch, Typography, useTheme } from '@mui/material'
+import { Card, CardContent, Stack, Switch, Typography } from '@mui/material'
 import { t } from 'i18next'
 import { Controller, useFormContext } from 'react-hook-form'
 
 export const ThemeToggle = () => {
 	const { control } = useFormContext()
-	const theme = useTheme()
+	const { setMode } = useAppTheme()
 
 	return (
 		<Controller
@@ -23,7 +24,10 @@ export const ThemeToggle = () => {
 								{...field}
 								checked={field.value}
 								onChange={e => {
-									field.onChange()
+									const value = !field.value ? 'dark' : 'light'
+									console.log(value)
+									setMode(value)
+									field.onChange(e)
 								}}
 							/>
 						</Stack>

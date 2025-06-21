@@ -42,7 +42,7 @@ export const TaskActivityModal: React.FC<TaskActivityModalProps> = ({ open, onCl
 			open={open}
 			handleClose={onClose}
 			title={t('stats.activityModal.title')}
-			sx={{ fullWidth: true, maxWidth: 'md', color: 'white' }}
+			sx={{ fullWidth: true, maxWidth: 'md' }}
 		>
 			<DialogContent dividers>
 				<Typography sx={{ width: '100%' }}>{t('stats.activityModal.avgTooltip')}</Typography>

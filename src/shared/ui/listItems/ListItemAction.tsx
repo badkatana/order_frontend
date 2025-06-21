@@ -1,5 +1,6 @@
 import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
 import { Box } from '@mui/material'
+import { theme } from '../theme'
 
 type ListItemActionsProps = {
 	deleteAction: () => void
@@ -44,7 +45,7 @@ export const ListItemActions = ({
 				display: 'flex',
 				justifyContent: 'flex-end',
 				alignItems: 'center',
-				color: 'white',
+				color: theme.palette.text.secondary,
 				opacity: 0,
 				gap: 1,
 				transition: 'opacity 0.3s',
@@ -62,12 +63,7 @@ export const ListItemActions = ({
 			}}
 		>
 			{getUserActions().map(button => (
-				<CustomIconButton
-					sx={{
-						color: 'white',
-					}}
-					{...button}
-				/>
+				<CustomIconButton sx={{}} {...button} />
 			))}
 		</Box>
 	)

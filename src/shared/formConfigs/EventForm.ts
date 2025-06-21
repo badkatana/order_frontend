@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import { DefaultConfig } from '../constants/constants'
 import { addLabelToFormComponents } from '../lib/addLabelFormComponents'
 import { InputDateTime, InputString, InputToggle } from '../ui/formGenerator/formItems'
@@ -9,6 +8,7 @@ const rawEventForm = [
 			{
 				name: 'name',
 				component: InputString,
+				required: true,
 			},
 			{
 				name: 'priority',
@@ -28,7 +28,6 @@ const rawEventForm = [
 				name: 'periodStart',
 				component: InputDateTime,
 				label: 'From time: ',
-				defaultValue: dayjs(),
 				// maxDate: dayjs(),
 				// minDate: dayjs(),
 				required: true,
@@ -39,7 +38,7 @@ const rawEventForm = [
 				component: InputDateTime,
 				// maxDate: dayjs(),
 				// minDate: dayjs(),
-				defaultValue: dayjs(),
+
 				required: true,
 			},
 		],

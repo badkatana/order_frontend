@@ -1,7 +1,9 @@
 import i18n from '@/app/i18n/i18n'
 import { t } from 'i18next'
 
-export const getTranslatedText = (text: string) => {
+export const getTranslatedText = (text: string | null | undefined) => {
+	if (text === '' || !text) return ''
+
 	let isTranslationMissing = !i18n.exists(text)
 
 	if (isTranslationMissing) {

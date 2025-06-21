@@ -4,14 +4,14 @@ import { CustomContextMenu } from '@/shared/ui'
 import { submitEditedEvent, submitEvent } from '@/widgets/lib/submitForm/submitFunctions'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import dayjs from 'dayjs'
+import { Dayjs } from 'dayjs'
 import { useState } from 'react'
 
 export const useManageEvents = () => {
 	const [anchorEl, setAnchorEl] = useState(null)
 	const [openEventModal, setOpenEventModal] = useState(false)
-	const [selectedEvent, setSelectedEvent] = useState<Event>(null)
-	const [selectedDate, setSelectedDate] = useState(null)
+	const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
+	const [selectedDate, setSelectedDate] = useState<Dayjs | null>()
 	const queryClient = useQueryClient()
 	const refetch = () => queryClient.refetchQueries({ queryKey: ['calendar'], exact: false })
 	const openContextMenu = Boolean(anchorEl)
@@ -41,7 +41,8 @@ export const useManageEvents = () => {
 	const handleOpenContextMenu = (e, date = undefined, event = undefined) => {
 		e.preventDefault()
 		setAnchorEl(e.currentTarget)
-		if (date) setSelectedDate(dayjs(date))
+		console.log('date', date)
+		if (date) setSelectedDate(date)
 		if (event) setSelectedEvent(event)
 	}
 
@@ -64,12 +65,12 @@ export const useManageEvents = () => {
 			type={'Event'}
 			editEntityItem={selectedEvent}
 			open={openEventModal}
+			defaultDate={selectedDate}
 			handleClose={() => {
 				setOpenEventModal(false)
 				setSelectedEvent(undefined)
 				setSelectedDate(null)
 			}}
-			defaultDate={selectedDate}
 			submit={values => handleSubmitEvent(values)}
 		/>
 	)

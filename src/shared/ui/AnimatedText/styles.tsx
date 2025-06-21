@@ -16,7 +16,6 @@ export const TextWrapper = styled(Box)({
 export const BigText = styled(Typography)({
 	fontWeight: 'bold',
 	fontStyle: 'italic',
-	color: 'transparent',
 	textStroke: '2px neon-green',
 	textShadow: '0 0 5px rgba(0, 255, 0, 0.5)',
 	fontSize: { xs: '2rem', sm: '3rem', md: '4rem', lg: '6rem' },

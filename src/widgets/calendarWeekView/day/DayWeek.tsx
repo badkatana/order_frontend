@@ -6,7 +6,7 @@ import { DATE_FORMAT } from '@/shared/constants/constants'
 import { DateHeader } from '@/shared/ui/DateHeader'
 import { submitEvent } from '@/widgets/lib/submitForm'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, useTheme } from '@mui/material'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 
@@ -23,8 +23,11 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 	const { setSavedDate, savedDate } = useAppStore()
 	const [openModal, setOpenModal] = useState(false)
 	const { handleOpenContextMenu, EventContextMenuModal, EventCreateEditModal } = useManageEvents()
+	const theme = useTheme()
 
-	const renderedEvents = useRenderEvents(events || [], handleOpenContextMenu)
+	console.log('date in dayweek', date)
+
+	const renderedEvents = useRenderEvents(events || [], handleOpenContextMenu, date)
 
 	return (
 		<Box
@@ -54,7 +57,7 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 					borderRadius: '0.5em',
 					cursor: 'pointer',
 					color: 'black',
-					backgroundColor: 'rgb(87, 86, 84, 0.5)',
+					backgroundColor: theme.palette.custom.calendar.notSelected,
 					...(isTimeColumn && { width: '2em' }),
 					...(savedDate.format(DATE_FORMAT) === date && {
 						backgroundColor: 'white',
@@ -85,18 +88,18 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 						onClick={e => handleOpenContextMenu(e, date, undefined)}
 						sx={{
 							height: `${slotHeight}rem`,
-							backgroundColor: '#1e1e22',
-							borderTop: '0.05em dashed gray',
-							borderLeft: '0.1em solid gray',
-							borderRight: '0.1em solid gray',
+							backgroundColor: theme.palette.background.default,
+							borderTop: `0.05em dashed grey`,
+							borderLeft: `0.1em solid ${theme.palette.divider}`,
+							borderRight: `0.1em solid ${theme.palette.divider}`,
 							paddingLeft: '8px',
 							fontSize: '0.8em',
 							display: 'flex',
 							position: 'relative',
 							alignItems: 'center',
 							fontWeight: '600',
-							color: 'white',
-							...(i % 2 !== 0 && { borderTop: '0.05em solid gray' }),
+							color: theme.palette.text.primary,
+							...(i % 2 !== 1 && { borderTop: '0.05em solid gray' }),
 						}}
 					>
 						<Typography fontWeight={'light'} fontSize={'0.9em'}>
@@ -115,6 +118,7 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 				type='Event'
 				method='create'
 				submit={submitEvent}
+				defaultDate={date}
 				handleClose={() => setOpenModal(!openModal)}
 			/>
 		</Box>

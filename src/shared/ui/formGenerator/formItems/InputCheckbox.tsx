@@ -1,8 +1,9 @@
 import { FormItem } from '@/entities/interfaces'
-import { Box, Checkbox, Typography } from '@mui/material'
+import { Box, Checkbox, Typography, useTheme } from '@mui/material'
 import { Controller } from 'react-hook-form'
 
 export const InputCheckbox = ({ control, name, label }: FormItem) => {
+	const theme = useTheme()
 	return (
 		<Controller
 			name={name}
@@ -16,10 +17,7 @@ export const InputCheckbox = ({ control, name, label }: FormItem) => {
 						onChange={onChange}
 						key={name}
 						sx={{
-							color: 'white',
-							'&.Mui-checked': {
-								color: 'white',
-							},
+							color: theme.palette.text.primary,
 							marginLeft: '0.5em',
 						}}
 					/>

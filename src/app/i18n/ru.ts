@@ -85,4 +85,12 @@ export const ru = {
 	utmn: {
 		title: 'События университета',
 	},
+	priority: {
+		high: 'Высокая',
+		middle: 'Средняя',
+		low: 'Низкая',
+		highFull: 'Высокая важность',
+		middleFull: 'Средняя важность',
+		lowFull: 'Низкая важность',
+	},
 }

@@ -1,5 +1,6 @@
 import i18n from '@/app/i18n/i18n'
 import { FormItem } from '@/entities/interfaces'
+import { SHOW_EN_DATE_TIME_FORMAT, SHOW_RU_DATE_TIME_FORMAT } from '@/shared/constants/constants'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from 'dayjs'
@@ -23,6 +24,7 @@ export const InputDateTime = ({ control, name, maxDate, minDate, label }: FormIt
 								onChange={onChange}
 								value={typeof value === 'string' ? dayjs(value) : value}
 								maxDate={maxDate ?? null}
+								format={i18n.language === 'ru' ? SHOW_RU_DATE_TIME_FORMAT : SHOW_EN_DATE_TIME_FORMAT}
 								minDate={minDate ?? null}
 								ampm={i18n.language === 'ru' ? false : true}
 								slotProps={{

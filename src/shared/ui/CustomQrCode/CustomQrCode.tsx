@@ -54,7 +54,7 @@ export const CustomQrCode = () => {
 					title='QR'
 					sx={{ maxWidth: '15em' }}
 				>
-					<Box sx={{ backgroundColor: 'white', padding: 2, borderRadius: 2, textAlign: 'center' }}>
+					<Box sx={{ padding: 2, borderRadius: 2, textAlign: 'center' }}>
 						<QRCode
 							size={256}
 							style={{ height: 'auto', maxWidth: '100%', width: '100%' }}

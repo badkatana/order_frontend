@@ -1,8 +1,21 @@
 import { CALENDAR_ITEM, SCROLLBAR } from '@/shared/constants/constants'
 import { DayWeek } from '@/widgets/calendarWeekView/day/DayWeek'
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 
 export const CalendarWeekView = ({ calendarItem, dateRange }: { calendarItem: CALENDAR_ITEM; dateRange: string[] }) => {
+	const theme = useTheme()
+	const styles = {
+		background: `linear-gradient(to right,${theme.palette.custom.calendar.gradient.first} , ${theme.palette.custom.calendar.gradient.second})`,
+		width: '72%',
+		borderRadius: '2em',
+		padding: '1em',
+		height: '85vh',
+		display: 'flex',
+		flexDirection: 'column',
+		overflow: 'hidden',
+		marginRight: '1em',
+	}
+
 	return (
 		<Box sx={styles}>
 			<Box
@@ -22,15 +35,4 @@ export const CalendarWeekView = ({ calendarItem, dateRange }: { calendarItem: CA
 			</Box>
 		</Box>
 	)
-}
-
-const styles = {
-	background: 'linear-gradient(to right, #e6f970, #cbe2ec)',
-	width: '70%',
-	borderRadius: '2em',
-	padding: '1em',
-	height: '85vh',
-	display: 'flex',
-	flexDirection: 'column',
-	overflow: 'hidden',
 }

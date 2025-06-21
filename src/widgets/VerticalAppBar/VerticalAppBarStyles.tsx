@@ -14,6 +14,5 @@ export const BlurredBackground = styled(Box)<{ open: boolean }>(({ open }) => ({
 
 export const VerticalBar = {
 	transition: 'width 0.3s',
-	backgroundColor: 'black',
 	height: '100%',
 }

@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 const slotHeight = 3 // 3rem
 const startHour = 6 // день начинается с 6:00
 
-export const useRenderEvents = (events: Event[], handleOpenContextMenu) => {
+export const useRenderEvents = (events: Event[], handleOpenContextMenu, date) => {
 	return events.map(event => {
 		const start = dayjs(event.periodStart)
 		const end = dayjs(event.periodEnd)
@@ -22,9 +22,11 @@ export const useRenderEvents = (events: Event[], handleOpenContextMenu) => {
 		const topEm = slotOffset * slotHeight
 		const heightEm = (durationInMinutes / 30) * slotHeight
 
+		console.log('date', date)
+
 		return (
 			<Paper
-				onClick={e => handleOpenContextMenu(e, undefined, event)}
+				onClick={e => handleOpenContextMenu(e, date || dayjs(), event)}
 				key={event.eventId}
 				sx={{
 					position: 'absolute',

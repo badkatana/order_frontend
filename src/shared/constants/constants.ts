@@ -41,6 +41,12 @@ export type DefaultConfig = {
 export const DATE_FORMAT = 'YYYY-MM-DD'
 export const RU_DATE_FORMAT = 'DD.MM.YYYY'
 export const DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm'
+
+export const SHOW_EN_DATE_TIME_FORMAT = 'MM/DD/YYYY HH:mm'
+export const SHOW_RU_DATE_TIME_FORMAT = 'DD.MM.YYYY HH:mm'
+export const SHOW_EN_DATE_FORMAT = 'MM/DD/YYYY'
+export const SHOW_RU_DATE_FORMAT = 'DD.MM.YYYY'
+
 export type CALENDAR_ITEM = { [key: string]: { tasks: Task[] | []; events: Event[] | [] } }
 
 export const categories = {

@@ -2,12 +2,13 @@ import { useAppStore } from '@/app'
 import { Project } from '@/entities/Project'
 import { editProject, getLinksPreviews } from '@/shared/api/projectRoutes'
 import { ContainerPlaceholder } from '@/shared/ui'
-import { Box, Button, Card, CardContent, CardMedia, TextField, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, TextField, Typography, useTheme } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 
 export const ProjectItemLinks = ({ links }: { links: string[] | undefined | null }) => {
 	const { selectedProject } = useAppStore()
+	const theme = useTheme()
 
 	const { data: previews, isFetching } = useQuery({
 		queryKey: ['links-preview', selectedProject?.projectId],
@@ -66,7 +67,7 @@ const LinkPreviewCard = ({ preview }) => {
 					boxShadow: 10,
 				},
 				bgcolor: 'rgb(48, 60, 70)',
-				color: 'white',
+				color: theme.palette.text.primary,
 			}}
 		>
 			{preview.image && (

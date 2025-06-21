@@ -21,6 +21,8 @@ export const GeneralForm = ({ config, submitFunction }: GeneralFormProps) => {
 		return acc
 	}, {} as DefaultObjectString)
 
+	console.log('date', defaultValues)
+
 	const methods = useForm({
 		mode: 'onChange',
 		defaultValues: defaultValues || {},

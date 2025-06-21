@@ -1,7 +1,13 @@
 import { getTranslatedText } from '@/shared/lib'
 import { Typography } from '@mui/material'
 
-export const CustomFormLabel = ({ label }) => {
+export const CustomFormLabel = ({
+	label,
+	required = false,
+}: {
+	label: string | null | undefined
+	required?: boolean
+}) => {
 	return (
 		<Typography
 			variant='body2'
@@ -12,7 +18,7 @@ export const CustomFormLabel = ({ label }) => {
 				color: 'text.secondary',
 			}}
 		>
-			{getTranslatedText(label)}
+			{`${getTranslatedText(label)}${required ? ' *' : ''}`}
 		</Typography>
 	)
 }

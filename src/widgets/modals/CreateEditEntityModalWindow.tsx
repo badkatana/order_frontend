@@ -2,9 +2,11 @@ import { Project } from '@/entities/Project'
 import { Task } from '@/entities/Task'
 import { DefaultConfig, DefaultObjectString } from '@/shared/constants/constants'
 import { EventForm, ProjectForm, TaskForm } from '@/shared/formConfigs'
+import { addDefaultValuesInConfig } from '@/shared/lib'
 import { ModalBody } from '@/shared/ui'
 import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
 import { Box } from '@mui/material'
+import dayjs from 'dayjs'
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
 
@@ -16,7 +18,7 @@ type CreateEditEntityModalWindow = {
 	method?: 'edit' | 'create'
 	type: 'Task' | 'Event' | 'Project'
 	submit: any
-	sx: DefaultObjectString
+	sx?: DefaultObjectString
 }
 
 export const CreateEditEntityModalWindow = ({
@@ -25,6 +27,7 @@ export const CreateEditEntityModalWindow = ({
 	handleClose,
 	open,
 	submit,
+	defaultDate = undefined,
 	sx = {},
 }: CreateEditEntityModalWindow) => {
 	const [entityConfig, setEntityConfig] = useState<DefaultConfig>(
@@ -32,28 +35,24 @@ export const CreateEditEntityModalWindow = ({
 	)
 
 	useEffect(() => {
-		if (!editEntityItem) return
-		const editEntityConfig: DefaultConfig = entityConfig?.map(item => {
-			const addDefaultValue = (formField: any) => ({
-				...formField,
-				defaultValue: editEntityItem?.[formField.name] ?? '',
+		if (type === 'Event' && !editEntityItem) {
+			const editEntityConfig: DefaultConfig = addDefaultValuesInConfig({
+				config: entityConfig,
+				defaultValues: { periodStart: defaultDate, periodEnd: dayjs(defaultDate) },
 			})
+			setEntityConfig(editEntityConfig)
+			return
+		}
 
-			if (item && typeof item === 'object') {
-				if ('column' in item) {
-					return {
-						...item,
-						column: item.column.map(addDefaultValue),
-					}
-				}
-				return addDefaultValue(item)
-			}
+		if (!editEntityItem) return
 
-			return item
+		const editEntityConfig: DefaultConfig = addDefaultValuesInConfig({
+			config: entityConfig,
+			defaultValues: editEntityItem,
 		})
 
 		setEntityConfig(editEntityConfig)
-	}, [editEntityItem])
+	}, [editEntityItem, type, defaultDate])
 
 	return (
 		<ModalBody

@@ -7,7 +7,7 @@ import { WeekOverview } from '@/widgets/calendarWeekView/weekOverview/WeekOvervi
 import { generateDateRange, groupArraysByDate } from '@/widgets/lib'
 import { submitTask } from '@/widgets/lib/submitForm'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { Dayjs } from 'dayjs'
 import { useMemo, useState } from 'react'
@@ -16,7 +16,7 @@ export const CalendarPage = () => {
 	const { savedWeek } = useAppStore()
 	const dateRange = generateDateRange(savedWeek.monday, savedWeek.sunday)
 	const [open, setOpen] = useState(false)
-
+	const theme = useTheme()
 	const { data, refetch } = useQuery({
 		queryKey: ['calendar', savedWeek],
 		queryFn: () =>
@@ -52,8 +52,11 @@ export const CalendarPage = () => {
 					minWidth: '100%',
 					minHeight: '100%',
 					display: 'flex',
+					paddingLeft: 1,
+					paddingRight: 1,
 					flexDirection: 'row',
 					justifyContent: 'space-between',
+					color: theme.palette.text.primary,
 				}}
 			>
 				<WeekOverview calendarItem={calendarItem} setOpen={setOpen} overview={overview} />

@@ -37,7 +37,7 @@ export const ProjectItem = ({}: { project?: Project | null; tasks?: Task[]; note
 	return (
 		<ProjectCard>
 			<ProjectUsersModal open={openModal} handleClose={() => setOpenModal(false)} />
-			<Box>
+			<Box mb={1}>
 				<Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
 					<Box>
 						<Typography variant='h4'>{description}</Typography>

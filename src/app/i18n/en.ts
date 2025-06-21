@@ -82,4 +82,12 @@ export const en = {
 	utmn: {
 		title: 'Utmn events',
 	},
+	priority: {
+		high: 'High',
+		middle: 'Middle',
+		low: 'Low',
+		highFull: 'High priority',
+		middleFull: 'Middle priority',
+		lowFull: 'Low priority',
+	},
 }

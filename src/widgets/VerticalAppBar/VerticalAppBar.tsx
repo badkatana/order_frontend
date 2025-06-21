@@ -1,5 +1,5 @@
 import { getIcon } from '@/shared/icons/icons'
-import { AppBar, List, ListItem, ListItemText, Toolbar, Tooltip } from '@mui/material'
+import { AppBar, List, ListItem, ListItemText, Toolbar, Tooltip, useTheme } from '@mui/material'
 import { t } from 'i18next'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +14,7 @@ interface VerticalAppBarProps {
 
 export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 	const navigate = useNavigate()
+	const theme = useTheme()
 	const [openSettings, setOpenSettings] = useState(false)
 
 	const handleClick = (item: AppBarItemType) => {
@@ -46,7 +47,7 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 				{/*  @ts-ignore */}
 				<ListItem key={item.key} onClick={() => handleClick(item)} button style={{ padding: '1em' }}>
 					{getIcon({ name: item.icon })}
-					{open && <ListItemText primary={item.name} sx={{ color: 'white', px: '1em' }} />}
+					{open && <ListItemText primary={item.name} sx={{ px: '1em' }} />}
 				</ListItem>
 			</Tooltip>
 		)
@@ -60,6 +61,8 @@ export const VerticalAppBar = ({ open, toggleDrawer }: VerticalAppBarProps) => {
 				sx={{
 					width: open ? '15%' : '5%',
 					...VerticalBar,
+					backgroundColor: theme.palette.custom.appBar,
+					color: theme.palette.text.primary,
 				}}
 			>
 				<Toolbar sx={{ display: 'flex', flexDirection: 'column' }}>
