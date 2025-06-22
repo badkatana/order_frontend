@@ -8,7 +8,6 @@ import { useState } from 'react'
 
 export const ProjectItemLinks = ({ links }: { links: string[] | undefined | null }) => {
 	const { selectedProject } = useAppStore()
-	const theme = useTheme()
 
 	const { data: previews, isFetching } = useQuery({
 		queryKey: ['links-preview', selectedProject?.projectId],
@@ -50,6 +49,7 @@ export const ProjectItemLinks = ({ links }: { links: string[] | undefined | null
 }
 
 const LinkPreviewCard = ({ preview }) => {
+	const theme = useTheme()
 	return (
 		<Card
 			onClick={() => window.open(preview.url, '_blank')}
@@ -66,7 +66,7 @@ const LinkPreviewCard = ({ preview }) => {
 					transform: 'translateY(-4px)',
 					boxShadow: 10,
 				},
-				bgcolor: 'rgb(48, 60, 70)',
+				bgcolor: theme.palette.custom.linkCard,
 				color: theme.palette.text.primary,
 			}}
 		>

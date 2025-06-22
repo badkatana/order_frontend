@@ -41,7 +41,6 @@ export const useManageEvents = () => {
 	const handleOpenContextMenu = (e, date = undefined, event = undefined) => {
 		e.preventDefault()
 		setAnchorEl(e.currentTarget)
-		console.log('date', date)
 		if (date) setSelectedDate(date)
 		if (event) setSelectedEvent(event)
 	}
@@ -70,6 +69,7 @@ export const useManageEvents = () => {
 				setOpenEventModal(false)
 				setSelectedEvent(undefined)
 				setSelectedDate(null)
+				setAnchorEl(null)
 			}}
 			submit={values => handleSubmitEvent(values)}
 		/>

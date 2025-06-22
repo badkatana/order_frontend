@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, Divider, Typography } from '@mui/material'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 type TaskStats = {
 	tasksTotal: number
@@ -10,6 +10,7 @@ type TaskStats = {
 }
 
 export const TaskStatsCard = ({ tasksTotal, tasksCompleted, tasksOverdue, averageCompletionDelayHours }: TaskStats) => {
+	const { t } = useTranslation()
 	return (
 		<Card sx={{ minWidth: 260, borderRadius: 2, boxShadow: 1 }}>
 			<CardContent>

@@ -6,13 +6,13 @@ import { addDefaultValuesInConfig } from '@/shared/lib'
 import { ModalBody } from '@/shared/ui'
 import { GeneralForm } from '@/shared/ui/formGenerator/GeneralForm'
 import { Box } from '@mui/material'
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import { t } from 'i18next'
 import { useEffect, useState } from 'react'
 
 type CreateEditEntityModalWindow = {
 	editEntityItem?: Task | Event | Project | Record<string, any>
-	defaultDate?: string
+	defaultDate?: string | Dayjs | null | undefined
 	open: boolean
 	handleClose: () => void
 	method?: 'edit' | 'create'
@@ -35,7 +35,7 @@ export const CreateEditEntityModalWindow = ({
 	)
 
 	useEffect(() => {
-		if (type === 'Event' && !editEntityItem) {
+		if (type === 'Event' && !editEntityItem && defaultDate) {
 			const editEntityConfig: DefaultConfig = addDefaultValuesInConfig({
 				config: entityConfig,
 				defaultValues: { periodStart: defaultDate, periodEnd: dayjs(defaultDate) },

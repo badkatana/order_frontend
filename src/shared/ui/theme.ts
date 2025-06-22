@@ -9,6 +9,7 @@ export const lightTheme = createTheme({
 		custom: {
 			appBar: '#efefe7',
 			icons: '#424242',
+			linkCards: '#e2e2e2',
 			calendar: {
 				selected: '#8E24AA',
 				notSelected: 'rgb(107, 105, 105, 0.5)',
@@ -45,6 +46,7 @@ export const darkTheme = createTheme({
 		custom: {
 			appBar: 'black',
 			icons: 'white',
+			linkCard: 'rgb(48, 60, 70)',
 			calendar: {
 				selected: '#8E24AA',
 				notSelected: 'rgb(87, 86, 84, 0.5)',

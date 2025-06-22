@@ -1,5 +1,6 @@
 import { addLabelToFormComponents } from '../lib/addLabelFormComponents'
 import { InputDate, InputString, InputToggle } from '../ui/formGenerator/formItems'
+import { InputProject } from '../ui/formGenerator/formItems/InputProject'
 
 const rawTaskForm = [
 	{
@@ -45,6 +46,11 @@ const rawTaskForm = [
 				name: 'softDeadline',
 				label: 'Soft Deadline',
 				component: InputDate,
+			},
+			{
+				name: 'projectId',
+				label: 'experimental ProjectId',
+				component: InputProject,
 			},
 		],
 	},

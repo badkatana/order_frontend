@@ -4,9 +4,9 @@ import { DefaultObjectString } from '@/shared/constants/constants'
 import { AuthConfig } from '@/shared/formConfigs'
 import { useAuth } from '@/shared/hooks/useAuth'
 import { Box, Button, Typography } from '@mui/material'
-import { t } from 'i18next'
 import { useState } from 'react'
 import { FieldValues, Form, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 export const SessionForm = () => {
@@ -14,6 +14,7 @@ export const SessionForm = () => {
 	const navigate = useNavigate()
 	const [helperText, setHelperText] = useState<string | null>()
 	const { login } = useAuth()
+	const { t } = useTranslation()
 	const isRegistrationAllowed = import.meta.env.VITE_ALLOW_REGISTRATION
 
 	const validateFields = async (values: DefaultObjectString) => {

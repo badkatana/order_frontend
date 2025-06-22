@@ -10,7 +10,6 @@ import { ThemeToggle } from './LanguageSwitcher/ThemeToggle'
 
 export const UserSettings = ({ open, handleClose }) => {
 	const theme = useTheme()
-	console.log('theme', theme.palette.mode)
 
 	const userConfig = [
 		{

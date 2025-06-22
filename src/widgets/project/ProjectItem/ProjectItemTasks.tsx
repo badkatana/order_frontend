@@ -4,10 +4,12 @@ import { ListItemTask } from '@/shared/ui/listItems/ListItemTask'
 import { groupByPriority } from '@/widgets/lib'
 import { Box, Grid, Typography } from '@mui/material'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const ProjectItemTasks = ({ tasks, projectId }: { tasks: Task[] | any[]; projectId: number }) => {
 	const [drafts, setDrafts] = useState({})
 	const { high, middle, low } = groupByPriority([...tasks, drafts])
+	const { t } = useTranslation()
 
 	const clearDrafts = () => setDrafts({})
 
@@ -35,9 +37,9 @@ export const ProjectItemTasks = ({ tasks, projectId }: { tasks: Task[] | any[]; 
 	return (
 		<Box sx={{ px: 2, py: 2 }}>
 			<Grid container spacing={2}>
-				{renderColumn('Высокая важность', high as Task[], 1)}
-				{renderColumn('Средняя важность', middle as Task[], 2)}
-				{renderColumn('Низкая важность', low as Task[], 3)}
+				{renderColumn(t('priority.highFull'), high as Task[], 1)}
+				{renderColumn(t('priority.middleFull'), middle as Task[], 2)}
+				{renderColumn(t('priority.lowFull'), low as Task[], 3)}
 			</Grid>
 		</Box>
 	)

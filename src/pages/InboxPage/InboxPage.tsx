@@ -2,13 +2,14 @@ import { useInboxData } from '@/features/inbox/useInboxData'
 import { ContainerPlaceholder, WithPageWrapper } from '@/shared/ui'
 import { InboxItem } from '@/widgets/inbox/InboxItem'
 import { Box, Button, styled } from '@mui/material'
-import { t } from 'i18next'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useInboxNotes } from '../../features/inbox/useInboxNotes'
 
 export const InboxPage: React.FC = () => {
 	const { userNotes, isNotesFetching, refetch } = useInboxData()
 	const { handleAddNewNote } = useInboxNotes({ refetch })
+	const { t } = useTranslation()
 
 	if (isNotesFetching) return <ContainerPlaceholder progress />
 

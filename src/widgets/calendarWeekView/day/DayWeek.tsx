@@ -24,9 +24,6 @@ export const DayWeek = ({ date, events, isTimeColumn = false }: DayWeekProps) =>
 	const [openModal, setOpenModal] = useState(false)
 	const { handleOpenContextMenu, EventContextMenuModal, EventCreateEditModal } = useManageEvents()
 	const theme = useTheme()
-
-	console.log('date in dayweek', date)
-
 	const renderedEvents = useRenderEvents(events || [], handleOpenContextMenu, date)
 
 	return (

@@ -16,7 +16,6 @@ export const UtmnPage = () => {
 	const categories = ['Все', 'ШКН']
 	const [selectedCategory, setSelectedCategory] = useState<string>(categories[0])
 	const currentEvents = events || []
-	console.log(events)
 
 	if (isFetching) return <ContainerPlaceholder fullHeight progress />
 

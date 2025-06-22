@@ -31,7 +31,6 @@ export const useInboxNotes = ({ refetch = undefined }) => {
 
 	const handleSaveNote = (note: Note) => {
 		const { isDraft, noteId, ...rest } = note
-		console.log(isDraft, noteId)
 		if (isDraft) {
 			removeDraft(noteId || '')
 			saveNewNote({ ...rest, isDraft: false })

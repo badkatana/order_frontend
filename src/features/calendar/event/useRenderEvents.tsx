@@ -1,8 +1,20 @@
+import { DefaultObjectString } from '@/shared/constants/constants'
 import { Paper, Typography } from '@mui/material'
 import dayjs from 'dayjs'
 
 const slotHeight = 3 // 3rem
 const startHour = 6 // день начинается с 6:00
+
+const getEventsGroups = ({ events }) => {
+	let groups: string[][] = []
+
+	const allTimeStamps = events.reduce((acc, field) => {
+		acc[field.periodStart] = [...acc[field.periodStart], field]
+		return acc
+	}, {} as DefaultObjectString)
+
+	return groups
+}
 
 export const useRenderEvents = (events: Event[], handleOpenContextMenu, date) => {
 	return events.map(event => {
@@ -21,8 +33,6 @@ export const useRenderEvents = (events: Event[], handleOpenContextMenu, date) =>
 		const slotOffset = minutesFromStart / 30
 		const topEm = slotOffset * slotHeight
 		const heightEm = (durationInMinutes / 30) * slotHeight
-
-		console.log('date', date)
 
 		return (
 			<Paper

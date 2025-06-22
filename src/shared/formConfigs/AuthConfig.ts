@@ -10,9 +10,9 @@ export const rawAuthConfig: DefaultConfig = [
 			{
 				value: 1,
 				label: 'Register',
-				hidden: import.meta.env.VITE_ALLOW_REGISTRATION,
+				hidden: !import.meta.env.VITE_ALLOW_REGISTRATION,
 			},
-			{ value: 2, label: 'Login' },
+			{ value: 2, label: 'Login', hidden: !import.meta.env.VITE_ALLOW_REGISTRATION },
 		],
 	},
 	{

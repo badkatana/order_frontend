@@ -25,7 +25,6 @@ export const ThemeToggle = () => {
 								checked={field.value}
 								onChange={e => {
 									const value = !field.value ? 'dark' : 'light'
-									console.log(value)
 									setMode(value)
 									field.onChange(e)
 								}}

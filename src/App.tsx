@@ -13,7 +13,6 @@ import { ThemeContextProvider } from './shared/context/ThemeContext'
 import { useAuth } from './shared/hooks'
 
 dayjs.extend(updateLocale)
-
 dayjs.updateLocale('en', {
 	weekStart: 1,
 })
