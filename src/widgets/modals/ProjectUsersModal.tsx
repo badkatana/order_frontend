@@ -4,6 +4,7 @@ import { getAllUsers } from '@/shared/api/userRoutes'
 import { CustomIconButton } from '@/shared/buttons/CustomIconButton'
 import { SCROLLBAR } from '@/shared/constants/constants'
 import { ContainerPlaceholder, ModalBody } from '@/shared/ui'
+import { CustomFormLabel } from '@/shared/ui/formGenerator/formItems/FormLabel'
 import { Avatar, Box, Button, Chip, List, ListItem, TextField } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
@@ -12,7 +13,8 @@ import { ProjectUserListStyles } from './styles/ProjectUserModal'
 export const ProjectUsersModal = ({ open, handleClose }) => {
 	const { t } = useTranslation()
 	const { selectedProject } = useAppStore()
-	const { userIds, projectId } = selectedProject || {}
+	const { projectUsers, projectId } = selectedProject || {}
+	const userIds: string[] = projectUsers?.map(u => u.userId as string) || []
 
 	const { data: users, isFetching } = useQuery({
 		queryKey: ['allUsers'],
@@ -27,10 +29,12 @@ export const ProjectUsersModal = ({ open, handleClose }) => {
 
 	return (
 		<ModalBody open={open} handleClose={handleClose} title={t('project.projectUsers.title')} sx={{ width: '50%' }}>
+			<CustomFormLabel label={'project.projectUsers.findUser'} sx={{ mb: 0 }} />
 			<TextField
-				label={t('project.projectUsers.findUser')}
-				variant='outlined'
+				variant='filled'
 				fullWidth
+				size='small'
+				hiddenLabel
 				margin='normal'
 				value={search}
 				onChange={e => setSearch(e.target.value)}
@@ -65,7 +69,6 @@ export const ProjectUsersModal = ({ open, handleClose }) => {
 							{!inProject && (
 								<CustomIconButton
 									iconName={'addUser'}
-									sx={{ color: 'black' }}
 									onClick={() => setAddedUserIds(prev => [...prev, userId])}
 								/>
 							)}

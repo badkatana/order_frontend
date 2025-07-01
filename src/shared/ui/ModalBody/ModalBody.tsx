@@ -2,7 +2,6 @@ import { DefaultObjectString } from '@/shared/constants/constants'
 import { getTranslatedText } from '@/shared/lib'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import { Box, IconButton, Modal, Typography } from '@mui/material'
-import React from 'react'
 import { BlurredOverlay, style } from './ModalBodyStyles'
 
 export const ModalBody = ({
@@ -12,7 +11,7 @@ export const ModalBody = ({
 	title = '',
 	sx = {},
 }: {
-	children: React.JSX.Element
+	children: any
 	open: boolean
 	handleClose: (flag: boolean) => void
 	title: string

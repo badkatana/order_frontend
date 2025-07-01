@@ -28,7 +28,7 @@ export const useManageProjectUsers = ({
 	const submitChanges = () => {
 		if (projectId) {
 			addedUserIds && assignUserToProject(addedUserIds, projectId)
-			removedUserIds && unassignUserFromProject(removedUserIds, projectId)
+			removedUserIds && removedUserIds.length > 0 && unassignUserFromProject(removedUserIds, projectId)
 		}
 	}
 

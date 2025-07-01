@@ -4,6 +4,7 @@ import { DefaultObjectString } from '@/shared/constants/constants'
 import { CreateEditEntityModalWindow } from '@/widgets/modals'
 import { Box, Checkbox, TextField, Typography, useTheme } from '@mui/material'
 import { useQueryClient } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 import { useState } from 'react'
 import { Task } from '../../../entities/Task'
 import { deleteTask, editTask } from '../../api/taskRoutes'
@@ -133,7 +134,7 @@ export const ListItemTask = ({ task, afterSubmit, sx = {} }: ListItemTask) => {
 				open={open}
 				handleClose={() => setOpen(false)}
 				type='Task'
-				method='edit'
+				defaultDate={dayjs()}
 				editEntityItem={{ ...task }}
 				submit={(values: any) => {
 					submitEditedTask({ ...task, ...values })

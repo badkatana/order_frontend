@@ -9,13 +9,13 @@ export const useManageTasks = ({ isEditable, setIsEditable }) => {
 	const queryClient = useQueryClient()
 
 	const submitEditedTask = useCallback(async (task: Task) => {
+		const { isDraft, taskId, ...clearedTask } = task
 		if (task.isDraft) {
-			const { isDraft, taskId, ...clearedTask } = task
 			if (task.projectId) {
 				const newTask = await submitTask(clearedTask)
 				await assignTaskToProject(newTask.taskId, task.projectId)
 			} else await submitTask(clearedTask)
-		} else await submitEditedTaskQuery(clearedTask)
+		} else await submitEditedTaskQuery({ ...clearedTask, taskId })
 
 		isEditable && setIsEditable(false)
 		queryClient.refetchQueries({ queryKey: [task.projectId ? 'projects' : 'calendar'], exact: false })

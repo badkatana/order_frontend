@@ -7,7 +7,7 @@ import { CustomFormLabel } from './FormLabel'
 
 export const InputProject = ({ control, label, name }: FormItem) => {
 	const { data: projects = [], isFetching } = useQuery({
-		queryKey: ['projects'],
+		queryKey: ['projects-for-tasks'],
 		queryFn: getAllProjects,
 	})
 
